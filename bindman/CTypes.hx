@@ -11,6 +11,7 @@ typedef CStruct = {
     var name:String;
     var fields:Array<CField>;
     var ?opaque:Bool;
+    var ?lineNumber:Int;
 }
 
 typedef CEnum = {

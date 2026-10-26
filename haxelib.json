@@ -2,9 +2,9 @@
 	"name" : "bindman",
 	"url" : "",
 	"license" : "MIT",
-	"contributors" : ["Amara"],
-	"description" : "A library for automated C binding generation.",
-	"version" : "1.0.0",
+	"contributors" : ["fsasquatch"],
+	"description" : "Library for automated C binding generation.",
+	"version" : "0.0.1",
 	"dependencies" : {},
 	"releasenote" : "Open!"
 }

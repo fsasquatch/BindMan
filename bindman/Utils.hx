@@ -20,9 +20,10 @@ class Utils {
 
     public static function locateHaxelibPath():String {
         for(path in Context.getClassPath()) {
-            var parent = Path.directory(Path.removeTrailingSlashes(path));
-            if(FileSystem.exists(Path.join([parent, "showbiz.txt"]))) {
-                return parent;
+            // var parent = Path.directory(Path.removeTrailingSlashes(path));
+            var file = Path.join([path, "showbiz.txt"]);
+            if(FileSystem.exists(file)) {
+                return path;
             }
         }
         return null;

@@ -7,7 +7,7 @@ class Hxcpp {
     public static function getType(type:BindType):String {
         switch(type) {
             case Invalid:
-                return null;
+                return 'Invalid';
             case Void:
                 return 'cpp.Void';
             case Int8:
@@ -48,7 +48,7 @@ class Hxcpp {
             case Pointer(value):
                 switch(value) {
                     case Struct(v):
-                        return Utils.titlecase(v);
+                        return 'haxe.extern.AsVar<${Utils.titlecase(v)}>';
                     case Pointer(v):
                         if(v == Char) return 'cpp.CastCharStarPointer';
                         return 'cpp.RawPointer<${getType(v)}>';
@@ -94,7 +94,7 @@ class Hxcpp {
         }
 
         for(t in lib.typedefs) {
-            code += 'typedef ${t.name} = ${getType(t.type)};\n\n';
+            code += 'typedef ${Utils.titlecase(t.name)} = ${getType(t.type)};\n\n';
         }
 
         code += "@:keep\n";
