@@ -85,7 +85,8 @@ function main() {
     var window = SDL.SDL_CreateWindow("hello", 640, 480, Def.WINDOW_OPENGL | Def.WINDOW_RESIZABLE);
     var gl = SDL.SDL_GL_CreateContext(window);
     var event = new SDL_Event();
-    var running = true;
+
+	var running = true;
     while(running) {
         while(SDL.SDL_PollEvent(event)) {
             if(event.type == cast SDL_EventType.SDL_EVENT_QUIT) {
@@ -94,6 +95,7 @@ function main() {
         }
         SDL.SDL_GL_SwapWindow(window);
     }
+
     SDL.SDL_GL_DestroyContext(gl);
     SDL.SDL_DestroyWindow(window);
     SDL.SDL_Quit();
