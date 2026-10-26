@@ -236,7 +236,7 @@ extern class MaterialMap {
 extern class Material {
     var shader:Shader;
     var maps:MaterialMap;
-    var params:cpp.cpp.Float32Pointer;
+    var params:cpp.Float32Pointer;
 
     function new():Void;
 }
@@ -256,7 +256,7 @@ extern class Transform {
 @:include("raylib.h")
 @:cpp.ValueType({type: "BoneInfo"})
 extern class BoneInfo {
-    var name:cpp.CastCharStar;
+    var name:cpp.CharPointer;
     var parent:cpp.Int32;
 
     function new():Void;
@@ -294,7 +294,7 @@ extern class Model {
 @:include("raylib.h")
 @:cpp.ValueType({type: "ModelAnimation"})
 extern class ModelAnimation {
-    var name:cpp.CastCharStar;
+    var name:cpp.CharPointer;
     var boneCount:cpp.UInt32;
     var keyframeCount:cpp.Int32;
     var keyframePoses:ModelAnimPose;
@@ -349,13 +349,13 @@ extern class Wave {
 
 @:semantics(value)
 @:include("raylib.h")
-@:cpp.ValueType({type: "rAudioBuffer"})
+@:cpp.PointerType({type: "rAudioBuffer"})
 extern class RAudioBuffer {
 }
 
 @:semantics(value)
 @:include("raylib.h")
-@:cpp.ValueType({type: "rAudioProcessor"})
+@:cpp.PointerType({type: "rAudioProcessor"})
 extern class RAudioProcessor {
 }
 
@@ -406,8 +406,8 @@ extern class VrDeviceInfo {
     var eyeToScreenDistance:cpp.Float32;
     var lensSeparationDistance:cpp.Float32;
     var interpupillaryDistance:cpp.Float32;
-    var lensDistortionValues:cpp.cpp.Float32Pointer;
-    var chromaAbCorrection:cpp.cpp.Float32Pointer;
+    var lensDistortionValues:cpp.Float32Pointer;
+    var chromaAbCorrection:cpp.Float32Pointer;
 
     function new():Void;
 }
@@ -416,14 +416,14 @@ extern class VrDeviceInfo {
 @:include("raylib.h")
 @:cpp.ValueType({type: "VrStereoConfig"})
 extern class VrStereoConfig {
-    var projection:cpp.MatrixPointer;
-    var viewOffset:cpp.MatrixPointer;
-    var leftLensCenter:cpp.cpp.Float32Pointer;
-    var rightLensCenter:cpp.cpp.Float32Pointer;
-    var leftScreenCenter:cpp.cpp.Float32Pointer;
-    var rightScreenCenter:cpp.cpp.Float32Pointer;
-    var scale:cpp.cpp.Float32Pointer;
-    var scaleIn:cpp.cpp.Float32Pointer;
+    var projection:Matrix;
+    var viewOffset:Matrix;
+    var leftLensCenter:cpp.Float32Pointer;
+    var rightLensCenter:cpp.Float32Pointer;
+    var leftScreenCenter:cpp.Float32Pointer;
+    var rightScreenCenter:cpp.Float32Pointer;
+    var scale:cpp.Float32Pointer;
+    var scaleIn:cpp.Float32Pointer;
 
     function new():Void;
 }
@@ -444,7 +444,7 @@ extern class FilePathList {
 extern class AutomationEvent {
     var frame:cpp.UInt32;
     var type:cpp.UInt32;
-    var params:cpp.cpp.Int32Pointer;
+    var params:cpp.Int32Pointer;
 
     function new():Void;
 }
@@ -903,23 +903,23 @@ typedef Camera = Camera3D;
 
 typedef ModelAnimPose = Transform;
 
-typedef TraceLogCallback = null;
+typedef TraceLogCallback = Dynamic;
 
-typedef LoadFileDataCallback = null;
+typedef LoadFileDataCallback = Dynamic;
 
-typedef SaveFileDataCallback = null;
+typedef SaveFileDataCallback = Dynamic;
 
-typedef LoadFileTextCallback = null;
+typedef LoadFileTextCallback = Dynamic;
 
-typedef SaveFileTextCallback = null;
+typedef SaveFileTextCallback = Dynamic;
 
-typedef AudioCallback = null;
+typedef AudioCallback = Dynamic;
 
 @:keep
 @:buildXml(TODO)
 @:include("raylib.h")
 extern class Raylib {
-    @:native("InitWindow") static function InitWindow(width:cpp.Int32,height:cpp.Int32,title:cpp.CharStar):cpp.Void;
+    @:native("InitWindow") static function InitWindow(width:cpp.Int32,height:cpp.Int32,title:cpp.CharPointer):cpp.Void;
     @:native("CloseWindow") static function CloseWindow():cpp.Void;
     @:native("WindowShouldClose") static function WindowShouldClose():Bool;
     @:native("IsWindowReady") static function IsWindowReady():Bool;
@@ -939,7 +939,7 @@ extern class Raylib {
     @:native("RestoreWindow") static function RestoreWindow():cpp.Void;
     @:native("SetWindowIcon") static function SetWindowIcon(image:Image):cpp.Void;
     @:native("SetWindowIcons") static function SetWindowIcons(images:Image,count:cpp.Int32):cpp.Void;
-    @:native("SetWindowTitle") static function SetWindowTitle(title:cpp.CharStar):cpp.Void;
+    @:native("SetWindowTitle") static function SetWindowTitle(title:cpp.CharPointer):cpp.Void;
     @:native("SetWindowPosition") static function SetWindowPosition(x:cpp.Int32,y:cpp.Int32):cpp.Void;
     @:native("SetWindowMonitor") static function SetWindowMonitor(monitor:cpp.Int32):cpp.Void;
     @:native("SetWindowMinSize") static function SetWindowMinSize(width:cpp.Int32,height:cpp.Int32):cpp.Void;
@@ -962,9 +962,9 @@ extern class Raylib {
     @:native("GetMonitorRefreshRate") static function GetMonitorRefreshRate(monitor:cpp.Int32):cpp.Int32;
     @:native("GetWindowPosition") static function GetWindowPosition():Vector2;
     @:native("GetWindowScaleDPI") static function GetWindowScaleDPI():Vector2;
-    @:native("GetMonitorName") static function GetMonitorName(monitor:cpp.Int32):cpp.CharStar;
-    @:native("SetClipboardText") static function SetClipboardText(text:cpp.CharStar):cpp.Void;
-    @:native("GetClipboardText") static function GetClipboardText():cpp.CharStar;
+    @:native("GetMonitorName") static function GetMonitorName(monitor:cpp.Int32):cpp.CharPointer;
+    @:native("SetClipboardText") static function SetClipboardText(text:cpp.CharPointer):cpp.Void;
+    @:native("GetClipboardText") static function GetClipboardText():cpp.CharPointer;
     @:native("GetClipboardImage") static function GetClipboardImage():Image;
     @:native("EnableEventWaiting") static function EnableEventWaiting():cpp.Void;
     @:native("DisableEventWaiting") static function DisableEventWaiting():cpp.Void;
@@ -993,11 +993,11 @@ extern class Raylib {
     @:native("EndVrStereoMode") static function EndVrStereoMode():cpp.Void;
     @:native("LoadVrStereoConfig") static function LoadVrStereoConfig(device:VrDeviceInfo):VrStereoConfig;
     @:native("UnloadVrStereoConfig") static function UnloadVrStereoConfig(config:VrStereoConfig):cpp.Void;
-    @:native("LoadShader") static function LoadShader(vsFileName:cpp.CharStar,fsFileName:cpp.CharStar):Shader;
-    @:native("LoadShaderFromMemory") static function LoadShaderFromMemory(vsCode:cpp.CharStar,fsCode:cpp.CharStar):Shader;
+    @:native("LoadShader") static function LoadShader(vsFileName:cpp.CharPointer,fsFileName:cpp.CharPointer):Shader;
+    @:native("LoadShaderFromMemory") static function LoadShaderFromMemory(vsCode:cpp.CharPointer,fsCode:cpp.CharPointer):Shader;
     @:native("IsShaderValid") static function IsShaderValid(shader:Shader):Bool;
-    @:native("GetShaderLocation") static function GetShaderLocation(shader:Shader,uniformName:cpp.CharStar):cpp.Int32;
-    @:native("GetShaderLocationAttrib") static function GetShaderLocationAttrib(shader:Shader,attribName:cpp.CharStar):cpp.Int32;
+    @:native("GetShaderLocation") static function GetShaderLocation(shader:Shader,uniformName:cpp.CharPointer):cpp.Int32;
+    @:native("GetShaderLocationAttrib") static function GetShaderLocationAttrib(shader:Shader,attribName:cpp.CharPointer):cpp.Int32;
     @:native("SetShaderValue") static function SetShaderValue(shader:Shader,locIndex:cpp.Int32,value:cpp.VoidPointer,uniformType:cpp.Int32):cpp.Void;
     @:native("SetShaderValueV") static function SetShaderValueV(shader:Shader,locIndex:cpp.Int32,value:cpp.VoidPointer,uniformType:cpp.Int32,count:cpp.Int32):cpp.Void;
     @:native("SetShaderValueMatrix") static function SetShaderValueMatrix(shader:Shader,locIndex:cpp.Int32,mat:Matrix):cpp.Void;
@@ -1022,70 +1022,70 @@ extern class Raylib {
     @:native("GetRandomValue") static function GetRandomValue(min:cpp.Int32,max:cpp.Int32):cpp.Int32;
     @:native("LoadRandomSequence") static function LoadRandomSequence(count:cpp.UInt32,min:cpp.Int32,max:cpp.Int32):cpp.Int32Pointer;
     @:native("UnloadRandomSequence") static function UnloadRandomSequence(sequence:cpp.Int32Pointer):cpp.Void;
-    @:native("TakeScreenshot") static function TakeScreenshot(fileName:cpp.CharStar):cpp.Void;
+    @:native("TakeScreenshot") static function TakeScreenshot(fileName:cpp.CharPointer):cpp.Void;
     @:native("SetConfigFlags") static function SetConfigFlags(flags:cpp.UInt32):cpp.Void;
-    @:native("OpenURL") static function OpenURL(url:cpp.CharStar):cpp.Void;
+    @:native("OpenURL") static function OpenURL(url:cpp.CharPointer):cpp.Void;
     @:native("SetTraceLogLevel") static function SetTraceLogLevel(logLevel:cpp.Int32):cpp.Void;
-    @:native("TraceLog") static function TraceLog(logLevel:cpp.Int32,text:cpp.CharStar):cpp.Void;
+    @:native("TraceLog") static function TraceLog(logLevel:cpp.Int32,text:cpp.CharPointer):cpp.Void;
     @:native("SetTraceLogCallback") static function SetTraceLogCallback(callback:TraceLogCallback):cpp.Void;
     @:native("MemAlloc") static function MemAlloc(size:cpp.UInt32):cpp.VoidPointer;
     @:native("MemRealloc") static function MemRealloc(ptr:cpp.VoidPointer,size:cpp.UInt32):cpp.VoidPointer;
     @:native("MemFree") static function MemFree(ptr:cpp.VoidPointer):cpp.Void;
-    @:native("LoadFileData") static function LoadFileData(fileName:cpp.CharStar,dataSize:cpp.Int32Pointer):cpp.UInt8Pointer;
+    @:native("LoadFileData") static function LoadFileData(fileName:cpp.CharPointer,dataSize:cpp.Int32Pointer):cpp.UInt8Pointer;
     @:native("UnloadFileData") static function UnloadFileData(data:cpp.UInt8Pointer):cpp.Void;
-    @:native("SaveFileData") static function SaveFileData(fileName:cpp.CharStar,data:cpp.VoidPointer,dataSize:cpp.Int32):Bool;
-    @:native("ExportDataAsCode") static function ExportDataAsCode(data:cpp.UInt8Pointer,dataSize:cpp.Int32,fileName:cpp.CharStar):Bool;
-    @:native("LoadFileText") static function LoadFileText(fileName:cpp.CharStar):cpp.CharStar;
-    @:native("UnloadFileText") static function UnloadFileText(text:cpp.CharStar):cpp.Void;
-    @:native("SaveFileText") static function SaveFileText(fileName:cpp.CharStar,text:cpp.CharStar):Bool;
+    @:native("SaveFileData") static function SaveFileData(fileName:cpp.CharPointer,data:cpp.VoidPointer,dataSize:cpp.Int32):Bool;
+    @:native("ExportDataAsCode") static function ExportDataAsCode(data:cpp.UInt8Pointer,dataSize:cpp.Int32,fileName:cpp.CharPointer):Bool;
+    @:native("LoadFileText") static function LoadFileText(fileName:cpp.CharPointer):cpp.CharPointer;
+    @:native("UnloadFileText") static function UnloadFileText(text:cpp.CharPointer):cpp.Void;
+    @:native("SaveFileText") static function SaveFileText(fileName:cpp.CharPointer,text:cpp.CharPointer):Bool;
     @:native("SetLoadFileDataCallback") static function SetLoadFileDataCallback(callback:LoadFileDataCallback):cpp.Void;
     @:native("SetSaveFileDataCallback") static function SetSaveFileDataCallback(callback:SaveFileDataCallback):cpp.Void;
     @:native("SetLoadFileTextCallback") static function SetLoadFileTextCallback(callback:LoadFileTextCallback):cpp.Void;
     @:native("SetSaveFileTextCallback") static function SetSaveFileTextCallback(callback:SaveFileTextCallback):cpp.Void;
-    @:native("FileRename") static function FileRename(fileName:cpp.CharStar,fileRename:cpp.CharStar):cpp.Int32;
-    @:native("FileRemove") static function FileRemove(fileName:cpp.CharStar):cpp.Int32;
-    @:native("FileCopy") static function FileCopy(srcPath:cpp.CharStar,dstPath:cpp.CharStar):cpp.Int32;
-    @:native("FileMove") static function FileMove(srcPath:cpp.CharStar,dstPath:cpp.CharStar):cpp.Int32;
-    @:native("FileTextReplace") static function FileTextReplace(fileName:cpp.CharStar,search:cpp.CharStar,replacement:cpp.CharStar):cpp.Int32;
-    @:native("FileTextFindIndex") static function FileTextFindIndex(fileName:cpp.CharStar,search:cpp.CharStar):cpp.Int32;
-    @:native("FileExists") static function FileExists(fileName:cpp.CharStar):Bool;
-    @:native("DirectoryExists") static function DirectoryExists(dirPath:cpp.CharStar):Bool;
-    @:native("IsFileExtension") static function IsFileExtension(fileName:cpp.CharStar,ext:cpp.CharStar):Bool;
-    @:native("IsFileHidden") static function IsFileHidden(filePath:cpp.CharStar):Bool;
-    @:native("GetFileLength") static function GetFileLength(fileName:cpp.CharStar):cpp.Int32;
-    @:native("GetFileModTime") static function GetFileModTime(fileName:cpp.CharStar):cpp.Float64;
-    @:native("GetFileExtension") static function GetFileExtension(fileName:cpp.CharStar):cpp.CharStar;
-    @:native("GetFileName") static function GetFileName(filePath:cpp.CharStar):cpp.CharStar;
-    @:native("GetFileNameWithoutExt") static function GetFileNameWithoutExt(filePath:cpp.CharStar):cpp.CharStar;
-    @:native("GetDirectoryPath") static function GetDirectoryPath(filePath:cpp.CharStar):cpp.CharStar;
-    @:native("GetPrevDirectoryPath") static function GetPrevDirectoryPath(dirPath:cpp.CharStar):cpp.CharStar;
-    @:native("GetWorkingDirectory") static function GetWorkingDirectory():cpp.CharStar;
-    @:native("GetApplicationDirectory") static function GetApplicationDirectory():cpp.CharStar;
-    @:native("MakeDirectory") static function MakeDirectory(dirPath:cpp.CharStar):cpp.Int32;
-    @:native("ChangeDirectory") static function ChangeDirectory(dirPath:cpp.CharStar):cpp.Int32;
-    @:native("IsPathFile") static function IsPathFile(path:cpp.CharStar):Bool;
-    @:native("IsPathDirectory") static function IsPathDirectory(path:cpp.CharStar):Bool;
-    @:native("IsPathAbsolute") static function IsPathAbsolute(path:cpp.CharStar):Bool;
-    @:native("IsFileNameValid") static function IsFileNameValid(fileName:cpp.CharStar):Bool;
-    @:native("LoadDirectoryFiles") static function LoadDirectoryFiles(dirPath:cpp.CharStar):FilePathList;
-    @:native("LoadDirectoryFilesEx") static function LoadDirectoryFilesEx(basePath:cpp.CharStar,filter:cpp.CharStar,scanSubdirs:Bool):FilePathList;
+    @:native("FileRename") static function FileRename(fileName:cpp.CharPointer,fileRename:cpp.CharPointer):cpp.Int32;
+    @:native("FileRemove") static function FileRemove(fileName:cpp.CharPointer):cpp.Int32;
+    @:native("FileCopy") static function FileCopy(srcPath:cpp.CharPointer,dstPath:cpp.CharPointer):cpp.Int32;
+    @:native("FileMove") static function FileMove(srcPath:cpp.CharPointer,dstPath:cpp.CharPointer):cpp.Int32;
+    @:native("FileTextReplace") static function FileTextReplace(fileName:cpp.CharPointer,search:cpp.CharPointer,replacement:cpp.CharPointer):cpp.Int32;
+    @:native("FileTextFindIndex") static function FileTextFindIndex(fileName:cpp.CharPointer,search:cpp.CharPointer):cpp.Int32;
+    @:native("FileExists") static function FileExists(fileName:cpp.CharPointer):Bool;
+    @:native("DirectoryExists") static function DirectoryExists(dirPath:cpp.CharPointer):Bool;
+    @:native("IsFileExtension") static function IsFileExtension(fileName:cpp.CharPointer,ext:cpp.CharPointer):Bool;
+    @:native("IsFileHidden") static function IsFileHidden(filePath:cpp.CharPointer):Bool;
+    @:native("GetFileLength") static function GetFileLength(fileName:cpp.CharPointer):cpp.Int32;
+    @:native("GetFileModTime") static function GetFileModTime(fileName:cpp.CharPointer):cpp.Float64;
+    @:native("GetFileExtension") static function GetFileExtension(fileName:cpp.CharPointer):cpp.CharPointer;
+    @:native("GetFileName") static function GetFileName(filePath:cpp.CharPointer):cpp.CharPointer;
+    @:native("GetFileNameWithoutExt") static function GetFileNameWithoutExt(filePath:cpp.CharPointer):cpp.CharPointer;
+    @:native("GetDirectoryPath") static function GetDirectoryPath(filePath:cpp.CharPointer):cpp.CharPointer;
+    @:native("GetPrevDirectoryPath") static function GetPrevDirectoryPath(dirPath:cpp.CharPointer):cpp.CharPointer;
+    @:native("GetWorkingDirectory") static function GetWorkingDirectory():cpp.CharPointer;
+    @:native("GetApplicationDirectory") static function GetApplicationDirectory():cpp.CharPointer;
+    @:native("MakeDirectory") static function MakeDirectory(dirPath:cpp.CharPointer):cpp.Int32;
+    @:native("ChangeDirectory") static function ChangeDirectory(dirPath:cpp.CharPointer):cpp.Int32;
+    @:native("IsPathFile") static function IsPathFile(path:cpp.CharPointer):Bool;
+    @:native("IsPathDirectory") static function IsPathDirectory(path:cpp.CharPointer):Bool;
+    @:native("IsPathAbsolute") static function IsPathAbsolute(path:cpp.CharPointer):Bool;
+    @:native("IsFileNameValid") static function IsFileNameValid(fileName:cpp.CharPointer):Bool;
+    @:native("LoadDirectoryFiles") static function LoadDirectoryFiles(dirPath:cpp.CharPointer):FilePathList;
+    @:native("LoadDirectoryFilesEx") static function LoadDirectoryFilesEx(basePath:cpp.CharPointer,filter:cpp.CharPointer,scanSubdirs:Bool):FilePathList;
     @:native("UnloadDirectoryFiles") static function UnloadDirectoryFiles(files:FilePathList):cpp.Void;
     @:native("IsFileDropped") static function IsFileDropped():Bool;
     @:native("LoadDroppedFiles") static function LoadDroppedFiles():FilePathList;
     @:native("UnloadDroppedFiles") static function UnloadDroppedFiles(files:FilePathList):cpp.Void;
-    @:native("GetDirectoryFileCount") static function GetDirectoryFileCount(dirPath:cpp.CharStar):cpp.UInt32;
-    @:native("GetDirectoryFileCountEx") static function GetDirectoryFileCountEx(basePath:cpp.CharStar,filter:cpp.CharStar,scanSubdirs:Bool):cpp.UInt32;
+    @:native("GetDirectoryFileCount") static function GetDirectoryFileCount(dirPath:cpp.CharPointer):cpp.UInt32;
+    @:native("GetDirectoryFileCountEx") static function GetDirectoryFileCountEx(basePath:cpp.CharPointer,filter:cpp.CharPointer,scanSubdirs:Bool):cpp.UInt32;
     @:native("CompressData") static function CompressData(data:cpp.UInt8Pointer,dataSize:cpp.Int32,compDataSize:cpp.Int32Pointer):cpp.UInt8Pointer;
     @:native("DecompressData") static function DecompressData(compData:cpp.UInt8Pointer,compDataSize:cpp.Int32,dataSize:cpp.Int32Pointer):cpp.UInt8Pointer;
-    @:native("EncodeDataBase64") static function EncodeDataBase64(data:cpp.UInt8Pointer,dataSize:cpp.Int32,outputSize:cpp.Int32Pointer):cpp.CharStar;
-    @:native("DecodeDataBase64") static function DecodeDataBase64(text:cpp.CharStar,outputSize:cpp.Int32Pointer):cpp.UInt8Pointer;
+    @:native("EncodeDataBase64") static function EncodeDataBase64(data:cpp.UInt8Pointer,dataSize:cpp.Int32,outputSize:cpp.Int32Pointer):cpp.CharPointer;
+    @:native("DecodeDataBase64") static function DecodeDataBase64(text:cpp.CharPointer,outputSize:cpp.Int32Pointer):cpp.UInt8Pointer;
     @:native("ComputeCRC32") static function ComputeCRC32(data:cpp.UInt8Pointer,dataSize:cpp.Int32):cpp.UInt32;
     @:native("ComputeMD5") static function ComputeMD5(data:cpp.UInt8Pointer,dataSize:cpp.Int32):cpp.UInt32Pointer;
     @:native("ComputeSHA1") static function ComputeSHA1(data:cpp.UInt8Pointer,dataSize:cpp.Int32):cpp.UInt32Pointer;
     @:native("ComputeSHA256") static function ComputeSHA256(data:cpp.UInt8Pointer,dataSize:cpp.Int32):cpp.UInt32Pointer;
-    @:native("LoadAutomationEventList") static function LoadAutomationEventList(fileName:cpp.CharStar):AutomationEventList;
+    @:native("LoadAutomationEventList") static function LoadAutomationEventList(fileName:cpp.CharPointer):AutomationEventList;
     @:native("UnloadAutomationEventList") static function UnloadAutomationEventList(list:AutomationEventList):cpp.Void;
-    @:native("ExportAutomationEventList") static function ExportAutomationEventList(list:AutomationEventList,fileName:cpp.CharStar):Bool;
+    @:native("ExportAutomationEventList") static function ExportAutomationEventList(list:AutomationEventList,fileName:cpp.CharPointer):Bool;
     @:native("SetAutomationEventList") static function SetAutomationEventList(list:AutomationEventList):cpp.Void;
     @:native("SetAutomationEventBaseFrame") static function SetAutomationEventBaseFrame(frame:cpp.Int32):cpp.Void;
     @:native("StartAutomationEventRecording") static function StartAutomationEventRecording():cpp.Void;
@@ -1098,10 +1098,10 @@ extern class Raylib {
     @:native("IsKeyUp") static function IsKeyUp(key:cpp.Int32):Bool;
     @:native("GetKeyPressed") static function GetKeyPressed():cpp.Int32;
     @:native("GetCharPressed") static function GetCharPressed():cpp.Int32;
-    @:native("GetKeyName") static function GetKeyName(key:cpp.Int32):cpp.CharStar;
+    @:native("GetKeyName") static function GetKeyName(key:cpp.Int32):cpp.CharPointer;
     @:native("SetExitKey") static function SetExitKey(key:cpp.Int32):cpp.Void;
     @:native("IsGamepadAvailable") static function IsGamepadAvailable(gamepad:cpp.Int32):Bool;
-    @:native("GetGamepadName") static function GetGamepadName(gamepad:cpp.Int32):cpp.CharStar;
+    @:native("GetGamepadName") static function GetGamepadName(gamepad:cpp.Int32):cpp.CharPointer;
     @:native("IsGamepadButtonPressed") static function IsGamepadButtonPressed(gamepad:cpp.Int32,button:cpp.Int32):Bool;
     @:native("IsGamepadButtonDown") static function IsGamepadButtonDown(gamepad:cpp.Int32,button:cpp.Int32):Bool;
     @:native("IsGamepadButtonReleased") static function IsGamepadButtonReleased(gamepad:cpp.Int32,button:cpp.Int32):Bool;
@@ -1109,7 +1109,7 @@ extern class Raylib {
     @:native("GetGamepadButtonPressed") static function GetGamepadButtonPressed():cpp.Int32;
     @:native("GetGamepadAxisCount") static function GetGamepadAxisCount(gamepad:cpp.Int32):cpp.Int32;
     @:native("GetGamepadAxisMovement") static function GetGamepadAxisMovement(gamepad:cpp.Int32,axis:cpp.Int32):cpp.Float32;
-    @:native("SetGamepadMappings") static function SetGamepadMappings(mappings:cpp.CharStar):cpp.Int32;
+    @:native("SetGamepadMappings") static function SetGamepadMappings(mappings:cpp.CharPointer):cpp.Int32;
     @:native("SetGamepadVibration") static function SetGamepadVibration(gamepad:cpp.Int32,leftMotor:cpp.Float32,rightMotor:cpp.Float32,duration:cpp.Float32):cpp.Void;
     @:native("IsMouseButtonPressed") static function IsMouseButtonPressed(button:cpp.Int32):Bool;
     @:native("IsMouseButtonDown") static function IsMouseButtonDown(button:cpp.Int32):Bool;
@@ -1215,18 +1215,18 @@ extern class Raylib {
     @:native("CheckCollisionPointPoly") static function CheckCollisionPointPoly(point:Vector2,points:Vector2,pointCount:cpp.Int32):Bool;
     @:native("CheckCollisionLines") static function CheckCollisionLines(startPos1:Vector2,endPos1:Vector2,startPos2:Vector2,endPos2:Vector2,collisionPoint:Vector2):Bool;
     @:native("GetCollisionRec") static function GetCollisionRec(rec1:Rectangle,rec2:Rectangle):Rectangle;
-    @:native("LoadImage") static function LoadImage(fileName:cpp.CharStar):Image;
-    @:native("LoadImageRaw") static function LoadImageRaw(fileName:cpp.CharStar,width:cpp.Int32,height:cpp.Int32,format:cpp.Int32,headerSize:cpp.Int32):Image;
-    @:native("LoadImageAnim") static function LoadImageAnim(fileName:cpp.CharStar,frames:cpp.Int32Pointer):Image;
-    @:native("LoadImageAnimFromMemory") static function LoadImageAnimFromMemory(fileType:cpp.CharStar,fileData:cpp.UInt8Pointer,dataSize:cpp.Int32,frames:cpp.Int32Pointer):Image;
-    @:native("LoadImageFromMemory") static function LoadImageFromMemory(fileType:cpp.CharStar,fileData:cpp.UInt8Pointer,dataSize:cpp.Int32):Image;
+    @:native("LoadImage") static function LoadImage(fileName:cpp.CharPointer):Image;
+    @:native("LoadImageRaw") static function LoadImageRaw(fileName:cpp.CharPointer,width:cpp.Int32,height:cpp.Int32,format:cpp.Int32,headerSize:cpp.Int32):Image;
+    @:native("LoadImageAnim") static function LoadImageAnim(fileName:cpp.CharPointer,frames:cpp.Int32Pointer):Image;
+    @:native("LoadImageAnimFromMemory") static function LoadImageAnimFromMemory(fileType:cpp.CharPointer,fileData:cpp.UInt8Pointer,dataSize:cpp.Int32,frames:cpp.Int32Pointer):Image;
+    @:native("LoadImageFromMemory") static function LoadImageFromMemory(fileType:cpp.CharPointer,fileData:cpp.UInt8Pointer,dataSize:cpp.Int32):Image;
     @:native("LoadImageFromTexture") static function LoadImageFromTexture(texture:Texture2D):Image;
     @:native("LoadImageFromScreen") static function LoadImageFromScreen():Image;
     @:native("IsImageValid") static function IsImageValid(image:Image):Bool;
     @:native("UnloadImage") static function UnloadImage(image:Image):cpp.Void;
-    @:native("ExportImage") static function ExportImage(image:Image,fileName:cpp.CharStar):Bool;
-    @:native("ExportImageToMemory") static function ExportImageToMemory(image:Image,fileType:cpp.CharStar,fileSize:cpp.Int32Pointer):cpp.UInt8Pointer;
-    @:native("ExportImageAsCode") static function ExportImageAsCode(image:Image,fileName:cpp.CharStar):Bool;
+    @:native("ExportImage") static function ExportImage(image:Image,fileName:cpp.CharPointer):Bool;
+    @:native("ExportImageToMemory") static function ExportImageToMemory(image:Image,fileType:cpp.CharPointer,fileSize:cpp.Int32Pointer):cpp.UInt8Pointer;
+    @:native("ExportImageAsCode") static function ExportImageAsCode(image:Image,fileName:cpp.CharPointer):Bool;
     @:native("GenImageColor") static function GenImageColor(width:cpp.Int32,height:cpp.Int32,color:Color):Image;
     @:native("GenImageGradientLinear") static function GenImageGradientLinear(width:cpp.Int32,height:cpp.Int32,direction:cpp.Int32,start:Color,end:Color):Image;
     @:native("GenImageGradientRadial") static function GenImageGradientRadial(width:cpp.Int32,height:cpp.Int32,density:cpp.Float32,inner:Color,outer:Color):Image;
@@ -1235,12 +1235,12 @@ extern class Raylib {
     @:native("GenImageWhiteNoise") static function GenImageWhiteNoise(width:cpp.Int32,height:cpp.Int32,factor:cpp.Float32):Image;
     @:native("GenImagePerlinNoise") static function GenImagePerlinNoise(width:cpp.Int32,height:cpp.Int32,offsetX:cpp.Int32,offsetY:cpp.Int32,scale:cpp.Float32):Image;
     @:native("GenImageCellular") static function GenImageCellular(width:cpp.Int32,height:cpp.Int32,tileSize:cpp.Int32):Image;
-    @:native("GenImageText") static function GenImageText(width:cpp.Int32,height:cpp.Int32,text:cpp.CharStar):Image;
+    @:native("GenImageText") static function GenImageText(width:cpp.Int32,height:cpp.Int32,text:cpp.CharPointer):Image;
     @:native("ImageCopy") static function ImageCopy(image:Image):Image;
     @:native("ImageFromImage") static function ImageFromImage(image:Image,rec:Rectangle):Image;
     @:native("ImageFromChannel") static function ImageFromChannel(image:Image,selectedChannel:cpp.Int32):Image;
-    @:native("ImageText") static function ImageText(text:cpp.CharStar,fontSize:cpp.Int32,color:Color):Image;
-    @:native("ImageTextEx") static function ImageTextEx(font:Font,text:cpp.CharStar,fontSize:cpp.Float32,spacing:cpp.Float32,tint:Color):Image;
+    @:native("ImageText") static function ImageText(text:cpp.CharPointer,fontSize:cpp.Int32,color:Color):Image;
+    @:native("ImageTextEx") static function ImageTextEx(font:Font,text:cpp.CharPointer,fontSize:cpp.Float32,spacing:cpp.Float32,tint:Color):Image;
     @:native("ImageFormat") static function ImageFormat(image:Image,newFormat:cpp.Int32):cpp.Void;
     @:native("ImageToPOT") static function ImageToPOT(image:Image,fill:Color):cpp.Void;
     @:native("ImageCrop") static function ImageCrop(image:Image,crop:Rectangle):cpp.Void;
@@ -1300,10 +1300,10 @@ extern class Raylib {
     @:native("ImageDrawImageEx") static function ImageDrawImageEx(dst:Image,src:Image,position:Vector2,rotation:cpp.Float32,scale:cpp.Float32,tint:Color):cpp.Void;
     @:native("ImageDrawImageRec") static function ImageDrawImageRec(dst:Image,src:Image,srcRec:Rectangle,position:Vector2,tint:Color):cpp.Void;
     @:native("ImageDrawImagePro") static function ImageDrawImagePro(dst:Image,src:Image,srcRec:Rectangle,dstRec:Rectangle,origin:Vector2,rotation:cpp.Float32,tint:Color):cpp.Void;
-    @:native("ImageDrawText") static function ImageDrawText(dst:Image,text:cpp.CharStar,posX:cpp.Int32,posY:cpp.Int32,fontSize:cpp.Int32,color:Color):cpp.Void;
-    @:native("ImageDrawTextEx") static function ImageDrawTextEx(dst:Image,font:Font,text:cpp.CharStar,position:Vector2,fontSize:cpp.Float32,spacing:cpp.Float32,tint:Color):cpp.Void;
-    @:native("ImageDrawTextPro") static function ImageDrawTextPro(dst:Image,font:Font,text:cpp.CharStar,position:Vector2,origin:Vector2,rotation:cpp.Float32,fontSize:cpp.Float32,spacing:cpp.Float32,tint:Color):cpp.Void;
-    @:native("LoadTexture") static function LoadTexture(fileName:cpp.CharStar):Texture2D;
+    @:native("ImageDrawText") static function ImageDrawText(dst:Image,text:cpp.CharPointer,posX:cpp.Int32,posY:cpp.Int32,fontSize:cpp.Int32,color:Color):cpp.Void;
+    @:native("ImageDrawTextEx") static function ImageDrawTextEx(dst:Image,font:Font,text:cpp.CharPointer,position:Vector2,fontSize:cpp.Float32,spacing:cpp.Float32,tint:Color):cpp.Void;
+    @:native("ImageDrawTextPro") static function ImageDrawTextPro(dst:Image,font:Font,text:cpp.CharPointer,position:Vector2,origin:Vector2,rotation:cpp.Float32,fontSize:cpp.Float32,spacing:cpp.Float32,tint:Color):cpp.Void;
+    @:native("LoadTexture") static function LoadTexture(fileName:cpp.CharPointer):Texture2D;
     @:native("LoadTextureFromImage") static function LoadTextureFromImage(image:Image):Texture2D;
     @:native("LoadTextureCubemap") static function LoadTextureCubemap(image:Image,layout:cpp.Int32):TextureCubemap;
     @:native("LoadRenderTexture") static function LoadRenderTexture(width:cpp.Int32,height:cpp.Int32):RenderTexture2D;
@@ -1341,64 +1341,64 @@ extern class Raylib {
     @:native("SetPixelColor") static function SetPixelColor(dstPtr:cpp.VoidPointer,color:Color,format:cpp.Int32):cpp.Void;
     @:native("GetPixelDataSize") static function GetPixelDataSize(width:cpp.Int32,height:cpp.Int32,format:cpp.Int32):cpp.Int32;
     @:native("GetFontDefault") static function GetFontDefault():Font;
-    @:native("LoadFont") static function LoadFont(fileName:cpp.CharStar):Font;
-    @:native("LoadFontEx") static function LoadFontEx(fileName:cpp.CharStar,fontSize:cpp.Int32,codepoints:cpp.Int32Pointer,codepointCount:cpp.Int32):Font;
+    @:native("LoadFont") static function LoadFont(fileName:cpp.CharPointer):Font;
+    @:native("LoadFontEx") static function LoadFontEx(fileName:cpp.CharPointer,fontSize:cpp.Int32,codepoints:cpp.Int32Pointer,codepointCount:cpp.Int32):Font;
     @:native("LoadFontFromImage") static function LoadFontFromImage(image:Image,key:Color,firstChar:cpp.Int32):Font;
-    @:native("LoadFontFromMemory") static function LoadFontFromMemory(fileType:cpp.CharStar,fileData:cpp.UInt8Pointer,dataSize:cpp.Int32,fontSize:cpp.Int32,codepoints:cpp.Int32Pointer,codepointCount:cpp.Int32):Font;
+    @:native("LoadFontFromMemory") static function LoadFontFromMemory(fileType:cpp.CharPointer,fileData:cpp.UInt8Pointer,dataSize:cpp.Int32,fontSize:cpp.Int32,codepoints:cpp.Int32Pointer,codepointCount:cpp.Int32):Font;
     @:native("IsFontValid") static function IsFontValid(font:Font):Bool;
     @:native("LoadFontData") static function LoadFontData(fileData:cpp.UInt8Pointer,dataSize:cpp.Int32,fontSize:cpp.Int32,codepoints:cpp.Int32Pointer,codepointCount:cpp.Int32,type:cpp.Int32,glyphCount:cpp.Int32Pointer):GlyphInfo;
-    @:native("GenImageFontAtlas") static function GenImageFontAtlas(glyphs:GlyphInfo,glyphRecs:cpp.RawPointer<Struct(Rectangle)>,glyphCount:cpp.Int32,fontSize:cpp.Int32,padding:cpp.Int32,packMethod:cpp.Int32):Image;
+    @:native("GenImageFontAtlas") static function GenImageFontAtlas(glyphs:GlyphInfo,glyphRecs:cpp.RawPointer<Rectangle>,glyphCount:cpp.Int32,fontSize:cpp.Int32,padding:cpp.Int32,packMethod:cpp.Int32):Image;
     @:native("UnloadFontData") static function UnloadFontData(glyphs:GlyphInfo,glyphCount:cpp.Int32):cpp.Void;
     @:native("UnloadFont") static function UnloadFont(font:Font):cpp.Void;
-    @:native("ExportFontAsCode") static function ExportFontAsCode(font:Font,fileName:cpp.CharStar):Bool;
+    @:native("ExportFontAsCode") static function ExportFontAsCode(font:Font,fileName:cpp.CharPointer):Bool;
     @:native("DrawFPS") static function DrawFPS(posX:cpp.Int32,posY:cpp.Int32):cpp.Void;
-    @:native("DrawText") static function DrawText(text:cpp.CharStar,posX:cpp.Int32,posY:cpp.Int32,fontSize:cpp.Int32,color:Color):cpp.Void;
-    @:native("DrawTextEx") static function DrawTextEx(font:Font,text:cpp.CharStar,position:Vector2,fontSize:cpp.Float32,spacing:cpp.Float32,tint:Color):cpp.Void;
-    @:native("DrawTextPro") static function DrawTextPro(font:Font,text:cpp.CharStar,position:Vector2,origin:Vector2,rotation:cpp.Float32,fontSize:cpp.Float32,spacing:cpp.Float32,tint:Color):cpp.Void;
+    @:native("DrawText") static function DrawText(text:cpp.CharPointer,posX:cpp.Int32,posY:cpp.Int32,fontSize:cpp.Int32,color:Color):cpp.Void;
+    @:native("DrawTextEx") static function DrawTextEx(font:Font,text:cpp.CharPointer,position:Vector2,fontSize:cpp.Float32,spacing:cpp.Float32,tint:Color):cpp.Void;
+    @:native("DrawTextPro") static function DrawTextPro(font:Font,text:cpp.CharPointer,position:Vector2,origin:Vector2,rotation:cpp.Float32,fontSize:cpp.Float32,spacing:cpp.Float32,tint:Color):cpp.Void;
     @:native("DrawTextCodepoint") static function DrawTextCodepoint(font:Font,codepoint:cpp.Int32,position:Vector2,fontSize:cpp.Float32,tint:Color):cpp.Void;
     @:native("DrawTextCodepoints") static function DrawTextCodepoints(font:Font,codepoints:cpp.Int32Pointer,codepointCount:cpp.Int32,position:Vector2,fontSize:cpp.Float32,spacing:cpp.Float32,tint:Color):cpp.Void;
     @:native("SetTextLineSpacing") static function SetTextLineSpacing(spacing:cpp.Int32):cpp.Void;
-    @:native("MeasureText") static function MeasureText(text:cpp.CharStar,fontSize:cpp.Int32):cpp.Int32;
-    @:native("MeasureTextEx") static function MeasureTextEx(font:Font,text:cpp.CharStar,fontSize:cpp.Float32,spacing:cpp.Float32):Vector2;
+    @:native("MeasureText") static function MeasureText(text:cpp.CharPointer,fontSize:cpp.Int32):cpp.Int32;
+    @:native("MeasureTextEx") static function MeasureTextEx(font:Font,text:cpp.CharPointer,fontSize:cpp.Float32,spacing:cpp.Float32):Vector2;
     @:native("MeasureTextCodepoints") static function MeasureTextCodepoints(font:Font,codepoints:cpp.Int32Pointer,length:cpp.Int32,fontSize:cpp.Float32,spacing:cpp.Float32):Vector2;
     @:native("GetGlyphIndex") static function GetGlyphIndex(font:Font,codepoint:cpp.Int32):cpp.Int32;
     @:native("GetGlyphInfo") static function GetGlyphInfo(font:Font,codepoint:cpp.Int32):GlyphInfo;
     @:native("GetGlyphAtlasRec") static function GetGlyphAtlasRec(font:Font,codepoint:cpp.Int32):Rectangle;
-    @:native("LoadUTF8") static function LoadUTF8(codepoints:cpp.Int32Pointer,length:cpp.Int32):cpp.CharStar;
-    @:native("UnloadUTF8") static function UnloadUTF8(text:cpp.CharStar):cpp.Void;
-    @:native("LoadCodepoints") static function LoadCodepoints(text:cpp.CharStar,count:cpp.Int32Pointer):cpp.Int32Pointer;
+    @:native("LoadUTF8") static function LoadUTF8(codepoints:cpp.Int32Pointer,length:cpp.Int32):cpp.CharPointer;
+    @:native("UnloadUTF8") static function UnloadUTF8(text:cpp.CharPointer):cpp.Void;
+    @:native("LoadCodepoints") static function LoadCodepoints(text:cpp.CharPointer,count:cpp.Int32Pointer):cpp.Int32Pointer;
     @:native("UnloadCodepoints") static function UnloadCodepoints(codepoints:cpp.Int32Pointer):cpp.Void;
-    @:native("GetCodepointCount") static function GetCodepointCount(text:cpp.CharStar):cpp.Int32;
-    @:native("GetCodepoint") static function GetCodepoint(text:cpp.CharStar,codepointSize:cpp.Int32Pointer):cpp.Int32;
-    @:native("GetCodepointNext") static function GetCodepointNext(text:cpp.CharStar,codepointSize:cpp.Int32Pointer):cpp.Int32;
-    @:native("GetCodepointPrevious") static function GetCodepointPrevious(text:cpp.CharStar,codepointSize:cpp.Int32Pointer):cpp.Int32;
-    @:native("CodepointToUTF8") static function CodepointToUTF8(codepoint:cpp.Int32,utf8Size:cpp.Int32Pointer):cpp.CharStar;
-    @:native("LoadTextLines") static function LoadTextLines(text:cpp.CharStar,count:cpp.Int32Pointer):cpp.CastCharStarPointer;
+    @:native("GetCodepointCount") static function GetCodepointCount(text:cpp.CharPointer):cpp.Int32;
+    @:native("GetCodepoint") static function GetCodepoint(text:cpp.CharPointer,codepointSize:cpp.Int32Pointer):cpp.Int32;
+    @:native("GetCodepointNext") static function GetCodepointNext(text:cpp.CharPointer,codepointSize:cpp.Int32Pointer):cpp.Int32;
+    @:native("GetCodepointPrevious") static function GetCodepointPrevious(text:cpp.CharPointer,codepointSize:cpp.Int32Pointer):cpp.Int32;
+    @:native("CodepointToUTF8") static function CodepointToUTF8(codepoint:cpp.Int32,utf8Size:cpp.Int32Pointer):cpp.CharPointer;
+    @:native("LoadTextLines") static function LoadTextLines(text:cpp.CharPointer,count:cpp.Int32Pointer):cpp.CastCharStarPointer;
     @:native("UnloadTextLines") static function UnloadTextLines(text:cpp.CastCharStarPointer,lineCount:cpp.Int32):cpp.Void;
-    @:native("TextCopy") static function TextCopy(dst:cpp.CharStar,src:cpp.CharStar):cpp.Int32;
-    @:native("TextIsEqual") static function TextIsEqual(text1:cpp.CharStar,text2:cpp.CharStar):Bool;
-    @:native("TextLength") static function TextLength(text:cpp.CharStar):cpp.UInt32;
-    @:native("TextFormat") static function TextFormat(text:cpp.CharStar):cpp.CharStar;
-    @:native("TextSubtext") static function TextSubtext(text:cpp.CharStar,position:cpp.Int32,length:cpp.Int32):cpp.CharStar;
-    @:native("TextRemoveSpaces") static function TextRemoveSpaces(text:cpp.CharStar):cpp.CharStar;
-    @:native("GetTextBetween") static function GetTextBetween(text:cpp.CharStar,begin:cpp.CharStar,end:cpp.CharStar):cpp.CharStar;
-    @:native("TextReplace") static function TextReplace(text:cpp.CharStar,search:cpp.CharStar,replacement:cpp.CharStar):cpp.CharStar;
-    @:native("TextReplaceAlloc") static function TextReplaceAlloc(text:cpp.CharStar,search:cpp.CharStar,replacement:cpp.CharStar):cpp.CharStar;
-    @:native("TextReplaceBetween") static function TextReplaceBetween(text:cpp.CharStar,begin:cpp.CharStar,end:cpp.CharStar,replacement:cpp.CharStar):cpp.CharStar;
-    @:native("TextReplaceBetweenAlloc") static function TextReplaceBetweenAlloc(text:cpp.CharStar,begin:cpp.CharStar,end:cpp.CharStar,replacement:cpp.CharStar):cpp.CharStar;
-    @:native("TextInsert") static function TextInsert(text:cpp.CharStar,insert:cpp.CharStar,position:cpp.Int32):cpp.CharStar;
-    @:native("TextInsertAlloc") static function TextInsertAlloc(text:cpp.CharStar,insert:cpp.CharStar,position:cpp.Int32):cpp.CharStar;
-    @:native("TextJoin") static function TextJoin(textList:cpp.CastCharStarPointer,count:cpp.Int32,delimiter:cpp.CharStar):cpp.CharStar;
-    @:native("TextSplit") static function TextSplit(text:cpp.CharStar,delimiter:cpp.Char,count:cpp.Int32Pointer):cpp.CastCharStarPointer;
-    @:native("TextAppend") static function TextAppend(text:cpp.CharStar,append:cpp.CharStar,position:cpp.Int32Pointer):cpp.Void;
-    @:native("TextFindIndex") static function TextFindIndex(text:cpp.CharStar,search:cpp.CharStar):cpp.Int32;
-    @:native("TextToUpper") static function TextToUpper(text:cpp.CharStar):cpp.CharStar;
-    @:native("TextToLower") static function TextToLower(text:cpp.CharStar):cpp.CharStar;
-    @:native("TextToPascal") static function TextToPascal(text:cpp.CharStar):cpp.CharStar;
-    @:native("TextToSnake") static function TextToSnake(text:cpp.CharStar):cpp.CharStar;
-    @:native("TextToCamel") static function TextToCamel(text:cpp.CharStar):cpp.CharStar;
-    @:native("TextToInteger") static function TextToInteger(text:cpp.CharStar):cpp.Int32;
-    @:native("TextToFloat") static function TextToFloat(text:cpp.CharStar):cpp.Float32;
+    @:native("TextCopy") static function TextCopy(dst:cpp.CharPointer,src:cpp.CharPointer):cpp.Int32;
+    @:native("TextIsEqual") static function TextIsEqual(text1:cpp.CharPointer,text2:cpp.CharPointer):Bool;
+    @:native("TextLength") static function TextLength(text:cpp.CharPointer):cpp.UInt32;
+    @:native("TextFormat") static function TextFormat(text:cpp.CharPointer):cpp.CharPointer;
+    @:native("TextSubtext") static function TextSubtext(text:cpp.CharPointer,position:cpp.Int32,length:cpp.Int32):cpp.CharPointer;
+    @:native("TextRemoveSpaces") static function TextRemoveSpaces(text:cpp.CharPointer):cpp.CharPointer;
+    @:native("GetTextBetween") static function GetTextBetween(text:cpp.CharPointer,begin:cpp.CharPointer,end:cpp.CharPointer):cpp.CharPointer;
+    @:native("TextReplace") static function TextReplace(text:cpp.CharPointer,search:cpp.CharPointer,replacement:cpp.CharPointer):cpp.CharPointer;
+    @:native("TextReplaceAlloc") static function TextReplaceAlloc(text:cpp.CharPointer,search:cpp.CharPointer,replacement:cpp.CharPointer):cpp.CharPointer;
+    @:native("TextReplaceBetween") static function TextReplaceBetween(text:cpp.CharPointer,begin:cpp.CharPointer,end:cpp.CharPointer,replacement:cpp.CharPointer):cpp.CharPointer;
+    @:native("TextReplaceBetweenAlloc") static function TextReplaceBetweenAlloc(text:cpp.CharPointer,begin:cpp.CharPointer,end:cpp.CharPointer,replacement:cpp.CharPointer):cpp.CharPointer;
+    @:native("TextInsert") static function TextInsert(text:cpp.CharPointer,insert:cpp.CharPointer,position:cpp.Int32):cpp.CharPointer;
+    @:native("TextInsertAlloc") static function TextInsertAlloc(text:cpp.CharPointer,insert:cpp.CharPointer,position:cpp.Int32):cpp.CharPointer;
+    @:native("TextJoin") static function TextJoin(textList:cpp.CastCharStarPointer,count:cpp.Int32,delimiter:cpp.CharPointer):cpp.CharPointer;
+    @:native("TextSplit") static function TextSplit(text:cpp.CharPointer,delimiter:cpp.Char,count:cpp.Int32Pointer):cpp.CastCharStarPointer;
+    @:native("TextAppend") static function TextAppend(text:cpp.CharPointer,append:cpp.CharPointer,position:cpp.Int32Pointer):cpp.Void;
+    @:native("TextFindIndex") static function TextFindIndex(text:cpp.CharPointer,search:cpp.CharPointer):cpp.Int32;
+    @:native("TextToUpper") static function TextToUpper(text:cpp.CharPointer):cpp.CharPointer;
+    @:native("TextToLower") static function TextToLower(text:cpp.CharPointer):cpp.CharPointer;
+    @:native("TextToPascal") static function TextToPascal(text:cpp.CharPointer):cpp.CharPointer;
+    @:native("TextToSnake") static function TextToSnake(text:cpp.CharPointer):cpp.CharPointer;
+    @:native("TextToCamel") static function TextToCamel(text:cpp.CharPointer):cpp.CharPointer;
+    @:native("TextToInteger") static function TextToInteger(text:cpp.CharPointer):cpp.Int32;
+    @:native("TextToFloat") static function TextToFloat(text:cpp.CharPointer):cpp.Float32;
     @:native("DrawLine3D") static function DrawLine3D(startPos:Vector3,endPos:Vector3,color:Color):cpp.Void;
     @:native("DrawPoint3D") static function DrawPoint3D(position:Vector3,color:Color):cpp.Void;
     @:native("DrawCircle3D") static function DrawCircle3D(center:Vector3,radius:cpp.Float32,rotationAxis:Vector3,rotationAngle:cpp.Float32,color:Color):cpp.Void;
@@ -1420,7 +1420,7 @@ extern class Raylib {
     @:native("DrawPlane") static function DrawPlane(centerPos:Vector3,size:Vector2,color:Color):cpp.Void;
     @:native("DrawRay") static function DrawRay(ray:Ray,color:Color):cpp.Void;
     @:native("DrawGrid") static function DrawGrid(slices:cpp.Int32,spacing:cpp.Float32):cpp.Void;
-    @:native("LoadModel") static function LoadModel(fileName:cpp.CharStar):Model;
+    @:native("LoadModel") static function LoadModel(fileName:cpp.CharPointer):Model;
     @:native("LoadModelFromMesh") static function LoadModelFromMesh(mesh:Mesh):Model;
     @:native("IsModelValid") static function IsModelValid(model:Model):Bool;
     @:native("UnloadModel") static function UnloadModel(model:Model):cpp.Void;
@@ -1433,15 +1433,15 @@ extern class Raylib {
     @:native("DrawBillboard") static function DrawBillboard(camera:Camera,texture:Texture2D,position:Vector3,scale:cpp.Float32,tint:Color):cpp.Void;
     @:native("DrawBillboardRec") static function DrawBillboardRec(camera:Camera,texture:Texture2D,rec:Rectangle,position:Vector3,size:Vector2,tint:Color):cpp.Void;
     @:native("DrawBillboardPro") static function DrawBillboardPro(camera:Camera,texture:Texture2D,rec:Rectangle,position:Vector3,up:Vector3,size:Vector2,origin:Vector2,rotation:cpp.Float32,tint:Color):cpp.Void;
-    @:native("UploadMesh") static function UploadMesh(mesh:Mesh,dynamic:Bool):cpp.Void;
+    @:native("UploadMesh") static function UploadMesh(mesh:Mesh,dynamicBuffer:Bool):cpp.Void;
     @:native("UpdateMeshBuffer") static function UpdateMeshBuffer(mesh:Mesh,index:cpp.Int32,data:cpp.VoidPointer,dataSize:cpp.Int32,offset:cpp.Int32):cpp.Void;
     @:native("UnloadMesh") static function UnloadMesh(mesh:Mesh):cpp.Void;
     @:native("DrawMesh") static function DrawMesh(mesh:Mesh,material:Material,transform:Matrix):cpp.Void;
     @:native("DrawMeshInstanced") static function DrawMeshInstanced(mesh:Mesh,material:Material,transforms:Matrix,instances:cpp.Int32):cpp.Void;
     @:native("GetMeshBoundingBox") static function GetMeshBoundingBox(mesh:Mesh):BoundingBox;
     @:native("GenMeshTangents") static function GenMeshTangents(mesh:Mesh):cpp.Void;
-    @:native("ExportMesh") static function ExportMesh(mesh:Mesh,fileName:cpp.CharStar):Bool;
-    @:native("ExportMeshAsCode") static function ExportMeshAsCode(mesh:Mesh,fileName:cpp.CharStar):Bool;
+    @:native("ExportMesh") static function ExportMesh(mesh:Mesh,fileName:cpp.CharPointer):Bool;
+    @:native("ExportMeshAsCode") static function ExportMeshAsCode(mesh:Mesh,fileName:cpp.CharPointer):Bool;
     @:native("GenMeshPoly") static function GenMeshPoly(sides:cpp.Int32,radius:cpp.Float32):Mesh;
     @:native("GenMeshPlane") static function GenMeshPlane(width:cpp.Float32,length:cpp.Float32,resX:cpp.Int32,resZ:cpp.Int32):Mesh;
     @:native("GenMeshCube") static function GenMeshCube(width:cpp.Float32,height:cpp.Float32,length:cpp.Float32):Mesh;
@@ -1453,13 +1453,13 @@ extern class Raylib {
     @:native("GenMeshKnot") static function GenMeshKnot(radius:cpp.Float32,size:cpp.Float32,radSeg:cpp.Int32,sides:cpp.Int32):Mesh;
     @:native("GenMeshHeightmap") static function GenMeshHeightmap(heightmap:Image,size:Vector3):Mesh;
     @:native("GenMeshCubicmap") static function GenMeshCubicmap(cubicmap:Image,cubeSize:Vector3):Mesh;
-    @:native("LoadMaterials") static function LoadMaterials(fileName:cpp.CharStar,materialCount:cpp.Int32Pointer):Material;
+    @:native("LoadMaterials") static function LoadMaterials(fileName:cpp.CharPointer,materialCount:cpp.Int32Pointer):Material;
     @:native("LoadMaterialDefault") static function LoadMaterialDefault():Material;
     @:native("IsMaterialValid") static function IsMaterialValid(material:Material):Bool;
     @:native("UnloadMaterial") static function UnloadMaterial(material:Material):cpp.Void;
     @:native("SetMaterialTexture") static function SetMaterialTexture(material:Material,mapType:cpp.Int32,texture:Texture2D):cpp.Void;
     @:native("SetModelMeshMaterial") static function SetModelMeshMaterial(model:Model,meshId:cpp.Int32,materialId:cpp.Int32):cpp.Void;
-    @:native("LoadModelAnimations") static function LoadModelAnimations(fileName:cpp.CharStar,animCount:cpp.Int32Pointer):ModelAnimation;
+    @:native("LoadModelAnimations") static function LoadModelAnimations(fileName:cpp.CharPointer,animCount:cpp.Int32Pointer):ModelAnimation;
     @:native("UpdateModelAnimation") static function UpdateModelAnimation(model:Model,anim:ModelAnimation,frame:cpp.Float32):cpp.Void;
     @:native("UpdateModelAnimationEx") static function UpdateModelAnimationEx(model:Model,animA:ModelAnimation,frameA:cpp.Float32,animB:ModelAnimation,frameB:cpp.Float32,blend:cpp.Float32):cpp.Void;
     @:native("UnloadModelAnimations") static function UnloadModelAnimations(animations:ModelAnimation,animCount:cpp.Int32):cpp.Void;
@@ -1477,10 +1477,10 @@ extern class Raylib {
     @:native("IsAudioDeviceReady") static function IsAudioDeviceReady():Bool;
     @:native("SetMasterVolume") static function SetMasterVolume(volume:cpp.Float32):cpp.Void;
     @:native("GetMasterVolume") static function GetMasterVolume():cpp.Float32;
-    @:native("LoadWave") static function LoadWave(fileName:cpp.CharStar):Wave;
-    @:native("LoadWaveFromMemory") static function LoadWaveFromMemory(fileType:cpp.CharStar,fileData:cpp.UInt8Pointer,dataSize:cpp.Int32):Wave;
+    @:native("LoadWave") static function LoadWave(fileName:cpp.CharPointer):Wave;
+    @:native("LoadWaveFromMemory") static function LoadWaveFromMemory(fileType:cpp.CharPointer,fileData:cpp.UInt8Pointer,dataSize:cpp.Int32):Wave;
     @:native("IsWaveValid") static function IsWaveValid(wave:Wave):Bool;
-    @:native("LoadSound") static function LoadSound(fileName:cpp.CharStar):Sound;
+    @:native("LoadSound") static function LoadSound(fileName:cpp.CharPointer):Sound;
     @:native("LoadSoundFromWave") static function LoadSoundFromWave(wave:Wave):Sound;
     @:native("LoadSoundAlias") static function LoadSoundAlias(source:Sound):Sound;
     @:native("IsSoundValid") static function IsSoundValid(sound:Sound):Bool;
@@ -1488,8 +1488,8 @@ extern class Raylib {
     @:native("UnloadWave") static function UnloadWave(wave:Wave):cpp.Void;
     @:native("UnloadSound") static function UnloadSound(sound:Sound):cpp.Void;
     @:native("UnloadSoundAlias") static function UnloadSoundAlias(alias:Sound):cpp.Void;
-    @:native("ExportWave") static function ExportWave(wave:Wave,fileName:cpp.CharStar):Bool;
-    @:native("ExportWaveAsCode") static function ExportWaveAsCode(wave:Wave,fileName:cpp.CharStar):Bool;
+    @:native("ExportWave") static function ExportWave(wave:Wave,fileName:cpp.CharPointer):Bool;
+    @:native("ExportWaveAsCode") static function ExportWaveAsCode(wave:Wave,fileName:cpp.CharPointer):Bool;
     @:native("PlaySound") static function PlaySound(sound:Sound):cpp.Void;
     @:native("StopSound") static function StopSound(sound:Sound):cpp.Void;
     @:native("PauseSound") static function PauseSound(sound:Sound):cpp.Void;
@@ -1503,8 +1503,8 @@ extern class Raylib {
     @:native("WaveFormat") static function WaveFormat(wave:Wave,sampleRate:cpp.Int32,sampleSize:cpp.Int32,channels:cpp.Int32):cpp.Void;
     @:native("LoadWaveSamples") static function LoadWaveSamples(wave:Wave):cpp.Float32Pointer;
     @:native("UnloadWaveSamples") static function UnloadWaveSamples(samples:cpp.Float32Pointer):cpp.Void;
-    @:native("LoadMusicStream") static function LoadMusicStream(fileName:cpp.CharStar):Music;
-    @:native("LoadMusicStreamFromMemory") static function LoadMusicStreamFromMemory(fileType:cpp.CharStar,data:cpp.UInt8Pointer,dataSize:cpp.Int32):Music;
+    @:native("LoadMusicStream") static function LoadMusicStream(fileName:cpp.CharPointer):Music;
+    @:native("LoadMusicStreamFromMemory") static function LoadMusicStreamFromMemory(fileType:cpp.CharPointer,data:cpp.UInt8Pointer,dataSize:cpp.Int32):Music;
     @:native("IsMusicValid") static function IsMusicValid(music:Music):Bool;
     @:native("UnloadMusicStream") static function UnloadMusicStream(music:Music):cpp.Void;
     @:native("PlayMusicStream") static function PlayMusicStream(music:Music):cpp.Void;

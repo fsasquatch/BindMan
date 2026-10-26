@@ -7184,9 +7184,28 @@
                     "type": 15
                 },
                 {
-                    "name": "input",
-                    "lineNumber": 267,
-                    "type": 15
+                    "name": "input_button",
+                    "type": 4
+                },
+                {
+                    "name": "input_axis",
+                    "type": 4
+                },
+                {
+                    "name": "input_axis_min",
+                    "type": 4
+                },
+                {
+                    "name": "input_axis_max",
+                    "type": 4
+                },
+                {
+                    "name": "input_hat",
+                    "type": 4
+                },
+                {
+                    "name": "input_hat_mask",
+                    "type": 4
                 },
                 {
                     "name": "output_type",
@@ -7194,9 +7213,20 @@
                     "type": 15
                 },
                 {
-                    "name": "output",
-                    "lineNumber": 267,
+                    "name": "output_button",
                     "type": 15
+                },
+                {
+                    "name": "output_axis",
+                    "type": 15
+                },
+                {
+                    "name": "output_axis_min",
+                    "type": 4
+                },
+                {
+                    "name": "output_axis_max",
+                    "type": 4
                 }
             ],
             "name": "SDL_GamepadBinding",
@@ -11447,17 +11477,6 @@
     ],
     "functions": [
         {
-            "name": "alloca",
-            "returnType": 17,
-            "parameters": [
-                {
-                    "name": "",
-                    "lineNumber": 132,
-                    "type": 8
-                }
-            ]
-        },
-        {
             "name": "SDL_malloc",
             "returnType": 17,
             "parameters": [
@@ -12793,7 +12812,7 @@
                 {
                     "name": "value",
                     "lineNumber": 3564,
-                    "type": 9
+                    "type": 11
                 },
                 {
                     "name": "str",
@@ -12835,7 +12854,7 @@
                 {
                     "name": "value",
                     "lineNumber": 3622,
-                    "type": 9
+                    "type": 11
                 },
                 {
                     "name": "str",
@@ -12894,7 +12913,7 @@
         },
         {
             "name": "SDL_strtoul",
-            "returnType": 9,
+            "returnType": 11,
             "parameters": [
                 {
                     "name": "str",
@@ -12936,7 +12955,7 @@
         },
         {
             "name": "SDL_strtoull",
-            "returnType": 9,
+            "returnType": 11,
             "parameters": [
                 {
                     "name": "str",
@@ -13142,7 +13161,7 @@
                 {
                     "name": "ap",
                     "lineNumber": 4126,
-                    "type": 21
+                    "type": 20
                 }
             ]
         },
@@ -13210,7 +13229,7 @@
                 {
                     "name": "ap",
                     "lineNumber": 4213,
-                    "type": 21
+                    "type": 20
                 }
             ]
         },
@@ -13236,7 +13255,7 @@
                 {
                     "name": "ap",
                     "lineNumber": 4234,
-                    "type": 21
+                    "type": 20
                 }
             ]
         },
@@ -13273,7 +13292,7 @@
                 {
                     "name": "ap",
                     "lineNumber": 4282,
-                    "type": 21
+                    "type": 20
                 }
             ]
         },
@@ -14634,7 +14653,7 @@
                 {
                     "name": "ap",
                     "lineNumber": 108,
-                    "type": 21
+                    "type": 20
                 }
             ]
         },
@@ -15722,7 +15741,7 @@
                 {
                     "name": "ap",
                     "lineNumber": 681,
-                    "type": 21
+                    "type": 20
                 }
             ]
         },
@@ -27609,7 +27628,7 @@
                 {
                     "name": "ap",
                     "lineNumber": 466,
-                    "type": 21
+                    "type": 20
                 }
             ]
         },
@@ -30969,7 +30988,6 @@
             "parameters": []
         }
     ],
-    "const": [],
     "typedefs": [
         {
             "name": "Sint8",
@@ -31403,7 +31421,6 @@
         },
         {
             "name": "XEvent",
-            "lineNumber": 141,
             "type": 15
         },
         {

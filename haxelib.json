@@ -1,0 +1,10 @@
+{
+	"name" : "bindman",
+	"url" : "",
+	"license" : "MIT",
+	"contributors" : ["Amara"],
+	"description" : "A library for automated C binding generation.",
+	"version" : "1.0.0",
+	"dependencies" : {},
+	"releasenote" : "Open!"
+}

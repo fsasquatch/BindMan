@@ -2,7 +2,7 @@
 package interop;
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_alignment_test"})
 extern class SDL_alignment_test {
     var a:Uint8;
@@ -12,40 +12,40 @@ extern class SDL_alignment_test {
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_Environment"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_Environment"})
 extern class SDL_Environment {
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_iconv_data_t"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_iconv_data_t"})
 extern class SDL_iconv_data_t {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_AssertData"})
 extern class SDL_AssertData {
     var always_ignore:Bool;
     var trigger_count:cpp.UInt32;
-    var condition:cpp.CharStar;
-    var filename:cpp.CharStar;
+    var condition:cpp.CharPointer;
+    var filename:cpp.CharPointer;
     var linenum:cpp.Int32;
-    var function:cpp.CharStar;
-    var next:Struct;
+    var func:cpp.CharPointer;
+    var next:SDL_AssertData;
 
     function new():Void;
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_AsyncIO"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_AsyncIO"})
 extern class SDL_AsyncIO {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_AsyncIOOutcome"})
 extern class SDL_AsyncIOOutcome {
     var asyncio:SDL_AsyncIO;
@@ -61,13 +61,13 @@ extern class SDL_AsyncIOOutcome {
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_AsyncIOQueue"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_AsyncIOQueue"})
 extern class SDL_AsyncIOQueue {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_AtomicInt"})
 extern class SDL_AtomicInt {
     var value:cpp.Int32;
@@ -76,7 +76,7 @@ extern class SDL_AtomicInt {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_AtomicU32"})
 extern class SDL_AtomicU32 {
     var value:Uint32;
@@ -85,37 +85,37 @@ extern class SDL_AtomicU32 {
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_Thread"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_Thread"})
 extern class SDL_Thread {
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_Mutex"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_Mutex"})
 extern class SDL_Mutex {
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_RWLock"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_RWLock"})
 extern class SDL_RWLock {
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_Semaphore"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_Semaphore"})
 extern class SDL_Semaphore {
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_Condition"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_Condition"})
 extern class SDL_Condition {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_InitState"})
 extern class SDL_InitState {
     var status:SDL_AtomicInt;
@@ -126,28 +126,28 @@ extern class SDL_InitState {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_IOStreamInterface"})
 extern class SDL_IOStreamInterface {
     var version:Uint32;
-    var size:null;
-    var seek:null;
-    var read:null;
-    var write:null;
-    var flush:null;
-    var close:null;
+    var size:Dynamic;
+    var seek:Dynamic;
+    var read:Dynamic;
+    var write:Dynamic;
+    var flush:Dynamic;
+    var close:Dynamic;
 
     function new():Void;
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_IOStream"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_IOStream"})
 extern class SDL_IOStream {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_AudioSpec"})
 extern class SDL_AudioSpec {
     var format:SDL_AudioFormat;
@@ -158,13 +158,13 @@ extern class SDL_AudioSpec {
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_AudioStream"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_AudioStream"})
 extern class SDL_AudioStream {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_Color"})
 extern class SDL_Color {
     var r:Uint8;
@@ -176,7 +176,7 @@ extern class SDL_Color {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_FColor"})
 extern class SDL_FColor {
     var r:cpp.Float32;
@@ -188,7 +188,7 @@ extern class SDL_FColor {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_Palette"})
 extern class SDL_Palette {
     var ncolors:cpp.Int32;
@@ -200,13 +200,13 @@ extern class SDL_Palette {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_PixelFormatDetails"})
 extern class SDL_PixelFormatDetails {
     var format:SDL_PixelFormat;
     var bits_per_pixel:Uint8;
     var bytes_per_pixel:Uint8;
-    var padding:cpp.Uint8Pointer;
+    var padding:Uint8;
     var Rmask:Uint32;
     var Gmask:Uint32;
     var Bmask:Uint32;
@@ -224,7 +224,7 @@ extern class SDL_PixelFormatDetails {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_Point"})
 extern class SDL_Point {
     var x:cpp.Int32;
@@ -234,7 +234,7 @@ extern class SDL_Point {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_FPoint"})
 extern class SDL_FPoint {
     var x:cpp.Float32;
@@ -244,7 +244,7 @@ extern class SDL_FPoint {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_Rect"})
 extern class SDL_Rect {
     var x:cpp.Int32;
@@ -256,7 +256,7 @@ extern class SDL_Rect {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_FRect"})
 extern class SDL_FRect {
     var x:cpp.Float32;
@@ -268,7 +268,7 @@ extern class SDL_FRect {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_Surface"})
 extern class SDL_Surface {
     var flags:SDL_SurfaceFlags;
@@ -284,13 +284,13 @@ extern class SDL_Surface {
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_Camera"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_Camera"})
 extern class SDL_Camera {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_CameraSpec"})
 extern class SDL_CameraSpec {
     var format:SDL_PixelFormat;
@@ -304,13 +304,13 @@ extern class SDL_CameraSpec {
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_DisplayModeData"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_DisplayModeData"})
 extern class SDL_DisplayModeData {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_DisplayMode"})
 extern class SDL_DisplayMode {
     var displayID:SDL_DisplayID;
@@ -327,60 +327,60 @@ extern class SDL_DisplayMode {
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_Window"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_Window"})
 extern class SDL_Window {
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_GLContextState"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_GLContextState"})
 extern class SDL_GLContextState {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_DialogFileFilter"})
 extern class SDL_DialogFileFilter {
-    var name:cpp.CharStar;
-    var pattern:cpp.CharStar;
+    var name:cpp.CharPointer;
+    var pattern:cpp.CharPointer;
 
     function new():Void;
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GUID"})
 extern class SDL_GUID {
-    var data:cpp.Uint8Pointer;
+    var data:Uint8;
 
     function new():Void;
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_Sensor"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_Sensor"})
 extern class SDL_Sensor {
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_Joystick"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_Joystick"})
 extern class SDL_Joystick {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_VirtualJoystickTouchpadDesc"})
 extern class SDL_VirtualJoystickTouchpadDesc {
     var nfingers:Uint16;
-    var padding:cpp.Uint16Pointer;
+    var padding:Uint16;
 
     function new():Void;
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_VirtualJoystickSensorDesc"})
 extern class SDL_VirtualJoystickSensorDesc {
     var type:SDL_SensorType;
@@ -390,7 +390,7 @@ extern class SDL_VirtualJoystickSensorDesc {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_VirtualJoystickDesc"})
 extern class SDL_VirtualJoystickDesc {
     var version:Uint32;
@@ -404,51 +404,59 @@ extern class SDL_VirtualJoystickDesc {
     var nhats:Uint16;
     var ntouchpads:Uint16;
     var nsensors:Uint16;
-    var padding2:cpp.Uint16Pointer;
+    var padding2:Uint16;
     var button_mask:Uint32;
     var axis_mask:Uint32;
-    var name:cpp.CharStar;
+    var name:cpp.CharPointer;
     var touchpads:SDL_VirtualJoystickTouchpadDesc;
     var sensors:SDL_VirtualJoystickSensorDesc;
     var userdata:cpp.VoidPointer;
-    var Update:null;
-    var SetPlayerIndex:null;
-    var Rumble:null;
-    var RumbleTriggers:null;
-    var SetLED:null;
-    var SendEffect:null;
-    var SetSensorsEnabled:null;
-    var Cleanup:null;
+    var Update:Dynamic;
+    var SetPlayerIndex:Dynamic;
+    var Rumble:Dynamic;
+    var RumbleTriggers:Dynamic;
+    var SetLED:Dynamic;
+    var SendEffect:Dynamic;
+    var SetSensorsEnabled:Dynamic;
+    var Cleanup:Dynamic;
 
     function new():Void;
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_Gamepad"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_Gamepad"})
 extern class SDL_Gamepad {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GamepadBinding"})
 extern class SDL_GamepadBinding {
     var input_type:SDL_GamepadBindingType;
-    var input:Union;
+    var input_button:cpp.Int32;
+    var input_axis:cpp.Int32;
+    var input_axis_min:cpp.Int32;
+    var input_axis_max:cpp.Int32;
+    var input_hat:cpp.Int32;
+    var input_hat_mask:cpp.Int32;
     var output_type:SDL_GamepadBindingType;
-    var output:Union;
+    var output_button:SDL_GamepadButton;
+    var output_axis:SDL_GamepadAxis;
+    var output_axis_min:cpp.Int32;
+    var output_axis_max:cpp.Int32;
 
     function new():Void;
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_Cursor"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_Cursor"})
 extern class SDL_Cursor {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_CursorFrameInfo"})
 extern class SDL_CursorFrameInfo {
     var surface:SDL_Surface;
@@ -458,7 +466,7 @@ extern class SDL_CursorFrameInfo {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_Finger"})
 extern class SDL_Finger {
     var id:SDL_FingerID;
@@ -470,7 +478,7 @@ extern class SDL_Finger {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_CommonEvent"})
 extern class SDL_CommonEvent {
     var type:Uint32;
@@ -481,7 +489,7 @@ extern class SDL_CommonEvent {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_DisplayEvent"})
 extern class SDL_DisplayEvent {
     var type:SDL_EventType;
@@ -495,7 +503,7 @@ extern class SDL_DisplayEvent {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_WindowEvent"})
 extern class SDL_WindowEvent {
     var type:SDL_EventType;
@@ -509,7 +517,7 @@ extern class SDL_WindowEvent {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_KeyboardDeviceEvent"})
 extern class SDL_KeyboardDeviceEvent {
     var type:SDL_EventType;
@@ -521,7 +529,7 @@ extern class SDL_KeyboardDeviceEvent {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_KeyboardEvent"})
 extern class SDL_KeyboardEvent {
     var type:SDL_EventType;
@@ -540,14 +548,14 @@ extern class SDL_KeyboardEvent {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_TextEditingEvent"})
 extern class SDL_TextEditingEvent {
     var type:SDL_EventType;
     var reserved:Uint32;
     var timestamp:Uint64;
     var windowID:SDL_WindowID;
-    var text:cpp.CharStar;
+    var text:cpp.CharPointer;
     var start:Sint32;
     var length:Sint32;
 
@@ -555,7 +563,7 @@ extern class SDL_TextEditingEvent {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_TextEditingCandidatesEvent"})
 extern class SDL_TextEditingCandidatesEvent {
     var type:SDL_EventType;
@@ -574,20 +582,20 @@ extern class SDL_TextEditingCandidatesEvent {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_TextInputEvent"})
 extern class SDL_TextInputEvent {
     var type:SDL_EventType;
     var reserved:Uint32;
     var timestamp:Uint64;
     var windowID:SDL_WindowID;
-    var text:cpp.CharStar;
+    var text:cpp.CharPointer;
 
     function new():Void;
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_MouseDeviceEvent"})
 extern class SDL_MouseDeviceEvent {
     var type:SDL_EventType;
@@ -599,7 +607,7 @@ extern class SDL_MouseDeviceEvent {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_MouseMotionEvent"})
 extern class SDL_MouseMotionEvent {
     var type:SDL_EventType;
@@ -617,7 +625,7 @@ extern class SDL_MouseMotionEvent {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_MouseButtonEvent"})
 extern class SDL_MouseButtonEvent {
     var type:SDL_EventType;
@@ -636,7 +644,7 @@ extern class SDL_MouseButtonEvent {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_MouseWheelEvent"})
 extern class SDL_MouseWheelEvent {
     var type:SDL_EventType;
@@ -656,7 +664,7 @@ extern class SDL_MouseWheelEvent {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_JoyAxisEvent"})
 extern class SDL_JoyAxisEvent {
     var type:SDL_EventType;
@@ -674,7 +682,7 @@ extern class SDL_JoyAxisEvent {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_JoyBallEvent"})
 extern class SDL_JoyBallEvent {
     var type:SDL_EventType;
@@ -692,7 +700,7 @@ extern class SDL_JoyBallEvent {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_JoyHatEvent"})
 extern class SDL_JoyHatEvent {
     var type:SDL_EventType;
@@ -708,7 +716,7 @@ extern class SDL_JoyHatEvent {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_JoyButtonEvent"})
 extern class SDL_JoyButtonEvent {
     var type:SDL_EventType;
@@ -724,7 +732,7 @@ extern class SDL_JoyButtonEvent {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_JoyDeviceEvent"})
 extern class SDL_JoyDeviceEvent {
     var type:SDL_EventType;
@@ -736,7 +744,7 @@ extern class SDL_JoyDeviceEvent {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_JoyBatteryEvent"})
 extern class SDL_JoyBatteryEvent {
     var type:SDL_EventType;
@@ -750,7 +758,7 @@ extern class SDL_JoyBatteryEvent {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GamepadAxisEvent"})
 extern class SDL_GamepadAxisEvent {
     var type:SDL_EventType;
@@ -768,7 +776,7 @@ extern class SDL_GamepadAxisEvent {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GamepadButtonEvent"})
 extern class SDL_GamepadButtonEvent {
     var type:SDL_EventType;
@@ -784,7 +792,7 @@ extern class SDL_GamepadButtonEvent {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GamepadDeviceEvent"})
 extern class SDL_GamepadDeviceEvent {
     var type:SDL_EventType;
@@ -796,7 +804,7 @@ extern class SDL_GamepadDeviceEvent {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GamepadTouchpadEvent"})
 extern class SDL_GamepadTouchpadEvent {
     var type:SDL_EventType;
@@ -813,7 +821,7 @@ extern class SDL_GamepadTouchpadEvent {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GamepadSensorEvent"})
 extern class SDL_GamepadSensorEvent {
     var type:SDL_EventType;
@@ -821,14 +829,14 @@ extern class SDL_GamepadSensorEvent {
     var timestamp:Uint64;
     var which:SDL_JoystickID;
     var sensor:Sint32;
-    var data:cpp.cpp.Float32Pointer;
+    var data:cpp.Float32Pointer;
     var sensor_timestamp:Uint64;
 
     function new():Void;
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_AudioDeviceEvent"})
 extern class SDL_AudioDeviceEvent {
     var type:SDL_EventType;
@@ -844,7 +852,7 @@ extern class SDL_AudioDeviceEvent {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_CameraDeviceEvent"})
 extern class SDL_CameraDeviceEvent {
     var type:SDL_EventType;
@@ -856,7 +864,7 @@ extern class SDL_CameraDeviceEvent {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_RenderEvent"})
 extern class SDL_RenderEvent {
     var type:SDL_EventType;
@@ -868,7 +876,7 @@ extern class SDL_RenderEvent {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_TouchFingerEvent"})
 extern class SDL_TouchFingerEvent {
     var type:SDL_EventType;
@@ -887,7 +895,7 @@ extern class SDL_TouchFingerEvent {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_PinchFingerEvent"})
 extern class SDL_PinchFingerEvent {
     var type:SDL_EventType;
@@ -900,7 +908,7 @@ extern class SDL_PinchFingerEvent {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_PenProximityEvent"})
 extern class SDL_PenProximityEvent {
     var type:SDL_EventType;
@@ -913,7 +921,7 @@ extern class SDL_PenProximityEvent {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_PenMotionEvent"})
 extern class SDL_PenMotionEvent {
     var type:SDL_EventType;
@@ -929,7 +937,7 @@ extern class SDL_PenMotionEvent {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_PenTouchEvent"})
 extern class SDL_PenTouchEvent {
     var type:SDL_EventType;
@@ -947,7 +955,7 @@ extern class SDL_PenTouchEvent {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_PenButtonEvent"})
 extern class SDL_PenButtonEvent {
     var type:SDL_EventType;
@@ -965,7 +973,7 @@ extern class SDL_PenButtonEvent {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_PenAxisEvent"})
 extern class SDL_PenAxisEvent {
     var type:SDL_EventType;
@@ -983,7 +991,7 @@ extern class SDL_PenAxisEvent {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_DropEvent"})
 extern class SDL_DropEvent {
     var type:SDL_EventType;
@@ -992,14 +1000,14 @@ extern class SDL_DropEvent {
     var windowID:SDL_WindowID;
     var x:cpp.Float32;
     var y:cpp.Float32;
-    var source:cpp.CharStar;
-    var data:cpp.CharStar;
+    var source:cpp.CharPointer;
+    var data:cpp.CharPointer;
 
     function new():Void;
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_ClipboardEvent"})
 extern class SDL_ClipboardEvent {
     var type:SDL_EventType;
@@ -1013,21 +1021,21 @@ extern class SDL_ClipboardEvent {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_SensorEvent"})
 extern class SDL_SensorEvent {
     var type:SDL_EventType;
     var reserved:Uint32;
     var timestamp:Uint64;
     var which:SDL_SensorID;
-    var data:cpp.cpp.Float32Pointer;
+    var data:cpp.Float32Pointer;
     var sensor_timestamp:Uint64;
 
     function new():Void;
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_QuitEvent"})
 extern class SDL_QuitEvent {
     var type:SDL_EventType;
@@ -1038,7 +1046,7 @@ extern class SDL_QuitEvent {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_UserEvent"})
 extern class SDL_UserEvent {
     var type:Uint32;
@@ -1053,7 +1061,7 @@ extern class SDL_UserEvent {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_Event"})
 extern class SDL_Event {
     var type:Uint32;
@@ -1095,13 +1103,13 @@ extern class SDL_Event {
     var render:SDL_RenderEvent;
     var drop:SDL_DropEvent;
     var clipboard:SDL_ClipboardEvent;
-    var padding:cpp.Uint8Pointer;
+    var padding:Uint8;
 
     function new():Void;
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_PathInfo"})
 extern class SDL_PathInfo {
     var type:SDL_PathType;
@@ -1114,85 +1122,85 @@ extern class SDL_PathInfo {
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_GPUDevice"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_GPUDevice"})
 extern class SDL_GPUDevice {
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_GPUBuffer"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_GPUBuffer"})
 extern class SDL_GPUBuffer {
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_GPUTransferBuffer"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_GPUTransferBuffer"})
 extern class SDL_GPUTransferBuffer {
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_GPUTexture"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_GPUTexture"})
 extern class SDL_GPUTexture {
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_GPUSampler"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_GPUSampler"})
 extern class SDL_GPUSampler {
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_GPUShader"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_GPUShader"})
 extern class SDL_GPUShader {
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_GPUComputePipeline"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_GPUComputePipeline"})
 extern class SDL_GPUComputePipeline {
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_GPUGraphicsPipeline"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_GPUGraphicsPipeline"})
 extern class SDL_GPUGraphicsPipeline {
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_GPUCommandBuffer"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_GPUCommandBuffer"})
 extern class SDL_GPUCommandBuffer {
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_GPURenderPass"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_GPURenderPass"})
 extern class SDL_GPURenderPass {
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_GPUComputePass"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_GPUComputePass"})
 extern class SDL_GPUComputePass {
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_GPUCopyPass"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_GPUCopyPass"})
 extern class SDL_GPUCopyPass {
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_GPUFence"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_GPUFence"})
 extern class SDL_GPUFence {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUViewport"})
 extern class SDL_GPUViewport {
     var x:cpp.Float32;
@@ -1206,7 +1214,7 @@ extern class SDL_GPUViewport {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUTextureTransferInfo"})
 extern class SDL_GPUTextureTransferInfo {
     var transfer_buffer:SDL_GPUTransferBuffer;
@@ -1218,7 +1226,7 @@ extern class SDL_GPUTextureTransferInfo {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUTransferBufferLocation"})
 extern class SDL_GPUTransferBufferLocation {
     var transfer_buffer:SDL_GPUTransferBuffer;
@@ -1228,7 +1236,7 @@ extern class SDL_GPUTransferBufferLocation {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUTextureLocation"})
 extern class SDL_GPUTextureLocation {
     var texture:SDL_GPUTexture;
@@ -1242,7 +1250,7 @@ extern class SDL_GPUTextureLocation {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUTextureRegion"})
 extern class SDL_GPUTextureRegion {
     var texture:SDL_GPUTexture;
@@ -1259,7 +1267,7 @@ extern class SDL_GPUTextureRegion {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUBlitRegion"})
 extern class SDL_GPUBlitRegion {
     var texture:SDL_GPUTexture;
@@ -1274,7 +1282,7 @@ extern class SDL_GPUBlitRegion {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUBufferLocation"})
 extern class SDL_GPUBufferLocation {
     var buffer:SDL_GPUBuffer;
@@ -1284,7 +1292,7 @@ extern class SDL_GPUBufferLocation {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUBufferRegion"})
 extern class SDL_GPUBufferRegion {
     var buffer:SDL_GPUBuffer;
@@ -1295,7 +1303,7 @@ extern class SDL_GPUBufferRegion {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUIndirectDrawCommand"})
 extern class SDL_GPUIndirectDrawCommand {
     var num_vertices:Uint32;
@@ -1307,7 +1315,7 @@ extern class SDL_GPUIndirectDrawCommand {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUIndexedIndirectDrawCommand"})
 extern class SDL_GPUIndexedIndirectDrawCommand {
     var num_indices:Uint32;
@@ -1320,7 +1328,7 @@ extern class SDL_GPUIndexedIndirectDrawCommand {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUIndirectDispatchCommand"})
 extern class SDL_GPUIndirectDispatchCommand {
     var groupcount_x:Uint32;
@@ -1331,7 +1339,7 @@ extern class SDL_GPUIndirectDispatchCommand {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUSamplerCreateInfo"})
 extern class SDL_GPUSamplerCreateInfo {
     var min_filter:SDL_GPUFilter;
@@ -1355,7 +1363,7 @@ extern class SDL_GPUSamplerCreateInfo {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUVertexBufferDescription"})
 extern class SDL_GPUVertexBufferDescription {
     var slot:Uint32;
@@ -1367,7 +1375,7 @@ extern class SDL_GPUVertexBufferDescription {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUVertexAttribute"})
 extern class SDL_GPUVertexAttribute {
     var location:Uint32;
@@ -1379,7 +1387,7 @@ extern class SDL_GPUVertexAttribute {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUVertexInputState"})
 extern class SDL_GPUVertexInputState {
     var vertex_buffer_descriptions:SDL_GPUVertexBufferDescription;
@@ -1391,7 +1399,7 @@ extern class SDL_GPUVertexInputState {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUStencilOpState"})
 extern class SDL_GPUStencilOpState {
     var fail_op:SDL_GPUStencilOp;
@@ -1403,7 +1411,7 @@ extern class SDL_GPUStencilOpState {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUColorTargetBlendState"})
 extern class SDL_GPUColorTargetBlendState {
     var src_color_blendfactor:SDL_GPUBlendFactor;
@@ -1422,12 +1430,12 @@ extern class SDL_GPUColorTargetBlendState {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUShaderCreateInfo"})
 extern class SDL_GPUShaderCreateInfo {
     var code_size:cpp.UInt32;
     var code:Uint8;
-    var entrypoint:cpp.CharStar;
+    var entrypoint:cpp.CharPointer;
     var format:SDL_GPUShaderFormat;
     var stage:SDL_GPUShaderStage;
     var num_samplers:Uint32;
@@ -1440,7 +1448,7 @@ extern class SDL_GPUShaderCreateInfo {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUTextureCreateInfo"})
 extern class SDL_GPUTextureCreateInfo {
     var type:SDL_GPUTextureType;
@@ -1457,7 +1465,7 @@ extern class SDL_GPUTextureCreateInfo {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUBufferCreateInfo"})
 extern class SDL_GPUBufferCreateInfo {
     var usage:SDL_GPUBufferUsageFlags;
@@ -1468,7 +1476,7 @@ extern class SDL_GPUBufferCreateInfo {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUTransferBufferCreateInfo"})
 extern class SDL_GPUTransferBufferCreateInfo {
     var usage:SDL_GPUTransferBufferUsage;
@@ -1479,7 +1487,7 @@ extern class SDL_GPUTransferBufferCreateInfo {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPURasterizerState"})
 extern class SDL_GPURasterizerState {
     var fill_mode:SDL_GPUFillMode;
@@ -1497,7 +1505,7 @@ extern class SDL_GPURasterizerState {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUMultisampleState"})
 extern class SDL_GPUMultisampleState {
     var sample_count:SDL_GPUSampleCount;
@@ -1511,7 +1519,7 @@ extern class SDL_GPUMultisampleState {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUDepthStencilState"})
 extern class SDL_GPUDepthStencilState {
     var compare_op:SDL_GPUCompareOp;
@@ -1530,7 +1538,7 @@ extern class SDL_GPUDepthStencilState {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUColorTargetDescription"})
 extern class SDL_GPUColorTargetDescription {
     var format:SDL_GPUTextureFormat;
@@ -1540,7 +1548,7 @@ extern class SDL_GPUColorTargetDescription {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUGraphicsPipelineTargetInfo"})
 extern class SDL_GPUGraphicsPipelineTargetInfo {
     var color_target_descriptions:SDL_GPUColorTargetDescription;
@@ -1555,7 +1563,7 @@ extern class SDL_GPUGraphicsPipelineTargetInfo {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUGraphicsPipelineCreateInfo"})
 extern class SDL_GPUGraphicsPipelineCreateInfo {
     var vertex_shader:SDL_GPUShader;
@@ -1572,12 +1580,12 @@ extern class SDL_GPUGraphicsPipelineCreateInfo {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUComputePipelineCreateInfo"})
 extern class SDL_GPUComputePipelineCreateInfo {
     var code_size:cpp.UInt32;
     var code:Uint8;
-    var entrypoint:cpp.CharStar;
+    var entrypoint:cpp.CharPointer;
     var format:SDL_GPUShaderFormat;
     var num_samplers:Uint32;
     var num_readonly_storage_textures:Uint32;
@@ -1594,7 +1602,7 @@ extern class SDL_GPUComputePipelineCreateInfo {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUColorTargetInfo"})
 extern class SDL_GPUColorTargetInfo {
     var texture:SDL_GPUTexture;
@@ -1615,7 +1623,7 @@ extern class SDL_GPUColorTargetInfo {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUDepthStencilTargetInfo"})
 extern class SDL_GPUDepthStencilTargetInfo {
     var texture:SDL_GPUTexture;
@@ -1633,7 +1641,7 @@ extern class SDL_GPUDepthStencilTargetInfo {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUBlitInfo"})
 extern class SDL_GPUBlitInfo {
     var source:SDL_GPUBlitRegion;
@@ -1651,7 +1659,7 @@ extern class SDL_GPUBlitInfo {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUBufferBinding"})
 extern class SDL_GPUBufferBinding {
     var buffer:SDL_GPUBuffer;
@@ -1661,7 +1669,7 @@ extern class SDL_GPUBufferBinding {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUTextureSamplerBinding"})
 extern class SDL_GPUTextureSamplerBinding {
     var texture:SDL_GPUTexture;
@@ -1671,7 +1679,7 @@ extern class SDL_GPUTextureSamplerBinding {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUStorageBufferReadWriteBinding"})
 extern class SDL_GPUStorageBufferReadWriteBinding {
     var buffer:SDL_GPUBuffer;
@@ -1684,7 +1692,7 @@ extern class SDL_GPUStorageBufferReadWriteBinding {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUStorageTextureReadWriteBinding"})
 extern class SDL_GPUStorageTextureReadWriteBinding {
     var texture:SDL_GPUTexture;
@@ -1699,7 +1707,7 @@ extern class SDL_GPUStorageTextureReadWriteBinding {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUVulkanOptions"})
 extern class SDL_GPUVulkanOptions {
     var vulkan_api_version:Uint32;
@@ -1714,23 +1722,23 @@ extern class SDL_GPUVulkanOptions {
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_Haptic"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_Haptic"})
 extern class SDL_Haptic {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_HapticDirection"})
 extern class SDL_HapticDirection {
     var type:SDL_HapticDirectionType;
-    var dir:cpp.Sint32Pointer;
+    var dir:Sint32;
 
     function new():Void;
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_HapticConstant"})
 extern class SDL_HapticConstant {
     var type:SDL_HapticEffectType;
@@ -1749,7 +1757,7 @@ extern class SDL_HapticConstant {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_HapticPeriodic"})
 extern class SDL_HapticPeriodic {
     var type:SDL_HapticEffectType;
@@ -1771,7 +1779,7 @@ extern class SDL_HapticPeriodic {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_HapticCondition"})
 extern class SDL_HapticCondition {
     var type:SDL_HapticEffectType;
@@ -1780,18 +1788,18 @@ extern class SDL_HapticCondition {
     var delay:Uint16;
     var button:Uint16;
     var interval:Uint16;
-    var right_sat:cpp.Uint16Pointer;
-    var left_sat:cpp.Uint16Pointer;
-    var right_coeff:cpp.Sint16Pointer;
-    var left_coeff:cpp.Sint16Pointer;
-    var deadband:cpp.Uint16Pointer;
-    var center:cpp.Sint16Pointer;
+    var right_sat:Uint16;
+    var left_sat:Uint16;
+    var right_coeff:Sint16;
+    var left_coeff:Sint16;
+    var deadband:Uint16;
+    var center:Sint16;
 
     function new():Void;
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_HapticRamp"})
 extern class SDL_HapticRamp {
     var type:SDL_HapticEffectType;
@@ -1811,7 +1819,7 @@ extern class SDL_HapticRamp {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_HapticLeftRight"})
 extern class SDL_HapticLeftRight {
     var type:SDL_HapticEffectType;
@@ -1823,7 +1831,7 @@ extern class SDL_HapticLeftRight {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_HapticCustom"})
 extern class SDL_HapticCustom {
     var type:SDL_HapticEffectType;
@@ -1845,7 +1853,7 @@ extern class SDL_HapticCustom {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_HapticEffect"})
 extern class SDL_HapticEffect {
     var type:SDL_HapticEffectType;
@@ -1860,22 +1868,22 @@ extern class SDL_HapticEffect {
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_hid_device"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_hid_device"})
 extern class SDL_hid_device {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_hid_device_info"})
 extern class SDL_hid_device_info {
-    var path:cpp.CharStar;
+    var path:cpp.CharPointer;
     var vendor_id:cpp.UInt16;
     var product_id:cpp.UInt16;
-    var serial_number:cpp.CharStarPointer;
+    var serial_number:cpp.WCharPointer;
     var release_number:cpp.UInt16;
-    var manufacturer_string:cpp.CharStarPointer;
-    var product_string:cpp.CharStarPointer;
+    var manufacturer_string:cpp.WCharPointer;
+    var product_string:cpp.WCharPointer;
     var usage_page:cpp.UInt16;
     var usage:cpp.UInt16;
     var interface_number:cpp.Int32;
@@ -1883,40 +1891,40 @@ extern class SDL_hid_device_info {
     var interface_subclass:cpp.Int32;
     var interface_protocol:cpp.Int32;
     var bus_type:SDL_hid_bus_type;
-    var next:Struct;
+    var next:SDL_hid_device_info;
 
     function new():Void;
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_SharedObject"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_SharedObject"})
 extern class SDL_SharedObject {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_Locale"})
 extern class SDL_Locale {
-    var language:cpp.CharStar;
-    var country:cpp.CharStar;
+    var language:cpp.CharPointer;
+    var country:cpp.CharPointer;
 
     function new():Void;
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_MessageBoxButtonData"})
 extern class SDL_MessageBoxButtonData {
     var flags:SDL_MessageBoxButtonFlags;
     var buttonID:cpp.Int32;
-    var text:cpp.CharStar;
+    var text:cpp.CharPointer;
 
     function new():Void;
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_MessageBoxColor"})
 extern class SDL_MessageBoxColor {
     var r:Uint8;
@@ -1927,22 +1935,22 @@ extern class SDL_MessageBoxColor {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_MessageBoxColorScheme"})
 extern class SDL_MessageBoxColorScheme {
-    var colors:cpp.SDL_MessageBoxColorPointer;
+    var colors:SDL_MessageBoxColor;
 
     function new():Void;
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_MessageBoxData"})
 extern class SDL_MessageBoxData {
     var flags:SDL_MessageBoxFlags;
     var window:SDL_Window;
-    var title:cpp.CharStar;
-    var message:cpp.CharStar;
+    var title:cpp.CharPointer;
+    var message:cpp.CharPointer;
     var numbuttons:cpp.Int32;
     var buttons:SDL_MessageBoxButtonData;
     var colorScheme:SDL_MessageBoxColorScheme;
@@ -1951,13 +1959,13 @@ extern class SDL_MessageBoxData {
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_Process"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_Process"})
 extern class SDL_Process {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_Vertex"})
 extern class SDL_Vertex {
     var position:SDL_FPoint;
@@ -1968,13 +1976,13 @@ extern class SDL_Vertex {
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_Renderer"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_Renderer"})
 extern class SDL_Renderer {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_Texture"})
 extern class SDL_Texture {
     var format:SDL_PixelFormat;
@@ -1986,61 +1994,61 @@ extern class SDL_Texture {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPURenderStateCreateInfo"})
 extern class SDL_GPURenderStateCreateInfo {
     var fragment_shader:SDL_GPUShader;
     var num_sampler_bindings:Sint32;
     var sampler_bindings:SDL_GPUTextureSamplerBinding;
     var num_storage_textures:Sint32;
-    var storage_textures:cpp.RawPointer<Struct(SDL_GPUTexture)>;
+    var storage_textures:cpp.RawPointer<SDL_GPUTexture>;
     var num_storage_buffers:Sint32;
-    var storage_buffers:cpp.RawPointer<Struct(SDL_GPUBuffer)>;
+    var storage_buffers:cpp.RawPointer<SDL_GPUBuffer>;
     var props:SDL_PropertiesID;
 
     function new():Void;
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_GPURenderState"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_GPURenderState"})
 extern class SDL_GPURenderState {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_StorageInterface"})
 extern class SDL_StorageInterface {
     var version:Uint32;
-    var close:null;
-    var ready:null;
-    var enumerate:null;
-    var info:null;
-    var read_file:null;
-    var write_file:null;
-    var mkdir:null;
-    var remove:null;
-    var rename:null;
-    var copy:null;
-    var space_remaining:null;
+    var close:Dynamic;
+    var ready:Dynamic;
+    var enumerate:Dynamic;
+    var info:Dynamic;
+    var read_file:Dynamic;
+    var write_file:Dynamic;
+    var mkdir:Dynamic;
+    var remove:Dynamic;
+    var rename:Dynamic;
+    var copy:Dynamic;
+    var space_remaining:Dynamic;
 
     function new():Void;
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_Storage"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_Storage"})
 extern class SDL_Storage {
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "_XEvent"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "_XEvent"})
 extern class _XEvent {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_DateTime"})
 extern class SDL_DateTime {
     var year:cpp.Int32;
@@ -2057,32 +2065,32 @@ extern class SDL_DateTime {
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_Tray"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_Tray"})
 extern class SDL_Tray {
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_TrayMenu"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_TrayMenu"})
 extern class SDL_TrayMenu {
 }
 
 @:semantics(value)
-@:include("SDL.h")
-@:cpp.ValueType({type: "SDL_TrayEntry"})
+@:include("SDL3/SDL.h")
+@:cpp.PointerType({type: "SDL_TrayEntry"})
 extern class SDL_TrayEntry {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_DUMMY_ENUM"})
 extern enum abstract SDL_DUMMY_ENUM(cpp.Int32) {
     @:native("DUMMY_ENUM_VALUE") var DUMMY_ENUM_VALUE;
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_AssertState"})
 extern enum abstract SDL_AssertState(cpp.Int32) {
     @:native("SDL_ASSERTION_RETRY") var SDL_ASSERTION_RETRY;
@@ -2093,7 +2101,7 @@ extern enum abstract SDL_AssertState(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_AsyncIOTaskType"})
 extern enum abstract SDL_AsyncIOTaskType(cpp.Int32) {
     @:native("SDL_ASYNCIO_TASK_READ") var SDL_ASYNCIO_TASK_READ;
@@ -2102,7 +2110,7 @@ extern enum abstract SDL_AsyncIOTaskType(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_AsyncIOResult"})
 extern enum abstract SDL_AsyncIOResult(cpp.Int32) {
     @:native("SDL_ASYNCIO_COMPLETE") var SDL_ASYNCIO_COMPLETE;
@@ -2111,7 +2119,7 @@ extern enum abstract SDL_AsyncIOResult(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_PropertyType"})
 extern enum abstract SDL_PropertyType(cpp.Int32) {
     @:native("SDL_PROPERTY_TYPE_INVALID") var SDL_PROPERTY_TYPE_INVALID;
@@ -2123,7 +2131,7 @@ extern enum abstract SDL_PropertyType(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_ThreadPriority"})
 extern enum abstract SDL_ThreadPriority(cpp.Int32) {
     @:native("SDL_THREAD_PRIORITY_LOW") var SDL_THREAD_PRIORITY_LOW;
@@ -2133,7 +2141,7 @@ extern enum abstract SDL_ThreadPriority(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_ThreadState"})
 extern enum abstract SDL_ThreadState(cpp.Int32) {
     @:native("SDL_THREAD_UNKNOWN") var SDL_THREAD_UNKNOWN;
@@ -2143,7 +2151,7 @@ extern enum abstract SDL_ThreadState(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_InitStatus"})
 extern enum abstract SDL_InitStatus(cpp.Int32) {
     @:native("SDL_INIT_STATUS_UNINITIALIZED") var SDL_INIT_STATUS_UNINITIALIZED;
@@ -2153,7 +2161,7 @@ extern enum abstract SDL_InitStatus(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_IOStatus"})
 extern enum abstract SDL_IOStatus(cpp.Int32) {
     @:native("SDL_IO_STATUS_READY") var SDL_IO_STATUS_READY;
@@ -2165,7 +2173,7 @@ extern enum abstract SDL_IOStatus(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_IOWhence"})
 extern enum abstract SDL_IOWhence(cpp.Int32) {
     @:native("SDL_IO_SEEK_SET") var SDL_IO_SEEK_SET;
@@ -2174,7 +2182,7 @@ extern enum abstract SDL_IOWhence(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_AudioFormat"})
 extern enum abstract SDL_AudioFormat(cpp.Int32) {
     @:native("SDL_AUDIO_UNKNOWN") var SDL_AUDIO_UNKNOWN;
@@ -2192,7 +2200,7 @@ extern enum abstract SDL_AudioFormat(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_BlendOperation"})
 extern enum abstract SDL_BlendOperation(cpp.Int32) {
     @:native("SDL_BLENDOPERATION_ADD") var SDL_BLENDOPERATION_ADD;
@@ -2203,7 +2211,7 @@ extern enum abstract SDL_BlendOperation(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_BlendFactor"})
 extern enum abstract SDL_BlendFactor(cpp.Int32) {
     @:native("SDL_BLENDFACTOR_ZERO") var SDL_BLENDFACTOR_ZERO;
@@ -2219,7 +2227,7 @@ extern enum abstract SDL_BlendFactor(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_PixelType"})
 extern enum abstract SDL_PixelType(cpp.Int32) {
     @:native("SDL_PIXELTYPE_UNKNOWN") var SDL_PIXELTYPE_UNKNOWN;
@@ -2238,7 +2246,7 @@ extern enum abstract SDL_PixelType(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_BitmapOrder"})
 extern enum abstract SDL_BitmapOrder(cpp.Int32) {
     @:native("SDL_BITMAPORDER_NONE") var SDL_BITMAPORDER_NONE;
@@ -2247,7 +2255,7 @@ extern enum abstract SDL_BitmapOrder(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_PackedOrder"})
 extern enum abstract SDL_PackedOrder(cpp.Int32) {
     @:native("SDL_PACKEDORDER_NONE") var SDL_PACKEDORDER_NONE;
@@ -2262,7 +2270,7 @@ extern enum abstract SDL_PackedOrder(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_ArrayOrder"})
 extern enum abstract SDL_ArrayOrder(cpp.Int32) {
     @:native("SDL_ARRAYORDER_NONE") var SDL_ARRAYORDER_NONE;
@@ -2275,7 +2283,7 @@ extern enum abstract SDL_ArrayOrder(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_PackedLayout"})
 extern enum abstract SDL_PackedLayout(cpp.Int32) {
     @:native("SDL_PACKEDLAYOUT_NONE") var SDL_PACKEDLAYOUT_NONE;
@@ -2290,7 +2298,7 @@ extern enum abstract SDL_PackedLayout(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_PixelFormat"})
 extern enum abstract SDL_PixelFormat(cpp.Int32) {
     @:native("SDL_PIXELFORMAT_UNKNOWN") var SDL_PIXELFORMAT_UNKNOWN;
@@ -2369,7 +2377,7 @@ extern enum abstract SDL_PixelFormat(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_ColorType"})
 extern enum abstract SDL_ColorType(cpp.Int32) {
     @:native("SDL_COLOR_TYPE_UNKNOWN") var SDL_COLOR_TYPE_UNKNOWN;
@@ -2378,7 +2386,7 @@ extern enum abstract SDL_ColorType(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_ColorRange"})
 extern enum abstract SDL_ColorRange(cpp.Int32) {
     @:native("SDL_COLOR_RANGE_UNKNOWN") var SDL_COLOR_RANGE_UNKNOWN;
@@ -2387,7 +2395,7 @@ extern enum abstract SDL_ColorRange(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_ColorPrimaries"})
 extern enum abstract SDL_ColorPrimaries(cpp.Int32) {
     @:native("SDL_COLOR_PRIMARIES_UNKNOWN") var SDL_COLOR_PRIMARIES_UNKNOWN;
@@ -2407,7 +2415,7 @@ extern enum abstract SDL_ColorPrimaries(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_TransferCharacteristics"})
 extern enum abstract SDL_TransferCharacteristics(cpp.Int32) {
     @:native("SDL_TRANSFER_CHARACTERISTICS_UNKNOWN") var SDL_TRANSFER_CHARACTERISTICS_UNKNOWN;
@@ -2432,7 +2440,7 @@ extern enum abstract SDL_TransferCharacteristics(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_MatrixCoefficients"})
 extern enum abstract SDL_MatrixCoefficients(cpp.Int32) {
     @:native("SDL_MATRIX_COEFFICIENTS_IDENTITY") var SDL_MATRIX_COEFFICIENTS_IDENTITY;
@@ -2453,7 +2461,7 @@ extern enum abstract SDL_MatrixCoefficients(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_ChromaLocation"})
 extern enum abstract SDL_ChromaLocation(cpp.Int32) {
     @:native("SDL_CHROMA_LOCATION_NONE") var SDL_CHROMA_LOCATION_NONE;
@@ -2463,7 +2471,7 @@ extern enum abstract SDL_ChromaLocation(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_Colorspace"})
 extern enum abstract SDL_Colorspace(cpp.Int32) {
     @:native("SDL_COLORSPACE_UNKNOWN") var SDL_COLORSPACE_UNKNOWN;
@@ -2482,7 +2490,7 @@ extern enum abstract SDL_Colorspace(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_ScaleMode"})
 extern enum abstract SDL_ScaleMode(cpp.Int32) {
     @:native("SDL_SCALEMODE_INVALID") var SDL_SCALEMODE_INVALID;
@@ -2492,7 +2500,7 @@ extern enum abstract SDL_ScaleMode(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_FlipMode"})
 extern enum abstract SDL_FlipMode(cpp.Int32) {
     @:native("SDL_FLIP_NONE") var SDL_FLIP_NONE;
@@ -2502,7 +2510,7 @@ extern enum abstract SDL_FlipMode(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_CameraPosition"})
 extern enum abstract SDL_CameraPosition(cpp.Int32) {
     @:native("SDL_CAMERA_POSITION_UNKNOWN") var SDL_CAMERA_POSITION_UNKNOWN;
@@ -2511,7 +2519,7 @@ extern enum abstract SDL_CameraPosition(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_CameraPermissionState"})
 extern enum abstract SDL_CameraPermissionState(cpp.Int32) {
     @:native("SDL_CAMERA_PERMISSION_STATE_DENIED") var SDL_CAMERA_PERMISSION_STATE_DENIED;
@@ -2520,7 +2528,7 @@ extern enum abstract SDL_CameraPermissionState(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_SystemTheme"})
 extern enum abstract SDL_SystemTheme(cpp.Int32) {
     @:native("SDL_SYSTEM_THEME_UNKNOWN") var SDL_SYSTEM_THEME_UNKNOWN;
@@ -2529,7 +2537,7 @@ extern enum abstract SDL_SystemTheme(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_DisplayOrientation"})
 extern enum abstract SDL_DisplayOrientation(cpp.Int32) {
     @:native("SDL_ORIENTATION_UNKNOWN") var SDL_ORIENTATION_UNKNOWN;
@@ -2540,7 +2548,7 @@ extern enum abstract SDL_DisplayOrientation(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_FlashOperation"})
 extern enum abstract SDL_FlashOperation(cpp.Int32) {
     @:native("SDL_FLASH_CANCEL") var SDL_FLASH_CANCEL;
@@ -2549,7 +2557,7 @@ extern enum abstract SDL_FlashOperation(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_ProgressState"})
 extern enum abstract SDL_ProgressState(cpp.Int32) {
     @:native("SDL_PROGRESS_STATE_INVALID") var SDL_PROGRESS_STATE_INVALID;
@@ -2561,7 +2569,7 @@ extern enum abstract SDL_ProgressState(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GLAttr"})
 extern enum abstract SDL_GLAttr(cpp.Int32) {
     @:native("SDL_GL_RED_SIZE") var SDL_GL_RED_SIZE;
@@ -2595,7 +2603,7 @@ extern enum abstract SDL_GLAttr(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_HitTestResult"})
 extern enum abstract SDL_HitTestResult(cpp.Int32) {
     @:native("SDL_HITTEST_NORMAL") var SDL_HITTEST_NORMAL;
@@ -2611,7 +2619,7 @@ extern enum abstract SDL_HitTestResult(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_FileDialogType"})
 extern enum abstract SDL_FileDialogType(cpp.Int32) {
     @:native("SDL_FILEDIALOG_OPENFILE") var SDL_FILEDIALOG_OPENFILE;
@@ -2620,7 +2628,7 @@ extern enum abstract SDL_FileDialogType(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_PowerState"})
 extern enum abstract SDL_PowerState(cpp.Int32) {
     @:native("SDL_POWERSTATE_ERROR") var SDL_POWERSTATE_ERROR;
@@ -2632,7 +2640,7 @@ extern enum abstract SDL_PowerState(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_SensorType"})
 extern enum abstract SDL_SensorType(cpp.Int32) {
     @:native("SDL_SENSOR_INVALID") var SDL_SENSOR_INVALID;
@@ -2647,7 +2655,7 @@ extern enum abstract SDL_SensorType(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_JoystickType"})
 extern enum abstract SDL_JoystickType(cpp.Int32) {
     @:native("SDL_JOYSTICK_TYPE_UNKNOWN") var SDL_JOYSTICK_TYPE_UNKNOWN;
@@ -2664,7 +2672,7 @@ extern enum abstract SDL_JoystickType(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_JoystickConnectionState"})
 extern enum abstract SDL_JoystickConnectionState(cpp.Int32) {
     @:native("SDL_JOYSTICK_CONNECTION_INVALID") var SDL_JOYSTICK_CONNECTION_INVALID;
@@ -2674,7 +2682,7 @@ extern enum abstract SDL_JoystickConnectionState(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GamepadType"})
 extern enum abstract SDL_GamepadType(cpp.Int32) {
     @:native("SDL_GAMEPAD_TYPE_UNKNOWN") var SDL_GAMEPAD_TYPE_UNKNOWN;
@@ -2693,7 +2701,7 @@ extern enum abstract SDL_GamepadType(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GamepadButton"})
 extern enum abstract SDL_GamepadButton(cpp.Int32) {
     @:native("SDL_GAMEPAD_BUTTON_INVALID") var SDL_GAMEPAD_BUTTON_INVALID;
@@ -2727,7 +2735,7 @@ extern enum abstract SDL_GamepadButton(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GamepadButtonLabel"})
 extern enum abstract SDL_GamepadButtonLabel(cpp.Int32) {
     @:native("SDL_GAMEPAD_BUTTON_LABEL_UNKNOWN") var SDL_GAMEPAD_BUTTON_LABEL_UNKNOWN;
@@ -2742,7 +2750,7 @@ extern enum abstract SDL_GamepadButtonLabel(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GamepadAxis"})
 extern enum abstract SDL_GamepadAxis(cpp.Int32) {
     @:native("SDL_GAMEPAD_AXIS_INVALID") var SDL_GAMEPAD_AXIS_INVALID;
@@ -2756,7 +2764,7 @@ extern enum abstract SDL_GamepadAxis(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GamepadBindingType"})
 extern enum abstract SDL_GamepadBindingType(cpp.Int32) {
     @:native("SDL_GAMEPAD_BINDTYPE_NONE") var SDL_GAMEPAD_BINDTYPE_NONE;
@@ -2766,7 +2774,7 @@ extern enum abstract SDL_GamepadBindingType(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_Scancode"})
 extern enum abstract SDL_Scancode(cpp.Int32) {
     @:native("SDL_SCANCODE_UNKNOWN") var SDL_SCANCODE_UNKNOWN;
@@ -3021,7 +3029,7 @@ extern enum abstract SDL_Scancode(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_TextInputType"})
 extern enum abstract SDL_TextInputType(cpp.Int32) {
     @:native("SDL_TEXTINPUT_TYPE_TEXT") var SDL_TEXTINPUT_TYPE_TEXT;
@@ -3036,7 +3044,7 @@ extern enum abstract SDL_TextInputType(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_Capitalization"})
 extern enum abstract SDL_Capitalization(cpp.Int32) {
     @:native("SDL_CAPITALIZE_NONE") var SDL_CAPITALIZE_NONE;
@@ -3046,7 +3054,7 @@ extern enum abstract SDL_Capitalization(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_SystemCursor"})
 extern enum abstract SDL_SystemCursor(cpp.Int32) {
     @:native("SDL_SYSTEM_CURSOR_DEFAULT") var SDL_SYSTEM_CURSOR_DEFAULT;
@@ -3073,7 +3081,7 @@ extern enum abstract SDL_SystemCursor(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_MouseWheelDirection"})
 extern enum abstract SDL_MouseWheelDirection(cpp.Int32) {
     @:native("SDL_MOUSEWHEEL_NORMAL") var SDL_MOUSEWHEEL_NORMAL;
@@ -3081,7 +3089,7 @@ extern enum abstract SDL_MouseWheelDirection(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_TouchDeviceType"})
 extern enum abstract SDL_TouchDeviceType(cpp.Int32) {
     @:native("SDL_TOUCH_DEVICE_INVALID") var SDL_TOUCH_DEVICE_INVALID;
@@ -3091,7 +3099,7 @@ extern enum abstract SDL_TouchDeviceType(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_PenAxis"})
 extern enum abstract SDL_PenAxis(cpp.Int32) {
     @:native("SDL_PEN_AXIS_PRESSURE") var SDL_PEN_AXIS_PRESSURE;
@@ -3105,7 +3113,7 @@ extern enum abstract SDL_PenAxis(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_PenDeviceType"})
 extern enum abstract SDL_PenDeviceType(cpp.Int32) {
     @:native("SDL_PEN_DEVICE_TYPE_INVALID") var SDL_PEN_DEVICE_TYPE_INVALID;
@@ -3115,7 +3123,7 @@ extern enum abstract SDL_PenDeviceType(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_EventType"})
 extern enum abstract SDL_EventType(cpp.Int32) {
     @:native("SDL_EVENT_FIRST") var SDL_EVENT_FIRST;
@@ -3245,7 +3253,7 @@ extern enum abstract SDL_EventType(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_EventAction"})
 extern enum abstract SDL_EventAction(cpp.Int32) {
     @:native("SDL_ADDEVENT") var SDL_ADDEVENT;
@@ -3254,7 +3262,7 @@ extern enum abstract SDL_EventAction(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_Folder"})
 extern enum abstract SDL_Folder(cpp.Int32) {
     @:native("SDL_FOLDER_HOME") var SDL_FOLDER_HOME;
@@ -3272,7 +3280,7 @@ extern enum abstract SDL_Folder(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_PathType"})
 extern enum abstract SDL_PathType(cpp.Int32) {
     @:native("SDL_PATHTYPE_NONE") var SDL_PATHTYPE_NONE;
@@ -3282,7 +3290,7 @@ extern enum abstract SDL_PathType(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_EnumerationResult"})
 extern enum abstract SDL_EnumerationResult(cpp.Int32) {
     @:native("SDL_ENUM_CONTINUE") var SDL_ENUM_CONTINUE;
@@ -3291,7 +3299,7 @@ extern enum abstract SDL_EnumerationResult(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUPrimitiveType"})
 extern enum abstract SDL_GPUPrimitiveType(cpp.Int32) {
     @:native("SDL_GPU_PRIMITIVETYPE_TRIANGLELIST") var SDL_GPU_PRIMITIVETYPE_TRIANGLELIST;
@@ -3302,7 +3310,7 @@ extern enum abstract SDL_GPUPrimitiveType(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPULoadOp"})
 extern enum abstract SDL_GPULoadOp(cpp.Int32) {
     @:native("SDL_GPU_LOADOP_LOAD") var SDL_GPU_LOADOP_LOAD;
@@ -3311,7 +3319,7 @@ extern enum abstract SDL_GPULoadOp(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUStoreOp"})
 extern enum abstract SDL_GPUStoreOp(cpp.Int32) {
     @:native("SDL_GPU_STOREOP_STORE") var SDL_GPU_STOREOP_STORE;
@@ -3321,7 +3329,7 @@ extern enum abstract SDL_GPUStoreOp(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUIndexElementSize"})
 extern enum abstract SDL_GPUIndexElementSize(cpp.Int32) {
     @:native("SDL_GPU_INDEXELEMENTSIZE_16BIT") var SDL_GPU_INDEXELEMENTSIZE_16BIT;
@@ -3329,7 +3337,7 @@ extern enum abstract SDL_GPUIndexElementSize(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUTextureFormat"})
 extern enum abstract SDL_GPUTextureFormat(cpp.Int32) {
     @:native("SDL_GPU_TEXTUREFORMAT_INVALID") var SDL_GPU_TEXTUREFORMAT_INVALID;
@@ -3440,7 +3448,7 @@ extern enum abstract SDL_GPUTextureFormat(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUTextureType"})
 extern enum abstract SDL_GPUTextureType(cpp.Int32) {
     @:native("SDL_GPU_TEXTURETYPE_2D") var SDL_GPU_TEXTURETYPE_2D;
@@ -3451,7 +3459,7 @@ extern enum abstract SDL_GPUTextureType(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUSampleCount"})
 extern enum abstract SDL_GPUSampleCount(cpp.Int32) {
     @:native("SDL_GPU_SAMPLECOUNT_1") var SDL_GPU_SAMPLECOUNT_1;
@@ -3461,7 +3469,7 @@ extern enum abstract SDL_GPUSampleCount(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUCubeMapFace"})
 extern enum abstract SDL_GPUCubeMapFace(cpp.Int32) {
     @:native("SDL_GPU_CUBEMAPFACE_POSITIVEX") var SDL_GPU_CUBEMAPFACE_POSITIVEX;
@@ -3473,7 +3481,7 @@ extern enum abstract SDL_GPUCubeMapFace(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUTransferBufferUsage"})
 extern enum abstract SDL_GPUTransferBufferUsage(cpp.Int32) {
     @:native("SDL_GPU_TRANSFERBUFFERUSAGE_UPLOAD") var SDL_GPU_TRANSFERBUFFERUSAGE_UPLOAD;
@@ -3481,7 +3489,7 @@ extern enum abstract SDL_GPUTransferBufferUsage(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUShaderStage"})
 extern enum abstract SDL_GPUShaderStage(cpp.Int32) {
     @:native("SDL_GPU_SHADERSTAGE_VERTEX") var SDL_GPU_SHADERSTAGE_VERTEX;
@@ -3489,7 +3497,7 @@ extern enum abstract SDL_GPUShaderStage(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUVertexElementFormat"})
 extern enum abstract SDL_GPUVertexElementFormat(cpp.Int32) {
     @:native("SDL_GPU_VERTEXELEMENTFORMAT_INVALID") var SDL_GPU_VERTEXELEMENTFORMAT_INVALID;
@@ -3526,7 +3534,7 @@ extern enum abstract SDL_GPUVertexElementFormat(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUVertexInputRate"})
 extern enum abstract SDL_GPUVertexInputRate(cpp.Int32) {
     @:native("SDL_GPU_VERTEXINPUTRATE_VERTEX") var SDL_GPU_VERTEXINPUTRATE_VERTEX;
@@ -3534,7 +3542,7 @@ extern enum abstract SDL_GPUVertexInputRate(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUFillMode"})
 extern enum abstract SDL_GPUFillMode(cpp.Int32) {
     @:native("SDL_GPU_FILLMODE_FILL") var SDL_GPU_FILLMODE_FILL;
@@ -3542,7 +3550,7 @@ extern enum abstract SDL_GPUFillMode(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUCullMode"})
 extern enum abstract SDL_GPUCullMode(cpp.Int32) {
     @:native("SDL_GPU_CULLMODE_NONE") var SDL_GPU_CULLMODE_NONE;
@@ -3551,7 +3559,7 @@ extern enum abstract SDL_GPUCullMode(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUFrontFace"})
 extern enum abstract SDL_GPUFrontFace(cpp.Int32) {
     @:native("SDL_GPU_FRONTFACE_COUNTER_CLOCKWISE") var SDL_GPU_FRONTFACE_COUNTER_CLOCKWISE;
@@ -3559,7 +3567,7 @@ extern enum abstract SDL_GPUFrontFace(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUCompareOp"})
 extern enum abstract SDL_GPUCompareOp(cpp.Int32) {
     @:native("SDL_GPU_COMPAREOP_INVALID") var SDL_GPU_COMPAREOP_INVALID;
@@ -3574,7 +3582,7 @@ extern enum abstract SDL_GPUCompareOp(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUStencilOp"})
 extern enum abstract SDL_GPUStencilOp(cpp.Int32) {
     @:native("SDL_GPU_STENCILOP_INVALID") var SDL_GPU_STENCILOP_INVALID;
@@ -3589,7 +3597,7 @@ extern enum abstract SDL_GPUStencilOp(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUBlendOp"})
 extern enum abstract SDL_GPUBlendOp(cpp.Int32) {
     @:native("SDL_GPU_BLENDOP_INVALID") var SDL_GPU_BLENDOP_INVALID;
@@ -3601,7 +3609,7 @@ extern enum abstract SDL_GPUBlendOp(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUBlendFactor"})
 extern enum abstract SDL_GPUBlendFactor(cpp.Int32) {
     @:native("SDL_GPU_BLENDFACTOR_INVALID") var SDL_GPU_BLENDFACTOR_INVALID;
@@ -3621,7 +3629,7 @@ extern enum abstract SDL_GPUBlendFactor(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUFilter"})
 extern enum abstract SDL_GPUFilter(cpp.Int32) {
     @:native("SDL_GPU_FILTER_NEAREST") var SDL_GPU_FILTER_NEAREST;
@@ -3629,7 +3637,7 @@ extern enum abstract SDL_GPUFilter(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUSamplerMipmapMode"})
 extern enum abstract SDL_GPUSamplerMipmapMode(cpp.Int32) {
     @:native("SDL_GPU_SAMPLERMIPMAPMODE_NEAREST") var SDL_GPU_SAMPLERMIPMAPMODE_NEAREST;
@@ -3637,7 +3645,7 @@ extern enum abstract SDL_GPUSamplerMipmapMode(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUSamplerAddressMode"})
 extern enum abstract SDL_GPUSamplerAddressMode(cpp.Int32) {
     @:native("SDL_GPU_SAMPLERADDRESSMODE_REPEAT") var SDL_GPU_SAMPLERADDRESSMODE_REPEAT;
@@ -3646,7 +3654,7 @@ extern enum abstract SDL_GPUSamplerAddressMode(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUPresentMode"})
 extern enum abstract SDL_GPUPresentMode(cpp.Int32) {
     @:native("SDL_GPU_PRESENTMODE_VSYNC") var SDL_GPU_PRESENTMODE_VSYNC;
@@ -3655,7 +3663,7 @@ extern enum abstract SDL_GPUPresentMode(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_GPUSwapchainComposition"})
 extern enum abstract SDL_GPUSwapchainComposition(cpp.Int32) {
     @:native("SDL_GPU_SWAPCHAINCOMPOSITION_SDR") var SDL_GPU_SWAPCHAINCOMPOSITION_SDR;
@@ -3665,7 +3673,7 @@ extern enum abstract SDL_GPUSwapchainComposition(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_hid_bus_type"})
 extern enum abstract SDL_hid_bus_type(cpp.Int32) {
     @:native("SDL_HID_API_BUS_UNKNOWN") var SDL_HID_API_BUS_UNKNOWN;
@@ -3676,7 +3684,7 @@ extern enum abstract SDL_hid_bus_type(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_HintPriority"})
 extern enum abstract SDL_HintPriority(cpp.Int32) {
     @:native("SDL_HINT_DEFAULT") var SDL_HINT_DEFAULT;
@@ -3685,7 +3693,7 @@ extern enum abstract SDL_HintPriority(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_AppResult"})
 extern enum abstract SDL_AppResult(cpp.Int32) {
     @:native("SDL_APP_CONTINUE") var SDL_APP_CONTINUE;
@@ -3694,7 +3702,7 @@ extern enum abstract SDL_AppResult(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_LogCategory"})
 extern enum abstract SDL_LogCategory(cpp.Int32) {
     @:native("SDL_LOG_CATEGORY_APPLICATION") var SDL_LOG_CATEGORY_APPLICATION;
@@ -3720,7 +3728,7 @@ extern enum abstract SDL_LogCategory(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_LogPriority"})
 extern enum abstract SDL_LogPriority(cpp.Int32) {
     @:native("SDL_LOG_PRIORITY_INVALID") var SDL_LOG_PRIORITY_INVALID;
@@ -3735,7 +3743,7 @@ extern enum abstract SDL_LogPriority(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_MessageBoxColorType"})
 extern enum abstract SDL_MessageBoxColorType(cpp.Int32) {
     @:native("SDL_MESSAGEBOX_COLOR_BACKGROUND") var SDL_MESSAGEBOX_COLOR_BACKGROUND;
@@ -3747,7 +3755,7 @@ extern enum abstract SDL_MessageBoxColorType(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_ProcessIO"})
 extern enum abstract SDL_ProcessIO(cpp.Int32) {
     @:native("SDL_PROCESS_STDIO_INHERITED") var SDL_PROCESS_STDIO_INHERITED;
@@ -3757,7 +3765,7 @@ extern enum abstract SDL_ProcessIO(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_TextureAccess"})
 extern enum abstract SDL_TextureAccess(cpp.Int32) {
     @:native("SDL_TEXTUREACCESS_STATIC") var SDL_TEXTUREACCESS_STATIC;
@@ -3766,7 +3774,7 @@ extern enum abstract SDL_TextureAccess(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_TextureAddressMode"})
 extern enum abstract SDL_TextureAddressMode(cpp.Int32) {
     @:native("SDL_TEXTURE_ADDRESS_INVALID") var SDL_TEXTURE_ADDRESS_INVALID;
@@ -3776,7 +3784,7 @@ extern enum abstract SDL_TextureAddressMode(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_RendererLogicalPresentation"})
 extern enum abstract SDL_RendererLogicalPresentation(cpp.Int32) {
     @:native("SDL_LOGICAL_PRESENTATION_DISABLED") var SDL_LOGICAL_PRESENTATION_DISABLED;
@@ -3787,7 +3795,7 @@ extern enum abstract SDL_RendererLogicalPresentation(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_Sandbox"})
 extern enum abstract SDL_Sandbox(cpp.Int32) {
     @:native("SDL_SANDBOX_NONE") var SDL_SANDBOX_NONE;
@@ -3798,7 +3806,7 @@ extern enum abstract SDL_Sandbox(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_DateFormat"})
 extern enum abstract SDL_DateFormat(cpp.Int32) {
     @:native("SDL_DATE_FORMAT_YYYYMMDD") var SDL_DATE_FORMAT_YYYYMMDD;
@@ -3807,7 +3815,7 @@ extern enum abstract SDL_DateFormat(cpp.Int32) {
 }
 
 @:semantics(value)
-@:include("SDL.h")
+@:include("SDL3/SDL.h")
 @:cpp.ValueType({type: "SDL_TimeFormat"})
 extern enum abstract SDL_TimeFormat(cpp.Int32) {
     @:native("SDL_TIME_FORMAT_24HR") var SDL_TIME_FORMAT_24HR;
@@ -3832,47 +3840,47 @@ typedef Uint64 = cpp.UInt64;
 
 typedef SDL_Time = Sint64;
 
-typedef SDL_malloc_func = null;
+typedef SDL_malloc_func = Dynamic;
 
-typedef SDL_calloc_func = null;
+typedef SDL_calloc_func = Dynamic;
 
-typedef SDL_realloc_func = null;
+typedef SDL_realloc_func = Dynamic;
 
-typedef SDL_free_func = null;
+typedef SDL_free_func = Dynamic;
 
-typedef SDL_CompareCallback = null;
+typedef SDL_CompareCallback = Dynamic;
 
-typedef SDL_CompareCallback_r = null;
+typedef SDL_CompareCallback_r = Dynamic;
 
-typedef SDL_iconv_t = Struct;
+typedef SDL_iconv_t = SDL_iconv_data_t;
 
-typedef SDL_FunctionPointer = null;
+typedef SDL_FunctionPointer = Dynamic;
 
-typedef SDL_AssertionHandler = null;
+typedef SDL_AssertionHandler = Dynamic;
 
 typedef SDL_SpinLock = cpp.Int32;
 
 typedef SDL_PropertiesID = Uint32;
 
-typedef SDL_CleanupPropertyCallback = null;
+typedef SDL_CleanupPropertyCallback = Dynamic;
 
-typedef SDL_EnumeratePropertiesCallback = null;
+typedef SDL_EnumeratePropertiesCallback = Dynamic;
 
 typedef SDL_ThreadID = Uint64;
 
 typedef SDL_TLSID = SDL_AtomicInt;
 
-typedef SDL_ThreadFunction = null;
+typedef SDL_ThreadFunction = Dynamic;
 
-typedef SDL_TLSDestructorCallback = null;
+typedef SDL_TLSDestructorCallback = Dynamic;
 
 typedef SDL_AudioDeviceID = Uint32;
 
-typedef SDL_AudioStreamDataCompleteCallback = null;
+typedef SDL_AudioStreamDataCompleteCallback = Dynamic;
 
-typedef SDL_AudioStreamCallback = null;
+typedef SDL_AudioStreamCallback = Dynamic;
 
-typedef SDL_AudioPostmixCallback = null;
+typedef SDL_AudioPostmixCallback = Dynamic;
 
 typedef SDL_BlendMode = Uint32;
 
@@ -3880,9 +3888,9 @@ typedef SDL_SurfaceFlags = Uint32;
 
 typedef SDL_CameraID = Uint32;
 
-typedef SDL_ClipboardDataCallback = null;
+typedef SDL_ClipboardDataCallback = Dynamic;
 
-typedef SDL_ClipboardCleanupCallback = null;
+typedef SDL_ClipboardCleanupCallback = Dynamic;
 
 typedef SDL_DisplayID = Uint32;
 
@@ -3890,7 +3898,7 @@ typedef SDL_WindowID = Uint32;
 
 typedef SDL_WindowFlags = Uint64;
 
-typedef SDL_GLContext = Struct;
+typedef SDL_GLContext = SDL_GLContextState;
 
 typedef SDL_EGLDisplay = cpp.VoidPointer;
 
@@ -3902,9 +3910,9 @@ typedef SDL_EGLAttrib = cpp.Int32Pointer;
 
 typedef SDL_EGLint = cpp.Int32;
 
-typedef SDL_EGLAttribArrayCallback = null;
+typedef SDL_EGLAttribArrayCallback = Dynamic;
 
-typedef SDL_EGLIntArrayCallback = null;
+typedef SDL_EGLIntArrayCallback = Dynamic;
 
 typedef SDL_GLProfile = Uint32;
 
@@ -3914,9 +3922,9 @@ typedef SDL_GLContextReleaseFlag = Uint32;
 
 typedef SDL_GLContextResetNotification = Uint32;
 
-typedef SDL_HitTest = null;
+typedef SDL_HitTest = Dynamic;
 
-typedef SDL_DialogFileCallback = null;
+typedef SDL_DialogFileCallback = Dynamic;
 
 typedef SDL_SensorID = Uint32;
 
@@ -3932,7 +3940,7 @@ typedef SDL_MouseID = Uint32;
 
 typedef SDL_MouseButtonFlags = Uint32;
 
-typedef SDL_MouseMotionTransformCallback = null;
+typedef SDL_MouseMotionTransformCallback = Dynamic;
 
 typedef SDL_TouchID = Uint64;
 
@@ -3942,11 +3950,11 @@ typedef SDL_PenID = Uint32;
 
 typedef SDL_PenInputFlags = Uint32;
 
-typedef SDL_EventFilter = null;
+typedef SDL_EventFilter = Dynamic;
 
 typedef SDL_GlobFlags = Uint32;
 
-typedef SDL_EnumerateDirectoryCallback = null;
+typedef SDL_EnumerateDirectoryCallback = Dynamic;
 
 typedef SDL_GPUTextureUsageFlags = Uint32;
 
@@ -3964,21 +3972,21 @@ typedef SDL_HapticEffectID = cpp.Int32;
 
 typedef SDL_HapticID = Uint32;
 
-typedef SDL_HintCallback = null;
+typedef SDL_HintCallback = Dynamic;
 
 typedef SDL_InitFlags = Uint32;
 
-typedef SDL_AppInit_func = null;
+typedef SDL_AppInit_func = Dynamic;
 
-typedef SDL_AppIterate_func = null;
+typedef SDL_AppIterate_func = Dynamic;
 
-typedef SDL_AppEvent_func = null;
+typedef SDL_AppEvent_func = Dynamic;
 
-typedef SDL_AppQuit_func = null;
+typedef SDL_AppQuit_func = Dynamic;
 
-typedef SDL_MainThreadCallback = null;
+typedef SDL_MainThreadCallback = Dynamic;
 
-typedef SDL_LogOutputFunction = null;
+typedef SDL_LogOutputFunction = Dynamic;
 
 typedef SDL_MessageBoxFlags = Uint32;
 
@@ -3986,25 +3994,24 @@ typedef SDL_MessageBoxButtonFlags = Uint32;
 
 typedef SDL_MetalView = cpp.VoidPointer;
 
-typedef XEvent = Union;
+typedef XEvent = _XEvent;
 
-typedef SDL_X11EventHook = null;
+typedef SDL_X11EventHook = Dynamic;
 
 typedef SDL_TimerID = Uint32;
 
-typedef SDL_TimerCallback = null;
+typedef SDL_TimerCallback = Dynamic;
 
-typedef SDL_NSTimerCallback = null;
+typedef SDL_NSTimerCallback = Dynamic;
 
 typedef SDL_TrayEntryFlags = Uint32;
 
-typedef SDL_TrayCallback = null;
+typedef SDL_TrayCallback = Dynamic;
 
 @:keep
-@:buildXml(TODO)
-@:include("SDL.h")
+@:buildXml("<include name='${haxelib:SDL3-hx}/build.xml' />")
+@:include("SDL3/SDL.h")
 extern class SDL {
-    @:native("alloca") static function alloca(:cpp.UInt32):cpp.VoidPointer;
     @:native("SDL_malloc") static function SDL_malloc(size:cpp.UInt32):cpp.VoidPointer;
     @:native("SDL_calloc") static function SDL_calloc(nmemb:cpp.UInt32,size:cpp.UInt32):cpp.VoidPointer;
     @:native("SDL_realloc") static function SDL_realloc(mem:cpp.VoidPointer,size:cpp.UInt32):cpp.VoidPointer;
@@ -4017,15 +4024,15 @@ extern class SDL {
     @:native("SDL_GetNumAllocations") static function SDL_GetNumAllocations():cpp.Int32;
     @:native("SDL_GetEnvironment") static function SDL_GetEnvironment():SDL_Environment;
     @:native("SDL_CreateEnvironment") static function SDL_CreateEnvironment(populated:Bool):SDL_Environment;
-    @:native("SDL_GetEnvironmentVariable") static function SDL_GetEnvironmentVariable(env:SDL_Environment,name:cpp.CharStar):cpp.CharStar;
+    @:native("SDL_GetEnvironmentVariable") static function SDL_GetEnvironmentVariable(env:SDL_Environment,name:cpp.CharPointer):cpp.CharPointer;
     @:native("SDL_GetEnvironmentVariables") static function SDL_GetEnvironmentVariables(env:SDL_Environment):cpp.CastCharStarPointer;
-    @:native("SDL_SetEnvironmentVariable") static function SDL_SetEnvironmentVariable(env:SDL_Environment,name:cpp.CharStar,value:cpp.CharStar,overwrite:Bool):Bool;
-    @:native("SDL_UnsetEnvironmentVariable") static function SDL_UnsetEnvironmentVariable(env:SDL_Environment,name:cpp.CharStar):Bool;
+    @:native("SDL_SetEnvironmentVariable") static function SDL_SetEnvironmentVariable(env:SDL_Environment,name:cpp.CharPointer,value:cpp.CharPointer,overwrite:Bool):Bool;
+    @:native("SDL_UnsetEnvironmentVariable") static function SDL_UnsetEnvironmentVariable(env:SDL_Environment,name:cpp.CharPointer):Bool;
     @:native("SDL_DestroyEnvironment") static function SDL_DestroyEnvironment(env:SDL_Environment):cpp.Void;
-    @:native("SDL_getenv") static function SDL_getenv(name:cpp.CharStar):cpp.CharStar;
-    @:native("SDL_getenv_unsafe") static function SDL_getenv_unsafe(name:cpp.CharStar):cpp.CharStar;
-    @:native("SDL_setenv_unsafe") static function SDL_setenv_unsafe(name:cpp.CharStar,value:cpp.CharStar,overwrite:cpp.Int32):cpp.Int32;
-    @:native("SDL_unsetenv_unsafe") static function SDL_unsetenv_unsafe(name:cpp.CharStar):cpp.Int32;
+    @:native("SDL_getenv") static function SDL_getenv(name:cpp.CharPointer):cpp.CharPointer;
+    @:native("SDL_getenv_unsafe") static function SDL_getenv_unsafe(name:cpp.CharPointer):cpp.CharPointer;
+    @:native("SDL_setenv_unsafe") static function SDL_setenv_unsafe(name:cpp.CharPointer,value:cpp.CharPointer,overwrite:cpp.Int32):cpp.Int32;
+    @:native("SDL_unsetenv_unsafe") static function SDL_unsetenv_unsafe(name:cpp.CharPointer):cpp.Int32;
     @:native("SDL_qsort") static function SDL_qsort(base:cpp.VoidPointer,nmemb:cpp.UInt32,size:cpp.UInt32,compare:SDL_CompareCallback):cpp.Void;
     @:native("SDL_bsearch") static function SDL_bsearch(key:cpp.VoidPointer,base:cpp.VoidPointer,nmemb:cpp.UInt32,size:cpp.UInt32,compare:SDL_CompareCallback):cpp.VoidPointer;
     @:native("SDL_qsort_r") static function SDL_qsort_r(base:cpp.VoidPointer,nmemb:cpp.UInt32,size:cpp.UInt32,compare:SDL_CompareCallback_r,userdata:cpp.VoidPointer):cpp.Void;
@@ -4053,65 +4060,65 @@ extern class SDL {
     @:native("SDL_memset") static function SDL_memset(dst:cpp.VoidPointer,c:cpp.Int32,len:cpp.UInt32):cpp.VoidPointer;
     @:native("SDL_memset4") static function SDL_memset4(dst:cpp.VoidPointer,val:Uint32,dwords:cpp.UInt32):cpp.VoidPointer;
     @:native("SDL_memcmp") static function SDL_memcmp(s1:cpp.VoidPointer,s2:cpp.VoidPointer,len:cpp.UInt32):cpp.Int32;
-    @:native("SDL_wcslen") static function SDL_wcslen(wstr:cpp.CharStarPointer):cpp.UInt32;
-    @:native("SDL_wcsnlen") static function SDL_wcsnlen(wstr:cpp.CharStarPointer,maxlen:cpp.UInt32):cpp.UInt32;
-    @:native("SDL_wcslcpy") static function SDL_wcslcpy(dst:cpp.CharStarPointer,src:cpp.CharStarPointer,maxlen:cpp.UInt32):cpp.UInt32;
-    @:native("SDL_wcslcat") static function SDL_wcslcat(dst:cpp.CharStarPointer,src:cpp.CharStarPointer,maxlen:cpp.UInt32):cpp.UInt32;
-    @:native("SDL_wcsdup") static function SDL_wcsdup(wstr:cpp.CharStarPointer):cpp.CharStarPointer;
-    @:native("SDL_wcsstr") static function SDL_wcsstr(haystack:cpp.CharStarPointer,needle:cpp.CharStarPointer):cpp.CharStarPointer;
-    @:native("SDL_wcsnstr") static function SDL_wcsnstr(haystack:cpp.CharStarPointer,needle:cpp.CharStarPointer,maxlen:cpp.UInt32):cpp.CharStarPointer;
-    @:native("SDL_wcscmp") static function SDL_wcscmp(str1:cpp.CharStarPointer,str2:cpp.CharStarPointer):cpp.Int32;
-    @:native("SDL_wcsncmp") static function SDL_wcsncmp(str1:cpp.CharStarPointer,str2:cpp.CharStarPointer,maxlen:cpp.UInt32):cpp.Int32;
-    @:native("SDL_wcscasecmp") static function SDL_wcscasecmp(str1:cpp.CharStarPointer,str2:cpp.CharStarPointer):cpp.Int32;
-    @:native("SDL_wcsncasecmp") static function SDL_wcsncasecmp(str1:cpp.CharStarPointer,str2:cpp.CharStarPointer,maxlen:cpp.UInt32):cpp.Int32;
-    @:native("SDL_wcstol") static function SDL_wcstol(str:cpp.CharStarPointer,endp:cpp.RawPointer<String>,base:cpp.Int32):cpp.Float64;
-    @:native("SDL_strlen") static function SDL_strlen(str:cpp.CharStar):cpp.UInt32;
-    @:native("SDL_strnlen") static function SDL_strnlen(str:cpp.CharStar,maxlen:cpp.UInt32):cpp.UInt32;
-    @:native("SDL_strlcpy") static function SDL_strlcpy(dst:cpp.CharStar,src:cpp.CharStar,maxlen:cpp.UInt32):cpp.UInt32;
-    @:native("SDL_utf8strlcpy") static function SDL_utf8strlcpy(dst:cpp.CharStar,src:cpp.CharStar,dst_bytes:cpp.UInt32):cpp.UInt32;
-    @:native("SDL_strlcat") static function SDL_strlcat(dst:cpp.CharStar,src:cpp.CharStar,maxlen:cpp.UInt32):cpp.UInt32;
-    @:native("SDL_strdup") static function SDL_strdup(str:cpp.CharStar):cpp.CharStar;
-    @:native("SDL_strndup") static function SDL_strndup(str:cpp.CharStar,maxlen:cpp.UInt32):cpp.CharStar;
-    @:native("SDL_strrev") static function SDL_strrev(str:cpp.CharStar):cpp.CharStar;
-    @:native("SDL_strupr") static function SDL_strupr(str:cpp.CharStar):cpp.CharStar;
-    @:native("SDL_strlwr") static function SDL_strlwr(str:cpp.CharStar):cpp.CharStar;
-    @:native("SDL_strchr") static function SDL_strchr(str:cpp.CharStar,c:cpp.Int32):cpp.CharStar;
-    @:native("SDL_strrchr") static function SDL_strrchr(str:cpp.CharStar,c:cpp.Int32):cpp.CharStar;
-    @:native("SDL_strstr") static function SDL_strstr(haystack:cpp.CharStar,needle:cpp.CharStar):cpp.CharStar;
-    @:native("SDL_strnstr") static function SDL_strnstr(haystack:cpp.CharStar,needle:cpp.CharStar,maxlen:cpp.UInt32):cpp.CharStar;
-    @:native("SDL_strcasestr") static function SDL_strcasestr(haystack:cpp.CharStar,needle:cpp.CharStar):cpp.CharStar;
-    @:native("SDL_strtok_r") static function SDL_strtok_r(str:cpp.CharStar,delim:cpp.CharStar,saveptr:cpp.CastCharStarPointer):cpp.CharStar;
-    @:native("SDL_utf8strlen") static function SDL_utf8strlen(str:cpp.CharStar):cpp.UInt32;
-    @:native("SDL_utf8strnlen") static function SDL_utf8strnlen(str:cpp.CharStar,bytes:cpp.UInt32):cpp.UInt32;
-    @:native("SDL_itoa") static function SDL_itoa(value:cpp.Int32,str:cpp.CharStar,radix:cpp.Int32):cpp.CharStar;
-    @:native("SDL_uitoa") static function SDL_uitoa(value:cpp.UInt32,str:cpp.CharStar,radix:cpp.Int32):cpp.CharStar;
-    @:native("SDL_ltoa") static function SDL_ltoa(value:cpp.Float64,str:cpp.CharStar,radix:cpp.Int32):cpp.CharStar;
-    @:native("SDL_ultoa") static function SDL_ultoa(value:cpp.UInt64,str:cpp.CharStar,radix:cpp.Int32):cpp.CharStar;
-    @:native("SDL_lltoa") static function SDL_lltoa(value:cpp.Float64,str:cpp.CharStar,radix:cpp.Int32):cpp.CharStar;
-    @:native("SDL_ulltoa") static function SDL_ulltoa(value:cpp.UInt64,str:cpp.CharStar,radix:cpp.Int32):cpp.CharStar;
-    @:native("SDL_atoi") static function SDL_atoi(str:cpp.CharStar):cpp.Int32;
-    @:native("SDL_atof") static function SDL_atof(str:cpp.CharStar):cpp.Float64;
-    @:native("SDL_strtol") static function SDL_strtol(str:cpp.CharStar,endp:cpp.CastCharStarPointer,base:cpp.Int32):cpp.Float64;
-    @:native("SDL_strtoul") static function SDL_strtoul(str:cpp.CharStar,endp:cpp.CastCharStarPointer,base:cpp.Int32):cpp.UInt64;
-    @:native("SDL_strtoll") static function SDL_strtoll(str:cpp.CharStar,endp:cpp.CastCharStarPointer,base:cpp.Int32):cpp.Float64;
-    @:native("SDL_strtoull") static function SDL_strtoull(str:cpp.CharStar,endp:cpp.CastCharStarPointer,base:cpp.Int32):cpp.UInt64;
-    @:native("SDL_strtod") static function SDL_strtod(str:cpp.CharStar,endp:cpp.CastCharStarPointer):cpp.Float64;
-    @:native("SDL_strcmp") static function SDL_strcmp(str1:cpp.CharStar,str2:cpp.CharStar):cpp.Int32;
-    @:native("SDL_strncmp") static function SDL_strncmp(str1:cpp.CharStar,str2:cpp.CharStar,maxlen:cpp.UInt32):cpp.Int32;
-    @:native("SDL_strcasecmp") static function SDL_strcasecmp(str1:cpp.CharStar,str2:cpp.CharStar):cpp.Int32;
-    @:native("SDL_strncasecmp") static function SDL_strncasecmp(str1:cpp.CharStar,str2:cpp.CharStar,maxlen:cpp.UInt32):cpp.Int32;
-    @:native("SDL_strpbrk") static function SDL_strpbrk(str:cpp.CharStar,breakset:cpp.CharStar):cpp.CharStar;
+    @:native("SDL_wcslen") static function SDL_wcslen(wstr:cpp.WCharPointer):cpp.UInt32;
+    @:native("SDL_wcsnlen") static function SDL_wcsnlen(wstr:cpp.WCharPointer,maxlen:cpp.UInt32):cpp.UInt32;
+    @:native("SDL_wcslcpy") static function SDL_wcslcpy(dst:cpp.WCharPointer,src:cpp.WCharPointer,maxlen:cpp.UInt32):cpp.UInt32;
+    @:native("SDL_wcslcat") static function SDL_wcslcat(dst:cpp.WCharPointer,src:cpp.WCharPointer,maxlen:cpp.UInt32):cpp.UInt32;
+    @:native("SDL_wcsdup") static function SDL_wcsdup(wstr:cpp.WCharPointer):cpp.WCharPointer;
+    @:native("SDL_wcsstr") static function SDL_wcsstr(haystack:cpp.WCharPointer,needle:cpp.WCharPointer):cpp.WCharPointer;
+    @:native("SDL_wcsnstr") static function SDL_wcsnstr(haystack:cpp.WCharPointer,needle:cpp.WCharPointer,maxlen:cpp.UInt32):cpp.WCharPointer;
+    @:native("SDL_wcscmp") static function SDL_wcscmp(str1:cpp.WCharPointer,str2:cpp.WCharPointer):cpp.Int32;
+    @:native("SDL_wcsncmp") static function SDL_wcsncmp(str1:cpp.WCharPointer,str2:cpp.WCharPointer,maxlen:cpp.UInt32):cpp.Int32;
+    @:native("SDL_wcscasecmp") static function SDL_wcscasecmp(str1:cpp.WCharPointer,str2:cpp.WCharPointer):cpp.Int32;
+    @:native("SDL_wcsncasecmp") static function SDL_wcsncasecmp(str1:cpp.WCharPointer,str2:cpp.WCharPointer,maxlen:cpp.UInt32):cpp.Int32;
+    @:native("SDL_wcstol") static function SDL_wcstol(str:cpp.WCharPointer,endp:cpp.RawPointer<cpp.WChar>,base:cpp.Int32):cpp.Float64;
+    @:native("SDL_strlen") static function SDL_strlen(str:cpp.CharPointer):cpp.UInt32;
+    @:native("SDL_strnlen") static function SDL_strnlen(str:cpp.CharPointer,maxlen:cpp.UInt32):cpp.UInt32;
+    @:native("SDL_strlcpy") static function SDL_strlcpy(dst:cpp.CharPointer,src:cpp.CharPointer,maxlen:cpp.UInt32):cpp.UInt32;
+    @:native("SDL_utf8strlcpy") static function SDL_utf8strlcpy(dst:cpp.CharPointer,src:cpp.CharPointer,dst_bytes:cpp.UInt32):cpp.UInt32;
+    @:native("SDL_strlcat") static function SDL_strlcat(dst:cpp.CharPointer,src:cpp.CharPointer,maxlen:cpp.UInt32):cpp.UInt32;
+    @:native("SDL_strdup") static function SDL_strdup(str:cpp.CharPointer):cpp.CharPointer;
+    @:native("SDL_strndup") static function SDL_strndup(str:cpp.CharPointer,maxlen:cpp.UInt32):cpp.CharPointer;
+    @:native("SDL_strrev") static function SDL_strrev(str:cpp.CharPointer):cpp.CharPointer;
+    @:native("SDL_strupr") static function SDL_strupr(str:cpp.CharPointer):cpp.CharPointer;
+    @:native("SDL_strlwr") static function SDL_strlwr(str:cpp.CharPointer):cpp.CharPointer;
+    @:native("SDL_strchr") static function SDL_strchr(str:cpp.CharPointer,c:cpp.Int32):cpp.CharPointer;
+    @:native("SDL_strrchr") static function SDL_strrchr(str:cpp.CharPointer,c:cpp.Int32):cpp.CharPointer;
+    @:native("SDL_strstr") static function SDL_strstr(haystack:cpp.CharPointer,needle:cpp.CharPointer):cpp.CharPointer;
+    @:native("SDL_strnstr") static function SDL_strnstr(haystack:cpp.CharPointer,needle:cpp.CharPointer,maxlen:cpp.UInt32):cpp.CharPointer;
+    @:native("SDL_strcasestr") static function SDL_strcasestr(haystack:cpp.CharPointer,needle:cpp.CharPointer):cpp.CharPointer;
+    @:native("SDL_strtok_r") static function SDL_strtok_r(str:cpp.CharPointer,delim:cpp.CharPointer,saveptr:cpp.CastCharStarPointer):cpp.CharPointer;
+    @:native("SDL_utf8strlen") static function SDL_utf8strlen(str:cpp.CharPointer):cpp.UInt32;
+    @:native("SDL_utf8strnlen") static function SDL_utf8strnlen(str:cpp.CharPointer,bytes:cpp.UInt32):cpp.UInt32;
+    @:native("SDL_itoa") static function SDL_itoa(value:cpp.Int32,str:cpp.CharPointer,radix:cpp.Int32):cpp.CharPointer;
+    @:native("SDL_uitoa") static function SDL_uitoa(value:cpp.UInt32,str:cpp.CharPointer,radix:cpp.Int32):cpp.CharPointer;
+    @:native("SDL_ltoa") static function SDL_ltoa(value:cpp.Float64,str:cpp.CharPointer,radix:cpp.Int32):cpp.CharPointer;
+    @:native("SDL_ultoa") static function SDL_ultoa(value:cpp.Float64,str:cpp.CharPointer,radix:cpp.Int32):cpp.CharPointer;
+    @:native("SDL_lltoa") static function SDL_lltoa(value:cpp.Float64,str:cpp.CharPointer,radix:cpp.Int32):cpp.CharPointer;
+    @:native("SDL_ulltoa") static function SDL_ulltoa(value:cpp.Float64,str:cpp.CharPointer,radix:cpp.Int32):cpp.CharPointer;
+    @:native("SDL_atoi") static function SDL_atoi(str:cpp.CharPointer):cpp.Int32;
+    @:native("SDL_atof") static function SDL_atof(str:cpp.CharPointer):cpp.Float64;
+    @:native("SDL_strtol") static function SDL_strtol(str:cpp.CharPointer,endp:cpp.CastCharStarPointer,base:cpp.Int32):cpp.Float64;
+    @:native("SDL_strtoul") static function SDL_strtoul(str:cpp.CharPointer,endp:cpp.CastCharStarPointer,base:cpp.Int32):cpp.Float64;
+    @:native("SDL_strtoll") static function SDL_strtoll(str:cpp.CharPointer,endp:cpp.CastCharStarPointer,base:cpp.Int32):cpp.Float64;
+    @:native("SDL_strtoull") static function SDL_strtoull(str:cpp.CharPointer,endp:cpp.CastCharStarPointer,base:cpp.Int32):cpp.Float64;
+    @:native("SDL_strtod") static function SDL_strtod(str:cpp.CharPointer,endp:cpp.CastCharStarPointer):cpp.Float64;
+    @:native("SDL_strcmp") static function SDL_strcmp(str1:cpp.CharPointer,str2:cpp.CharPointer):cpp.Int32;
+    @:native("SDL_strncmp") static function SDL_strncmp(str1:cpp.CharPointer,str2:cpp.CharPointer,maxlen:cpp.UInt32):cpp.Int32;
+    @:native("SDL_strcasecmp") static function SDL_strcasecmp(str1:cpp.CharPointer,str2:cpp.CharPointer):cpp.Int32;
+    @:native("SDL_strncasecmp") static function SDL_strncasecmp(str1:cpp.CharPointer,str2:cpp.CharPointer,maxlen:cpp.UInt32):cpp.Int32;
+    @:native("SDL_strpbrk") static function SDL_strpbrk(str:cpp.CharPointer,breakset:cpp.CharPointer):cpp.CharPointer;
     @:native("SDL_StepUTF8") static function SDL_StepUTF8(pstr:cpp.CastCharStarPointer,pslen:cpp.UInt32Pointer):Uint32;
-    @:native("SDL_StepBackUTF8") static function SDL_StepBackUTF8(start:cpp.CharStar,pstr:cpp.CastCharStarPointer):Uint32;
-    @:native("SDL_UCS4ToUTF8") static function SDL_UCS4ToUTF8(codepoint:Uint32,dst:cpp.CharStar):cpp.CharStar;
-    @:native("SDL_sscanf") static function SDL_sscanf(text:cpp.CharStar,fmt:cpp.CharStar):cpp.Int32;
-    @:native("SDL_vsscanf") static function SDL_vsscanf(text:cpp.CharStar,fmt:cpp.CharStar,ap:cpp.VarList):cpp.Int32;
-    @:native("SDL_snprintf") static function SDL_snprintf(text:cpp.CharStar,maxlen:cpp.UInt32,fmt:cpp.CharStar):cpp.Int32;
-    @:native("SDL_swprintf") static function SDL_swprintf(text:cpp.CharStarPointer,maxlen:cpp.UInt32,fmt:cpp.CharStarPointer):cpp.Int32;
-    @:native("SDL_vsnprintf") static function SDL_vsnprintf(text:cpp.CharStar,maxlen:cpp.UInt32,fmt:cpp.CharStar,ap:cpp.VarList):cpp.Int32;
-    @:native("SDL_vswprintf") static function SDL_vswprintf(text:cpp.CharStarPointer,maxlen:cpp.UInt32,fmt:cpp.CharStarPointer,ap:cpp.VarList):cpp.Int32;
-    @:native("SDL_asprintf") static function SDL_asprintf(strp:cpp.CastCharStarPointer,fmt:cpp.CharStar):cpp.Int32;
-    @:native("SDL_vasprintf") static function SDL_vasprintf(strp:cpp.CastCharStarPointer,fmt:cpp.CharStar,ap:cpp.VarList):cpp.Int32;
+    @:native("SDL_StepBackUTF8") static function SDL_StepBackUTF8(start:cpp.CharPointer,pstr:cpp.CastCharStarPointer):Uint32;
+    @:native("SDL_UCS4ToUTF8") static function SDL_UCS4ToUTF8(codepoint:Uint32,dst:cpp.CharPointer):cpp.CharPointer;
+    @:native("SDL_sscanf") static function SDL_sscanf(text:cpp.CharPointer,fmt:cpp.CharPointer):cpp.Int32;
+    @:native("SDL_vsscanf") static function SDL_vsscanf(text:cpp.CharPointer,fmt:cpp.CharPointer,ap:cpp.VarList):cpp.Int32;
+    @:native("SDL_snprintf") static function SDL_snprintf(text:cpp.CharPointer,maxlen:cpp.UInt32,fmt:cpp.CharPointer):cpp.Int32;
+    @:native("SDL_swprintf") static function SDL_swprintf(text:cpp.WCharPointer,maxlen:cpp.UInt32,fmt:cpp.WCharPointer):cpp.Int32;
+    @:native("SDL_vsnprintf") static function SDL_vsnprintf(text:cpp.CharPointer,maxlen:cpp.UInt32,fmt:cpp.CharPointer,ap:cpp.VarList):cpp.Int32;
+    @:native("SDL_vswprintf") static function SDL_vswprintf(text:cpp.WCharPointer,maxlen:cpp.UInt32,fmt:cpp.WCharPointer,ap:cpp.VarList):cpp.Int32;
+    @:native("SDL_asprintf") static function SDL_asprintf(strp:cpp.CastCharStarPointer,fmt:cpp.CharPointer):cpp.Int32;
+    @:native("SDL_vasprintf") static function SDL_vasprintf(strp:cpp.CastCharStarPointer,fmt:cpp.CharPointer,ap:cpp.VarList):cpp.Int32;
     @:native("SDL_srand") static function SDL_srand(seed:Uint64):cpp.Void;
     @:native("SDL_rand") static function SDL_rand(n:Sint32):Sint32;
     @:native("SDL_randf") static function SDL_randf():cpp.Float32;
@@ -4167,21 +4174,21 @@ extern class SDL {
     @:native("SDL_sqrtf") static function SDL_sqrtf(x:cpp.Float32):cpp.Float32;
     @:native("SDL_tan") static function SDL_tan(x:cpp.Float64):cpp.Float64;
     @:native("SDL_tanf") static function SDL_tanf(x:cpp.Float32):cpp.Float32;
-    @:native("SDL_iconv_open") static function SDL_iconv_open(tocode:cpp.CharStar,fromcode:cpp.CharStar):SDL_iconv_t;
+    @:native("SDL_iconv_open") static function SDL_iconv_open(tocode:cpp.CharPointer,fromcode:cpp.CharPointer):SDL_iconv_t;
     @:native("SDL_iconv_close") static function SDL_iconv_close(cd:SDL_iconv_t):cpp.Int32;
     @:native("SDL_iconv") static function SDL_iconv(cd:SDL_iconv_t,inbuf:cpp.CastCharStarPointer,inbytesleft:cpp.UInt32Pointer,outbuf:cpp.CastCharStarPointer,outbytesleft:cpp.UInt32Pointer):cpp.UInt32;
-    @:native("SDL_iconv_string") static function SDL_iconv_string(tocode:cpp.CharStar,fromcode:cpp.CharStar,inbuf:cpp.CharStar,inbytesleft:cpp.UInt32):cpp.CharStar;
+    @:native("SDL_iconv_string") static function SDL_iconv_string(tocode:cpp.CharPointer,fromcode:cpp.CharPointer,inbuf:cpp.CharPointer,inbytesleft:cpp.UInt32):cpp.CharPointer;
     @:native("SDL_size_mul_check_overflow") static function SDL_size_mul_check_overflow(a:cpp.UInt32,b:cpp.UInt32,ret:cpp.UInt32Pointer):Bool;
     @:native("SDL_size_mul_check_overflow_builtin") static function SDL_size_mul_check_overflow_builtin(a:cpp.UInt32,b:cpp.UInt32,ret:cpp.UInt32Pointer):Bool;
     @:native("SDL_size_add_check_overflow") static function SDL_size_add_check_overflow(a:cpp.UInt32,b:cpp.UInt32,ret:cpp.UInt32Pointer):Bool;
     @:native("SDL_size_add_check_overflow_builtin") static function SDL_size_add_check_overflow_builtin(a:cpp.UInt32,b:cpp.UInt32,ret:cpp.UInt32Pointer):Bool;
-    @:native("SDL_ReportAssertion") static function SDL_ReportAssertion(data:SDL_AssertData,func:cpp.CharStar,file:cpp.CharStar,line:cpp.Int32):SDL_AssertState;
+    @:native("SDL_ReportAssertion") static function SDL_ReportAssertion(data:SDL_AssertData,func:cpp.CharPointer,file:cpp.CharPointer,line:cpp.Int32):SDL_AssertState;
     @:native("SDL_SetAssertionHandler") static function SDL_SetAssertionHandler(handler:SDL_AssertionHandler,userdata:cpp.VoidPointer):cpp.Void;
     @:native("SDL_GetDefaultAssertionHandler") static function SDL_GetDefaultAssertionHandler():SDL_AssertionHandler;
-    @:native("SDL_GetAssertionHandler") static function SDL_GetAssertionHandler(puserdata:cpp.RawPointer<Void>):SDL_AssertionHandler;
+    @:native("SDL_GetAssertionHandler") static function SDL_GetAssertionHandler(puserdata:cpp.RawPointer<cpp.Void>):SDL_AssertionHandler;
     @:native("SDL_GetAssertionReport") static function SDL_GetAssertionReport():SDL_AssertData;
     @:native("SDL_ResetAssertionReport") static function SDL_ResetAssertionReport():cpp.Void;
-    @:native("SDL_AsyncIOFromFile") static function SDL_AsyncIOFromFile(file:cpp.CharStar,mode:cpp.CharStar):SDL_AsyncIO;
+    @:native("SDL_AsyncIOFromFile") static function SDL_AsyncIOFromFile(file:cpp.CharPointer,mode:cpp.CharPointer):SDL_AsyncIO;
     @:native("SDL_GetAsyncIOSize") static function SDL_GetAsyncIOSize(asyncio:SDL_AsyncIO):Sint64;
     @:native("SDL_ReadAsyncIO") static function SDL_ReadAsyncIO(asyncio:SDL_AsyncIO,ptr:cpp.VoidPointer,offset:Uint64,size:Uint64,queue:SDL_AsyncIOQueue,userdata:cpp.VoidPointer):Bool;
     @:native("SDL_WriteAsyncIO") static function SDL_WriteAsyncIO(asyncio:SDL_AsyncIO,ptr:cpp.VoidPointer,offset:Uint64,size:Uint64,queue:SDL_AsyncIOQueue,userdata:cpp.VoidPointer):Bool;
@@ -4191,7 +4198,7 @@ extern class SDL {
     @:native("SDL_GetAsyncIOResult") static function SDL_GetAsyncIOResult(queue:SDL_AsyncIOQueue,outcome:SDL_AsyncIOOutcome):Bool;
     @:native("SDL_WaitAsyncIOResult") static function SDL_WaitAsyncIOResult(queue:SDL_AsyncIOQueue,outcome:SDL_AsyncIOOutcome,timeoutMS:Sint32):Bool;
     @:native("SDL_SignalAsyncIOQueue") static function SDL_SignalAsyncIOQueue(queue:SDL_AsyncIOQueue):cpp.Void;
-    @:native("SDL_LoadFileAsync") static function SDL_LoadFileAsync(file:cpp.CharStar,queue:SDL_AsyncIOQueue,userdata:cpp.VoidPointer):Bool;
+    @:native("SDL_LoadFileAsync") static function SDL_LoadFileAsync(file:cpp.CharPointer,queue:SDL_AsyncIOQueue,userdata:cpp.VoidPointer):Bool;
     @:native("SDL_TryLockSpinlock") static function SDL_TryLockSpinlock(lock:SDL_SpinLock):Bool;
     @:native("SDL_LockSpinlock") static function SDL_LockSpinlock(lock:SDL_SpinLock):cpp.Void;
     @:native("SDL_UnlockSpinlock") static function SDL_UnlockSpinlock(lock:SDL_SpinLock):cpp.Void;
@@ -4205,39 +4212,39 @@ extern class SDL {
     @:native("SDL_SetAtomicU32") static function SDL_SetAtomicU32(a:SDL_AtomicU32,v:Uint32):Uint32;
     @:native("SDL_GetAtomicU32") static function SDL_GetAtomicU32(a:SDL_AtomicU32):Uint32;
     @:native("SDL_AddAtomicU32") static function SDL_AddAtomicU32(a:SDL_AtomicU32,v:cpp.Int32):Uint32;
-    @:native("SDL_CompareAndSwapAtomicPointer") static function SDL_CompareAndSwapAtomicPointer(a:cpp.RawPointer<Void>,oldval:cpp.VoidPointer,newval:cpp.VoidPointer):Bool;
-    @:native("SDL_SetAtomicPointer") static function SDL_SetAtomicPointer(a:cpp.RawPointer<Void>,v:cpp.VoidPointer):cpp.VoidPointer;
-    @:native("SDL_GetAtomicPointer") static function SDL_GetAtomicPointer(a:cpp.RawPointer<Void>):cpp.VoidPointer;
+    @:native("SDL_CompareAndSwapAtomicPointer") static function SDL_CompareAndSwapAtomicPointer(a:cpp.RawPointer<cpp.Void>,oldval:cpp.VoidPointer,newval:cpp.VoidPointer):Bool;
+    @:native("SDL_SetAtomicPointer") static function SDL_SetAtomicPointer(a:cpp.RawPointer<cpp.Void>,v:cpp.VoidPointer):cpp.VoidPointer;
+    @:native("SDL_GetAtomicPointer") static function SDL_GetAtomicPointer(a:cpp.RawPointer<cpp.Void>):cpp.VoidPointer;
     @:native("SDL_SwapFloat") static function SDL_SwapFloat(x:cpp.Float32):cpp.Float32;
-    @:native("SDL_SetError") static function SDL_SetError(fmt:cpp.CharStar):Bool;
-    @:native("SDL_SetErrorV") static function SDL_SetErrorV(fmt:cpp.CharStar,ap:cpp.VarList):Bool;
+    @:native("SDL_SetError") static function SDL_SetError(fmt:cpp.CharPointer):Bool;
+    @:native("SDL_SetErrorV") static function SDL_SetErrorV(fmt:cpp.CharPointer,ap:cpp.VarList):Bool;
     @:native("SDL_OutOfMemory") static function SDL_OutOfMemory():Bool;
-    @:native("SDL_GetError") static function SDL_GetError():cpp.CharStar;
+    @:native("SDL_GetError") static function SDL_GetError():cpp.CharPointer;
     @:native("SDL_ClearError") static function SDL_ClearError():Bool;
     @:native("SDL_GetGlobalProperties") static function SDL_GetGlobalProperties():SDL_PropertiesID;
     @:native("SDL_CreateProperties") static function SDL_CreateProperties():SDL_PropertiesID;
     @:native("SDL_CopyProperties") static function SDL_CopyProperties(src:SDL_PropertiesID,dst:SDL_PropertiesID):Bool;
     @:native("SDL_LockProperties") static function SDL_LockProperties(props:SDL_PropertiesID):Bool;
     @:native("SDL_UnlockProperties") static function SDL_UnlockProperties(props:SDL_PropertiesID):cpp.Void;
-    @:native("SDL_SetPointerPropertyWithCleanup") static function SDL_SetPointerPropertyWithCleanup(props:SDL_PropertiesID,name:cpp.CharStar,value:cpp.VoidPointer,cleanup:SDL_CleanupPropertyCallback,userdata:cpp.VoidPointer):Bool;
-    @:native("SDL_SetPointerProperty") static function SDL_SetPointerProperty(props:SDL_PropertiesID,name:cpp.CharStar,value:cpp.VoidPointer):Bool;
-    @:native("SDL_SetStringProperty") static function SDL_SetStringProperty(props:SDL_PropertiesID,name:cpp.CharStar,value:cpp.CharStar):Bool;
-    @:native("SDL_SetNumberProperty") static function SDL_SetNumberProperty(props:SDL_PropertiesID,name:cpp.CharStar,value:Sint64):Bool;
-    @:native("SDL_SetFloatProperty") static function SDL_SetFloatProperty(props:SDL_PropertiesID,name:cpp.CharStar,value:cpp.Float32):Bool;
-    @:native("SDL_SetBooleanProperty") static function SDL_SetBooleanProperty(props:SDL_PropertiesID,name:cpp.CharStar,value:Bool):Bool;
-    @:native("SDL_HasProperty") static function SDL_HasProperty(props:SDL_PropertiesID,name:cpp.CharStar):Bool;
-    @:native("SDL_GetPropertyType") static function SDL_GetPropertyType(props:SDL_PropertiesID,name:cpp.CharStar):SDL_PropertyType;
-    @:native("SDL_GetPointerProperty") static function SDL_GetPointerProperty(props:SDL_PropertiesID,name:cpp.CharStar,default_value:cpp.VoidPointer):cpp.VoidPointer;
-    @:native("SDL_GetStringProperty") static function SDL_GetStringProperty(props:SDL_PropertiesID,name:cpp.CharStar,default_value:cpp.CharStar):cpp.CharStar;
-    @:native("SDL_GetNumberProperty") static function SDL_GetNumberProperty(props:SDL_PropertiesID,name:cpp.CharStar,default_value:Sint64):Sint64;
-    @:native("SDL_GetFloatProperty") static function SDL_GetFloatProperty(props:SDL_PropertiesID,name:cpp.CharStar,default_value:cpp.Float32):cpp.Float32;
-    @:native("SDL_GetBooleanProperty") static function SDL_GetBooleanProperty(props:SDL_PropertiesID,name:cpp.CharStar,default_value:Bool):Bool;
-    @:native("SDL_ClearProperty") static function SDL_ClearProperty(props:SDL_PropertiesID,name:cpp.CharStar):Bool;
+    @:native("SDL_SetPointerPropertyWithCleanup") static function SDL_SetPointerPropertyWithCleanup(props:SDL_PropertiesID,name:cpp.CharPointer,value:cpp.VoidPointer,cleanup:SDL_CleanupPropertyCallback,userdata:cpp.VoidPointer):Bool;
+    @:native("SDL_SetPointerProperty") static function SDL_SetPointerProperty(props:SDL_PropertiesID,name:cpp.CharPointer,value:cpp.VoidPointer):Bool;
+    @:native("SDL_SetStringProperty") static function SDL_SetStringProperty(props:SDL_PropertiesID,name:cpp.CharPointer,value:cpp.CharPointer):Bool;
+    @:native("SDL_SetNumberProperty") static function SDL_SetNumberProperty(props:SDL_PropertiesID,name:cpp.CharPointer,value:Sint64):Bool;
+    @:native("SDL_SetFloatProperty") static function SDL_SetFloatProperty(props:SDL_PropertiesID,name:cpp.CharPointer,value:cpp.Float32):Bool;
+    @:native("SDL_SetBooleanProperty") static function SDL_SetBooleanProperty(props:SDL_PropertiesID,name:cpp.CharPointer,value:Bool):Bool;
+    @:native("SDL_HasProperty") static function SDL_HasProperty(props:SDL_PropertiesID,name:cpp.CharPointer):Bool;
+    @:native("SDL_GetPropertyType") static function SDL_GetPropertyType(props:SDL_PropertiesID,name:cpp.CharPointer):SDL_PropertyType;
+    @:native("SDL_GetPointerProperty") static function SDL_GetPointerProperty(props:SDL_PropertiesID,name:cpp.CharPointer,default_value:cpp.VoidPointer):cpp.VoidPointer;
+    @:native("SDL_GetStringProperty") static function SDL_GetStringProperty(props:SDL_PropertiesID,name:cpp.CharPointer,default_value:cpp.CharPointer):cpp.CharPointer;
+    @:native("SDL_GetNumberProperty") static function SDL_GetNumberProperty(props:SDL_PropertiesID,name:cpp.CharPointer,default_value:Sint64):Sint64;
+    @:native("SDL_GetFloatProperty") static function SDL_GetFloatProperty(props:SDL_PropertiesID,name:cpp.CharPointer,default_value:cpp.Float32):cpp.Float32;
+    @:native("SDL_GetBooleanProperty") static function SDL_GetBooleanProperty(props:SDL_PropertiesID,name:cpp.CharPointer,default_value:Bool):Bool;
+    @:native("SDL_ClearProperty") static function SDL_ClearProperty(props:SDL_PropertiesID,name:cpp.CharPointer):Bool;
     @:native("SDL_EnumerateProperties") static function SDL_EnumerateProperties(props:SDL_PropertiesID,callback:SDL_EnumeratePropertiesCallback,userdata:cpp.VoidPointer):Bool;
     @:native("SDL_DestroyProperties") static function SDL_DestroyProperties(props:SDL_PropertiesID):cpp.Void;
-    @:native("SDL_CreateThreadRuntime") static function SDL_CreateThreadRuntime(fn:SDL_ThreadFunction,name:cpp.CharStar,data:cpp.VoidPointer,pfnBeginThread:SDL_FunctionPointer,pfnEndThread:SDL_FunctionPointer):SDL_Thread;
+    @:native("SDL_CreateThreadRuntime") static function SDL_CreateThreadRuntime(fn:SDL_ThreadFunction,name:cpp.CharPointer,data:cpp.VoidPointer,pfnBeginThread:SDL_FunctionPointer,pfnEndThread:SDL_FunctionPointer):SDL_Thread;
     @:native("SDL_CreateThreadWithPropertiesRuntime") static function SDL_CreateThreadWithPropertiesRuntime(props:SDL_PropertiesID,pfnBeginThread:SDL_FunctionPointer,pfnEndThread:SDL_FunctionPointer):SDL_Thread;
-    @:native("SDL_GetThreadName") static function SDL_GetThreadName(thread:SDL_Thread):cpp.CharStar;
+    @:native("SDL_GetThreadName") static function SDL_GetThreadName(thread:SDL_Thread):cpp.CharPointer;
     @:native("SDL_GetCurrentThreadID") static function SDL_GetCurrentThreadID():SDL_ThreadID;
     @:native("SDL_GetThreadID") static function SDL_GetThreadID(thread:SDL_Thread):SDL_ThreadID;
     @:native("SDL_SetCurrentThreadPriority") static function SDL_SetCurrentThreadPriority(priority:SDL_ThreadPriority):Bool;
@@ -4275,7 +4282,7 @@ extern class SDL {
     @:native("SDL_ShouldInit") static function SDL_ShouldInit(state:SDL_InitState):Bool;
     @:native("SDL_ShouldQuit") static function SDL_ShouldQuit(state:SDL_InitState):Bool;
     @:native("SDL_SetInitialized") static function SDL_SetInitialized(state:SDL_InitState,initialized:Bool):cpp.Void;
-    @:native("SDL_IOFromFile") static function SDL_IOFromFile(file:cpp.CharStar,mode:cpp.CharStar):SDL_IOStream;
+    @:native("SDL_IOFromFile") static function SDL_IOFromFile(file:cpp.CharPointer,mode:cpp.CharPointer):SDL_IOStream;
     @:native("SDL_IOFromMem") static function SDL_IOFromMem(mem:cpp.VoidPointer,size:cpp.UInt32):SDL_IOStream;
     @:native("SDL_IOFromConstMem") static function SDL_IOFromConstMem(mem:cpp.VoidPointer,size:cpp.UInt32):SDL_IOStream;
     @:native("SDL_IOFromDynamicMem") static function SDL_IOFromDynamicMem():SDL_IOStream;
@@ -4288,13 +4295,13 @@ extern class SDL {
     @:native("SDL_TellIO") static function SDL_TellIO(context:SDL_IOStream):Sint64;
     @:native("SDL_ReadIO") static function SDL_ReadIO(context:SDL_IOStream,ptr:cpp.VoidPointer,size:cpp.UInt32):cpp.UInt32;
     @:native("SDL_WriteIO") static function SDL_WriteIO(context:SDL_IOStream,ptr:cpp.VoidPointer,size:cpp.UInt32):cpp.UInt32;
-    @:native("SDL_IOprintf") static function SDL_IOprintf(context:SDL_IOStream,fmt:cpp.CharStar):cpp.UInt32;
-    @:native("SDL_IOvprintf") static function SDL_IOvprintf(context:SDL_IOStream,fmt:cpp.CharStar,ap:cpp.VarList):cpp.UInt32;
+    @:native("SDL_IOprintf") static function SDL_IOprintf(context:SDL_IOStream,fmt:cpp.CharPointer):cpp.UInt32;
+    @:native("SDL_IOvprintf") static function SDL_IOvprintf(context:SDL_IOStream,fmt:cpp.CharPointer,ap:cpp.VarList):cpp.UInt32;
     @:native("SDL_FlushIO") static function SDL_FlushIO(context:SDL_IOStream):Bool;
     @:native("SDL_LoadFile_IO") static function SDL_LoadFile_IO(src:SDL_IOStream,datasize:cpp.UInt32Pointer,closeio:Bool):cpp.VoidPointer;
-    @:native("SDL_LoadFile") static function SDL_LoadFile(file:cpp.CharStar,datasize:cpp.UInt32Pointer):cpp.VoidPointer;
+    @:native("SDL_LoadFile") static function SDL_LoadFile(file:cpp.CharPointer,datasize:cpp.UInt32Pointer):cpp.VoidPointer;
     @:native("SDL_SaveFile_IO") static function SDL_SaveFile_IO(src:SDL_IOStream,data:cpp.VoidPointer,datasize:cpp.UInt32,closeio:Bool):Bool;
-    @:native("SDL_SaveFile") static function SDL_SaveFile(file:cpp.CharStar,data:cpp.VoidPointer,datasize:cpp.UInt32):Bool;
+    @:native("SDL_SaveFile") static function SDL_SaveFile(file:cpp.CharPointer,data:cpp.VoidPointer,datasize:cpp.UInt32):Bool;
     @:native("SDL_ReadU8") static function SDL_ReadU8(src:SDL_IOStream,value:Uint8):Bool;
     @:native("SDL_ReadS8") static function SDL_ReadS8(src:SDL_IOStream,value:Sint8):Bool;
     @:native("SDL_ReadU16LE") static function SDL_ReadU16LE(src:SDL_IOStream,value:Uint16):Bool;
@@ -4324,11 +4331,11 @@ extern class SDL {
     @:native("SDL_WriteU64BE") static function SDL_WriteU64BE(dst:SDL_IOStream,value:Uint64):Bool;
     @:native("SDL_WriteS64BE") static function SDL_WriteS64BE(dst:SDL_IOStream,value:Sint64):Bool;
     @:native("SDL_GetNumAudioDrivers") static function SDL_GetNumAudioDrivers():cpp.Int32;
-    @:native("SDL_GetAudioDriver") static function SDL_GetAudioDriver(index:cpp.Int32):cpp.CharStar;
-    @:native("SDL_GetCurrentAudioDriver") static function SDL_GetCurrentAudioDriver():cpp.CharStar;
+    @:native("SDL_GetAudioDriver") static function SDL_GetAudioDriver(index:cpp.Int32):cpp.CharPointer;
+    @:native("SDL_GetCurrentAudioDriver") static function SDL_GetCurrentAudioDriver():cpp.CharPointer;
     @:native("SDL_GetAudioPlaybackDevices") static function SDL_GetAudioPlaybackDevices(count:cpp.Int32Pointer):SDL_AudioDeviceID;
     @:native("SDL_GetAudioRecordingDevices") static function SDL_GetAudioRecordingDevices(count:cpp.Int32Pointer):SDL_AudioDeviceID;
-    @:native("SDL_GetAudioDeviceName") static function SDL_GetAudioDeviceName(devid:SDL_AudioDeviceID):cpp.CharStar;
+    @:native("SDL_GetAudioDeviceName") static function SDL_GetAudioDeviceName(devid:SDL_AudioDeviceID):cpp.CharPointer;
     @:native("SDL_GetAudioDeviceFormat") static function SDL_GetAudioDeviceFormat(devid:SDL_AudioDeviceID,spec:SDL_AudioSpec,sample_frames:cpp.Int32Pointer):Bool;
     @:native("SDL_GetAudioDeviceChannelMap") static function SDL_GetAudioDeviceChannelMap(devid:SDL_AudioDeviceID,count:cpp.Int32Pointer):cpp.Int32Pointer;
     @:native("SDL_OpenAudioDevice") static function SDL_OpenAudioDevice(devid:SDL_AudioDeviceID,spec:SDL_AudioSpec):SDL_AudioDeviceID;
@@ -4340,9 +4347,9 @@ extern class SDL {
     @:native("SDL_GetAudioDeviceGain") static function SDL_GetAudioDeviceGain(devid:SDL_AudioDeviceID):cpp.Float32;
     @:native("SDL_SetAudioDeviceGain") static function SDL_SetAudioDeviceGain(devid:SDL_AudioDeviceID,gain:cpp.Float32):Bool;
     @:native("SDL_CloseAudioDevice") static function SDL_CloseAudioDevice(devid:SDL_AudioDeviceID):cpp.Void;
-    @:native("SDL_BindAudioStreams") static function SDL_BindAudioStreams(devid:SDL_AudioDeviceID,streams:cpp.RawPointer<Struct(SDL_AudioStream)>,num_streams:cpp.Int32):Bool;
+    @:native("SDL_BindAudioStreams") static function SDL_BindAudioStreams(devid:SDL_AudioDeviceID,streams:cpp.RawPointer<SDL_AudioStream>,num_streams:cpp.Int32):Bool;
     @:native("SDL_BindAudioStream") static function SDL_BindAudioStream(devid:SDL_AudioDeviceID,stream:SDL_AudioStream):Bool;
-    @:native("SDL_UnbindAudioStreams") static function SDL_UnbindAudioStreams(streams:cpp.RawPointer<Struct(SDL_AudioStream)>,num_streams:cpp.Int32):cpp.Void;
+    @:native("SDL_UnbindAudioStreams") static function SDL_UnbindAudioStreams(streams:cpp.RawPointer<SDL_AudioStream>,num_streams:cpp.Int32):cpp.Void;
     @:native("SDL_UnbindAudioStream") static function SDL_UnbindAudioStream(stream:SDL_AudioStream):cpp.Void;
     @:native("SDL_GetAudioStreamDevice") static function SDL_GetAudioStreamDevice(stream:SDL_AudioStream):SDL_AudioDeviceID;
     @:native("SDL_CreateAudioStream") static function SDL_CreateAudioStream(src_spec:SDL_AudioSpec,dst_spec:SDL_AudioSpec):SDL_AudioStream;
@@ -4359,7 +4366,7 @@ extern class SDL {
     @:native("SDL_SetAudioStreamOutputChannelMap") static function SDL_SetAudioStreamOutputChannelMap(stream:SDL_AudioStream,chmap:cpp.Int32Pointer,count:cpp.Int32):Bool;
     @:native("SDL_PutAudioStreamData") static function SDL_PutAudioStreamData(stream:SDL_AudioStream,buf:cpp.VoidPointer,len:cpp.Int32):Bool;
     @:native("SDL_PutAudioStreamDataNoCopy") static function SDL_PutAudioStreamDataNoCopy(stream:SDL_AudioStream,buf:cpp.VoidPointer,len:cpp.Int32,callback:SDL_AudioStreamDataCompleteCallback,userdata:cpp.VoidPointer):Bool;
-    @:native("SDL_PutAudioStreamPlanarData") static function SDL_PutAudioStreamPlanarData(stream:SDL_AudioStream,channel_buffers:cpp.RawPointer<Void>,num_channels:cpp.Int32,num_samples:cpp.Int32):Bool;
+    @:native("SDL_PutAudioStreamPlanarData") static function SDL_PutAudioStreamPlanarData(stream:SDL_AudioStream,channel_buffers:cpp.RawPointer<cpp.Void>,num_channels:cpp.Int32,num_samples:cpp.Int32):Bool;
     @:native("SDL_GetAudioStreamData") static function SDL_GetAudioStreamData(stream:SDL_AudioStream,buf:cpp.VoidPointer,len:cpp.Int32):cpp.Int32;
     @:native("SDL_GetAudioStreamAvailable") static function SDL_GetAudioStreamAvailable(stream:SDL_AudioStream):cpp.Int32;
     @:native("SDL_GetAudioStreamQueued") static function SDL_GetAudioStreamQueued(stream:SDL_AudioStream):cpp.Int32;
@@ -4375,16 +4382,16 @@ extern class SDL {
     @:native("SDL_DestroyAudioStream") static function SDL_DestroyAudioStream(stream:SDL_AudioStream):cpp.Void;
     @:native("SDL_OpenAudioDeviceStream") static function SDL_OpenAudioDeviceStream(devid:SDL_AudioDeviceID,spec:SDL_AudioSpec,callback:SDL_AudioStreamCallback,userdata:cpp.VoidPointer):SDL_AudioStream;
     @:native("SDL_SetAudioPostmixCallback") static function SDL_SetAudioPostmixCallback(devid:SDL_AudioDeviceID,callback:SDL_AudioPostmixCallback,userdata:cpp.VoidPointer):Bool;
-    @:native("SDL_LoadWAV_IO") static function SDL_LoadWAV_IO(src:SDL_IOStream,closeio:Bool,spec:SDL_AudioSpec,audio_buf:cpp.RawPointer<Struct(Uint8)>,audio_len:Uint32):Bool;
-    @:native("SDL_LoadWAV") static function SDL_LoadWAV(path:cpp.CharStar,spec:SDL_AudioSpec,audio_buf:cpp.RawPointer<Struct(Uint8)>,audio_len:Uint32):Bool;
+    @:native("SDL_LoadWAV_IO") static function SDL_LoadWAV_IO(src:SDL_IOStream,closeio:Bool,spec:SDL_AudioSpec,audio_buf:cpp.RawPointer<Uint8>,audio_len:Uint32):Bool;
+    @:native("SDL_LoadWAV") static function SDL_LoadWAV(path:cpp.CharPointer,spec:SDL_AudioSpec,audio_buf:cpp.RawPointer<Uint8>,audio_len:Uint32):Bool;
     @:native("SDL_MixAudio") static function SDL_MixAudio(dst:Uint8,src:Uint8,format:SDL_AudioFormat,len:Uint32,volume:cpp.Float32):Bool;
-    @:native("SDL_ConvertAudioSamples") static function SDL_ConvertAudioSamples(src_spec:SDL_AudioSpec,src_data:Uint8,src_len:cpp.Int32,dst_spec:SDL_AudioSpec,dst_data:cpp.RawPointer<Struct(Uint8)>,dst_len:cpp.Int32Pointer):Bool;
-    @:native("SDL_GetAudioFormatName") static function SDL_GetAudioFormatName(format:SDL_AudioFormat):cpp.CharStar;
+    @:native("SDL_ConvertAudioSamples") static function SDL_ConvertAudioSamples(src_spec:SDL_AudioSpec,src_data:Uint8,src_len:cpp.Int32,dst_spec:SDL_AudioSpec,dst_data:cpp.RawPointer<Uint8>,dst_len:cpp.Int32Pointer):Bool;
+    @:native("SDL_GetAudioFormatName") static function SDL_GetAudioFormatName(format:SDL_AudioFormat):cpp.CharPointer;
     @:native("SDL_GetSilenceValueForFormat") static function SDL_GetSilenceValueForFormat(format:SDL_AudioFormat):cpp.Int32;
     @:native("SDL_MostSignificantBitIndex32") static function SDL_MostSignificantBitIndex32(x:Uint32):cpp.Int32;
     @:native("SDL_HasExactlyOneBitSet32") static function SDL_HasExactlyOneBitSet32(x:Uint32):Bool;
     @:native("SDL_ComposeCustomBlendMode") static function SDL_ComposeCustomBlendMode(srcColorFactor:SDL_BlendFactor,dstColorFactor:SDL_BlendFactor,colorOperation:SDL_BlendOperation,srcAlphaFactor:SDL_BlendFactor,dstAlphaFactor:SDL_BlendFactor,alphaOperation:SDL_BlendOperation):SDL_BlendMode;
-    @:native("SDL_GetPixelFormatName") static function SDL_GetPixelFormatName(format:SDL_PixelFormat):cpp.CharStar;
+    @:native("SDL_GetPixelFormatName") static function SDL_GetPixelFormatName(format:SDL_PixelFormat):cpp.CharPointer;
     @:native("SDL_GetMasksForPixelFormat") static function SDL_GetMasksForPixelFormat(format:SDL_PixelFormat,bpp:cpp.Int32Pointer,Rmask:Uint32,Gmask:Uint32,Bmask:Uint32,Amask:Uint32):Bool;
     @:native("SDL_GetPixelFormatForMasks") static function SDL_GetPixelFormatForMasks(bpp:cpp.Int32,Rmask:Uint32,Gmask:Uint32,Bmask:Uint32,Amask:Uint32):SDL_PixelFormat;
     @:native("SDL_GetPixelFormatDetails") static function SDL_GetPixelFormatDetails(format:SDL_PixelFormat):SDL_PixelFormatDetails;
@@ -4424,20 +4431,20 @@ extern class SDL {
     @:native("SDL_GetSurfacePalette") static function SDL_GetSurfacePalette(surface:SDL_Surface):SDL_Palette;
     @:native("SDL_AddSurfaceAlternateImage") static function SDL_AddSurfaceAlternateImage(surface:SDL_Surface,image:SDL_Surface):Bool;
     @:native("SDL_SurfaceHasAlternateImages") static function SDL_SurfaceHasAlternateImages(surface:SDL_Surface):Bool;
-    @:native("SDL_GetSurfaceImages") static function SDL_GetSurfaceImages(surface:SDL_Surface,count:cpp.Int32Pointer):cpp.RawPointer<Struct(SDL_Surface)>;
+    @:native("SDL_GetSurfaceImages") static function SDL_GetSurfaceImages(surface:SDL_Surface,count:cpp.Int32Pointer):cpp.RawPointer<SDL_Surface>;
     @:native("SDL_RemoveSurfaceAlternateImages") static function SDL_RemoveSurfaceAlternateImages(surface:SDL_Surface):cpp.Void;
     @:native("SDL_LockSurface") static function SDL_LockSurface(surface:SDL_Surface):Bool;
     @:native("SDL_UnlockSurface") static function SDL_UnlockSurface(surface:SDL_Surface):cpp.Void;
     @:native("SDL_LoadSurface_IO") static function SDL_LoadSurface_IO(src:SDL_IOStream,closeio:Bool):SDL_Surface;
-    @:native("SDL_LoadSurface") static function SDL_LoadSurface(file:cpp.CharStar):SDL_Surface;
+    @:native("SDL_LoadSurface") static function SDL_LoadSurface(file:cpp.CharPointer):SDL_Surface;
     @:native("SDL_LoadBMP_IO") static function SDL_LoadBMP_IO(src:SDL_IOStream,closeio:Bool):SDL_Surface;
-    @:native("SDL_LoadBMP") static function SDL_LoadBMP(file:cpp.CharStar):SDL_Surface;
+    @:native("SDL_LoadBMP") static function SDL_LoadBMP(file:cpp.CharPointer):SDL_Surface;
     @:native("SDL_SaveBMP_IO") static function SDL_SaveBMP_IO(surface:SDL_Surface,dst:SDL_IOStream,closeio:Bool):Bool;
-    @:native("SDL_SaveBMP") static function SDL_SaveBMP(surface:SDL_Surface,file:cpp.CharStar):Bool;
+    @:native("SDL_SaveBMP") static function SDL_SaveBMP(surface:SDL_Surface,file:cpp.CharPointer):Bool;
     @:native("SDL_LoadPNG_IO") static function SDL_LoadPNG_IO(src:SDL_IOStream,closeio:Bool):SDL_Surface;
-    @:native("SDL_LoadPNG") static function SDL_LoadPNG(file:cpp.CharStar):SDL_Surface;
+    @:native("SDL_LoadPNG") static function SDL_LoadPNG(file:cpp.CharPointer):SDL_Surface;
     @:native("SDL_SavePNG_IO") static function SDL_SavePNG_IO(surface:SDL_Surface,dst:SDL_IOStream,closeio:Bool):Bool;
-    @:native("SDL_SavePNG") static function SDL_SavePNG(surface:SDL_Surface,file:cpp.CharStar):Bool;
+    @:native("SDL_SavePNG") static function SDL_SavePNG(surface:SDL_Surface,file:cpp.CharPointer):Bool;
     @:native("SDL_SetSurfaceRLE") static function SDL_SetSurfaceRLE(surface:SDL_Surface,enabled:Bool):Bool;
     @:native("SDL_SurfaceHasRLE") static function SDL_SurfaceHasRLE(surface:SDL_Surface):Bool;
     @:native("SDL_SetSurfaceColorKey") static function SDL_SetSurfaceColorKey(surface:SDL_Surface,enabled:Bool,key:Uint32):Bool;
@@ -4479,11 +4486,11 @@ extern class SDL {
     @:native("SDL_WriteSurfacePixel") static function SDL_WriteSurfacePixel(surface:SDL_Surface,x:cpp.Int32,y:cpp.Int32,r:Uint8,g:Uint8,b:Uint8,a:Uint8):Bool;
     @:native("SDL_WriteSurfacePixelFloat") static function SDL_WriteSurfacePixelFloat(surface:SDL_Surface,x:cpp.Int32,y:cpp.Int32,r:cpp.Float32,g:cpp.Float32,b:cpp.Float32,a:cpp.Float32):Bool;
     @:native("SDL_GetNumCameraDrivers") static function SDL_GetNumCameraDrivers():cpp.Int32;
-    @:native("SDL_GetCameraDriver") static function SDL_GetCameraDriver(index:cpp.Int32):cpp.CharStar;
-    @:native("SDL_GetCurrentCameraDriver") static function SDL_GetCurrentCameraDriver():cpp.CharStar;
+    @:native("SDL_GetCameraDriver") static function SDL_GetCameraDriver(index:cpp.Int32):cpp.CharPointer;
+    @:native("SDL_GetCurrentCameraDriver") static function SDL_GetCurrentCameraDriver():cpp.CharPointer;
     @:native("SDL_GetCameras") static function SDL_GetCameras(count:cpp.Int32Pointer):SDL_CameraID;
-    @:native("SDL_GetCameraSupportedFormats") static function SDL_GetCameraSupportedFormats(instance_id:SDL_CameraID,count:cpp.Int32Pointer):cpp.RawPointer<Struct(SDL_CameraSpec)>;
-    @:native("SDL_GetCameraName") static function SDL_GetCameraName(instance_id:SDL_CameraID):cpp.CharStar;
+    @:native("SDL_GetCameraSupportedFormats") static function SDL_GetCameraSupportedFormats(instance_id:SDL_CameraID,count:cpp.Int32Pointer):cpp.RawPointer<SDL_CameraSpec>;
+    @:native("SDL_GetCameraName") static function SDL_GetCameraName(instance_id:SDL_CameraID):cpp.CharPointer;
     @:native("SDL_GetCameraPosition") static function SDL_GetCameraPosition(instance_id:SDL_CameraID):SDL_CameraPosition;
     @:native("SDL_OpenCamera") static function SDL_OpenCamera(instance_id:SDL_CameraID,spec:SDL_CameraSpec):SDL_Camera;
     @:native("SDL_GetCameraPermissionState") static function SDL_GetCameraPermissionState(camera:SDL_Camera):SDL_CameraPermissionState;
@@ -4493,16 +4500,16 @@ extern class SDL {
     @:native("SDL_AcquireCameraFrame") static function SDL_AcquireCameraFrame(camera:SDL_Camera,timestampNS:Uint64):SDL_Surface;
     @:native("SDL_ReleaseCameraFrame") static function SDL_ReleaseCameraFrame(camera:SDL_Camera,frame:SDL_Surface):cpp.Void;
     @:native("SDL_CloseCamera") static function SDL_CloseCamera(camera:SDL_Camera):cpp.Void;
-    @:native("SDL_SetClipboardText") static function SDL_SetClipboardText(text:cpp.CharStar):Bool;
-    @:native("SDL_GetClipboardText") static function SDL_GetClipboardText():cpp.CharStar;
+    @:native("SDL_SetClipboardText") static function SDL_SetClipboardText(text:cpp.CharPointer):Bool;
+    @:native("SDL_GetClipboardText") static function SDL_GetClipboardText():cpp.CharPointer;
     @:native("SDL_HasClipboardText") static function SDL_HasClipboardText():Bool;
-    @:native("SDL_SetPrimarySelectionText") static function SDL_SetPrimarySelectionText(text:cpp.CharStar):Bool;
-    @:native("SDL_GetPrimarySelectionText") static function SDL_GetPrimarySelectionText():cpp.CharStar;
+    @:native("SDL_SetPrimarySelectionText") static function SDL_SetPrimarySelectionText(text:cpp.CharPointer):Bool;
+    @:native("SDL_GetPrimarySelectionText") static function SDL_GetPrimarySelectionText():cpp.CharPointer;
     @:native("SDL_HasPrimarySelectionText") static function SDL_HasPrimarySelectionText():Bool;
     @:native("SDL_SetClipboardData") static function SDL_SetClipboardData(callback:SDL_ClipboardDataCallback,cleanup:SDL_ClipboardCleanupCallback,userdata:cpp.VoidPointer,mime_types:cpp.CastCharStarPointer,num_mime_types:cpp.UInt32):Bool;
     @:native("SDL_ClearClipboardData") static function SDL_ClearClipboardData():Bool;
-    @:native("SDL_GetClipboardData") static function SDL_GetClipboardData(mime_type:cpp.CharStar,size:cpp.UInt32Pointer):cpp.VoidPointer;
-    @:native("SDL_HasClipboardData") static function SDL_HasClipboardData(mime_type:cpp.CharStar):Bool;
+    @:native("SDL_GetClipboardData") static function SDL_GetClipboardData(mime_type:cpp.CharPointer,size:cpp.UInt32Pointer):cpp.VoidPointer;
+    @:native("SDL_HasClipboardData") static function SDL_HasClipboardData(mime_type:cpp.CharPointer):Bool;
     @:native("SDL_GetClipboardMimeTypes") static function SDL_GetClipboardMimeTypes(num_mime_types:cpp.UInt32Pointer):cpp.CastCharStarPointer;
     @:native("SDL_GetNumLogicalCPUCores") static function SDL_GetNumLogicalCPUCores():cpp.Int32;
     @:native("SDL_GetCPUCacheLineSize") static function SDL_GetCPUCacheLineSize():cpp.Int32;
@@ -4524,19 +4531,19 @@ extern class SDL {
     @:native("SDL_GetSIMDAlignment") static function SDL_GetSIMDAlignment():cpp.UInt32;
     @:native("SDL_GetSystemPageSize") static function SDL_GetSystemPageSize():cpp.Int32;
     @:native("SDL_GetNumVideoDrivers") static function SDL_GetNumVideoDrivers():cpp.Int32;
-    @:native("SDL_GetVideoDriver") static function SDL_GetVideoDriver(index:cpp.Int32):cpp.CharStar;
-    @:native("SDL_GetCurrentVideoDriver") static function SDL_GetCurrentVideoDriver():cpp.CharStar;
+    @:native("SDL_GetVideoDriver") static function SDL_GetVideoDriver(index:cpp.Int32):cpp.CharPointer;
+    @:native("SDL_GetCurrentVideoDriver") static function SDL_GetCurrentVideoDriver():cpp.CharPointer;
     @:native("SDL_GetSystemTheme") static function SDL_GetSystemTheme():SDL_SystemTheme;
     @:native("SDL_GetDisplays") static function SDL_GetDisplays(count:cpp.Int32Pointer):SDL_DisplayID;
     @:native("SDL_GetPrimaryDisplay") static function SDL_GetPrimaryDisplay():SDL_DisplayID;
     @:native("SDL_GetDisplayProperties") static function SDL_GetDisplayProperties(displayID:SDL_DisplayID):SDL_PropertiesID;
-    @:native("SDL_GetDisplayName") static function SDL_GetDisplayName(displayID:SDL_DisplayID):cpp.CharStar;
+    @:native("SDL_GetDisplayName") static function SDL_GetDisplayName(displayID:SDL_DisplayID):cpp.CharPointer;
     @:native("SDL_GetDisplayBounds") static function SDL_GetDisplayBounds(displayID:SDL_DisplayID,rect:SDL_Rect):Bool;
     @:native("SDL_GetDisplayUsableBounds") static function SDL_GetDisplayUsableBounds(displayID:SDL_DisplayID,rect:SDL_Rect):Bool;
     @:native("SDL_GetNaturalDisplayOrientation") static function SDL_GetNaturalDisplayOrientation(displayID:SDL_DisplayID):SDL_DisplayOrientation;
     @:native("SDL_GetCurrentDisplayOrientation") static function SDL_GetCurrentDisplayOrientation(displayID:SDL_DisplayID):SDL_DisplayOrientation;
     @:native("SDL_GetDisplayContentScale") static function SDL_GetDisplayContentScale(displayID:SDL_DisplayID):cpp.Float32;
-    @:native("SDL_GetFullscreenDisplayModes") static function SDL_GetFullscreenDisplayModes(displayID:SDL_DisplayID,count:cpp.Int32Pointer):cpp.RawPointer<Struct(SDL_DisplayMode)>;
+    @:native("SDL_GetFullscreenDisplayModes") static function SDL_GetFullscreenDisplayModes(displayID:SDL_DisplayID,count:cpp.Int32Pointer):cpp.RawPointer<SDL_DisplayMode>;
     @:native("SDL_GetClosestFullscreenDisplayMode") static function SDL_GetClosestFullscreenDisplayMode(displayID:SDL_DisplayID,w:cpp.Int32,h:cpp.Int32,refresh_rate:cpp.Float32,include_high_density_modes:Bool,closest:SDL_DisplayMode):Bool;
     @:native("SDL_GetDesktopDisplayMode") static function SDL_GetDesktopDisplayMode(displayID:SDL_DisplayID):SDL_DisplayMode;
     @:native("SDL_GetCurrentDisplayMode") static function SDL_GetCurrentDisplayMode(displayID:SDL_DisplayID):SDL_DisplayMode;
@@ -4549,8 +4556,8 @@ extern class SDL {
     @:native("SDL_GetWindowFullscreenMode") static function SDL_GetWindowFullscreenMode(window:SDL_Window):SDL_DisplayMode;
     @:native("SDL_GetWindowICCProfile") static function SDL_GetWindowICCProfile(window:SDL_Window,size:cpp.UInt32Pointer):cpp.VoidPointer;
     @:native("SDL_GetWindowPixelFormat") static function SDL_GetWindowPixelFormat(window:SDL_Window):SDL_PixelFormat;
-    @:native("SDL_GetWindows") static function SDL_GetWindows(count:cpp.Int32Pointer):cpp.RawPointer<Struct(SDL_Window)>;
-    @:native("SDL_CreateWindow") static function SDL_CreateWindow(title:cpp.CharStar,w:cpp.Int32,h:cpp.Int32,flags:SDL_WindowFlags):SDL_Window;
+    @:native("SDL_GetWindows") static function SDL_GetWindows(count:cpp.Int32Pointer):cpp.RawPointer<SDL_Window>;
+    @:native("SDL_CreateWindow") static function SDL_CreateWindow(title:cpp.CharPointer,w:cpp.Int32,h:cpp.Int32,flags:SDL_WindowFlags):SDL_Window;
     @:native("SDL_CreatePopupWindow") static function SDL_CreatePopupWindow(parent:SDL_Window,offset_x:cpp.Int32,offset_y:cpp.Int32,w:cpp.Int32,h:cpp.Int32,flags:SDL_WindowFlags):SDL_Window;
     @:native("SDL_CreateWindowWithProperties") static function SDL_CreateWindowWithProperties(props:SDL_PropertiesID):SDL_Window;
     @:native("SDL_GetWindowID") static function SDL_GetWindowID(window:SDL_Window):SDL_WindowID;
@@ -4558,8 +4565,8 @@ extern class SDL {
     @:native("SDL_GetWindowParent") static function SDL_GetWindowParent(window:SDL_Window):SDL_Window;
     @:native("SDL_GetWindowProperties") static function SDL_GetWindowProperties(window:SDL_Window):SDL_PropertiesID;
     @:native("SDL_GetWindowFlags") static function SDL_GetWindowFlags(window:SDL_Window):SDL_WindowFlags;
-    @:native("SDL_SetWindowTitle") static function SDL_SetWindowTitle(window:SDL_Window,title:cpp.CharStar):Bool;
-    @:native("SDL_GetWindowTitle") static function SDL_GetWindowTitle(window:SDL_Window):cpp.CharStar;
+    @:native("SDL_SetWindowTitle") static function SDL_SetWindowTitle(window:SDL_Window,title:cpp.CharPointer):Bool;
+    @:native("SDL_GetWindowTitle") static function SDL_GetWindowTitle(window:SDL_Window):cpp.CharPointer;
     @:native("SDL_SetWindowIcon") static function SDL_SetWindowIcon(window:SDL_Window,icon:SDL_Surface):Bool;
     @:native("SDL_SetWindowPosition") static function SDL_SetWindowPosition(window:SDL_Window,x:cpp.Int32,y:cpp.Int32):Bool;
     @:native("SDL_GetWindowPosition") static function SDL_GetWindowPosition(window:SDL_Window,x:cpp.Int32Pointer,y:cpp.Int32Pointer):Bool;
@@ -4617,11 +4624,11 @@ extern class SDL {
     @:native("SDL_ScreenSaverEnabled") static function SDL_ScreenSaverEnabled():Bool;
     @:native("SDL_EnableScreenSaver") static function SDL_EnableScreenSaver():Bool;
     @:native("SDL_DisableScreenSaver") static function SDL_DisableScreenSaver():Bool;
-    @:native("SDL_GL_LoadLibrary") static function SDL_GL_LoadLibrary(path:cpp.CharStar):Bool;
-    @:native("SDL_GL_GetProcAddress") static function SDL_GL_GetProcAddress(proc:cpp.CharStar):SDL_FunctionPointer;
-    @:native("SDL_EGL_GetProcAddress") static function SDL_EGL_GetProcAddress(proc:cpp.CharStar):SDL_FunctionPointer;
+    @:native("SDL_GL_LoadLibrary") static function SDL_GL_LoadLibrary(path:cpp.CharPointer):Bool;
+    @:native("SDL_GL_GetProcAddress") static function SDL_GL_GetProcAddress(proc:cpp.CharPointer):SDL_FunctionPointer;
+    @:native("SDL_EGL_GetProcAddress") static function SDL_EGL_GetProcAddress(proc:cpp.CharPointer):SDL_FunctionPointer;
     @:native("SDL_GL_UnloadLibrary") static function SDL_GL_UnloadLibrary():cpp.Void;
-    @:native("SDL_GL_ExtensionSupported") static function SDL_GL_ExtensionSupported(extension:cpp.CharStar):Bool;
+    @:native("SDL_GL_ExtensionSupported") static function SDL_GL_ExtensionSupported(extension:cpp.CharPointer):Bool;
     @:native("SDL_GL_ResetAttributes") static function SDL_GL_ResetAttributes():cpp.Void;
     @:native("SDL_GL_SetAttribute") static function SDL_GL_SetAttribute(attr:SDL_GLAttr,value:cpp.Int32):Bool;
     @:native("SDL_GL_GetAttribute") static function SDL_GL_GetAttribute(attr:SDL_GLAttr,value:cpp.Int32Pointer):Bool;
@@ -4637,21 +4644,21 @@ extern class SDL {
     @:native("SDL_GL_GetSwapInterval") static function SDL_GL_GetSwapInterval(interval:cpp.Int32Pointer):Bool;
     @:native("SDL_GL_SwapWindow") static function SDL_GL_SwapWindow(window:SDL_Window):Bool;
     @:native("SDL_GL_DestroyContext") static function SDL_GL_DestroyContext(context:SDL_GLContext):Bool;
-    @:native("SDL_ShowOpenFileDialog") static function SDL_ShowOpenFileDialog(callback:SDL_DialogFileCallback,userdata:cpp.VoidPointer,window:SDL_Window,filters:SDL_DialogFileFilter,nfilters:cpp.Int32,default_location:cpp.CharStar,allow_many:Bool):cpp.Void;
-    @:native("SDL_ShowSaveFileDialog") static function SDL_ShowSaveFileDialog(callback:SDL_DialogFileCallback,userdata:cpp.VoidPointer,window:SDL_Window,filters:SDL_DialogFileFilter,nfilters:cpp.Int32,default_location:cpp.CharStar):cpp.Void;
-    @:native("SDL_ShowOpenFolderDialog") static function SDL_ShowOpenFolderDialog(callback:SDL_DialogFileCallback,userdata:cpp.VoidPointer,window:SDL_Window,default_location:cpp.CharStar,allow_many:Bool):cpp.Void;
+    @:native("SDL_ShowOpenFileDialog") static function SDL_ShowOpenFileDialog(callback:SDL_DialogFileCallback,userdata:cpp.VoidPointer,window:SDL_Window,filters:SDL_DialogFileFilter,nfilters:cpp.Int32,default_location:cpp.CharPointer,allow_many:Bool):cpp.Void;
+    @:native("SDL_ShowSaveFileDialog") static function SDL_ShowSaveFileDialog(callback:SDL_DialogFileCallback,userdata:cpp.VoidPointer,window:SDL_Window,filters:SDL_DialogFileFilter,nfilters:cpp.Int32,default_location:cpp.CharPointer):cpp.Void;
+    @:native("SDL_ShowOpenFolderDialog") static function SDL_ShowOpenFolderDialog(callback:SDL_DialogFileCallback,userdata:cpp.VoidPointer,window:SDL_Window,default_location:cpp.CharPointer,allow_many:Bool):cpp.Void;
     @:native("SDL_ShowFileDialogWithProperties") static function SDL_ShowFileDialogWithProperties(type:SDL_FileDialogType,callback:SDL_DialogFileCallback,userdata:cpp.VoidPointer,props:SDL_PropertiesID):cpp.Void;
-    @:native("SDL_GUIDToString") static function SDL_GUIDToString(guid:SDL_GUID,pszGUID:cpp.CharStar,cbGUID:cpp.Int32):cpp.Void;
-    @:native("SDL_StringToGUID") static function SDL_StringToGUID(pchGUID:cpp.CharStar):SDL_GUID;
+    @:native("SDL_GUIDToString") static function SDL_GUIDToString(guid:SDL_GUID,pszGUID:cpp.CharPointer,cbGUID:cpp.Int32):cpp.Void;
+    @:native("SDL_StringToGUID") static function SDL_StringToGUID(pchGUID:cpp.CharPointer):SDL_GUID;
     @:native("SDL_GetPowerInfo") static function SDL_GetPowerInfo(seconds:cpp.Int32Pointer,percent:cpp.Int32Pointer):SDL_PowerState;
     @:native("SDL_GetSensors") static function SDL_GetSensors(count:cpp.Int32Pointer):SDL_SensorID;
-    @:native("SDL_GetSensorNameForID") static function SDL_GetSensorNameForID(instance_id:SDL_SensorID):cpp.CharStar;
+    @:native("SDL_GetSensorNameForID") static function SDL_GetSensorNameForID(instance_id:SDL_SensorID):cpp.CharPointer;
     @:native("SDL_GetSensorTypeForID") static function SDL_GetSensorTypeForID(instance_id:SDL_SensorID):SDL_SensorType;
     @:native("SDL_GetSensorNonPortableTypeForID") static function SDL_GetSensorNonPortableTypeForID(instance_id:SDL_SensorID):cpp.Int32;
     @:native("SDL_OpenSensor") static function SDL_OpenSensor(instance_id:SDL_SensorID):SDL_Sensor;
     @:native("SDL_GetSensorFromID") static function SDL_GetSensorFromID(instance_id:SDL_SensorID):SDL_Sensor;
     @:native("SDL_GetSensorProperties") static function SDL_GetSensorProperties(sensor:SDL_Sensor):SDL_PropertiesID;
-    @:native("SDL_GetSensorName") static function SDL_GetSensorName(sensor:SDL_Sensor):cpp.CharStar;
+    @:native("SDL_GetSensorName") static function SDL_GetSensorName(sensor:SDL_Sensor):cpp.CharPointer;
     @:native("SDL_GetSensorType") static function SDL_GetSensorType(sensor:SDL_Sensor):SDL_SensorType;
     @:native("SDL_GetSensorNonPortableType") static function SDL_GetSensorNonPortableType(sensor:SDL_Sensor):cpp.Int32;
     @:native("SDL_GetSensorID") static function SDL_GetSensorID(sensor:SDL_Sensor):SDL_SensorID;
@@ -4662,8 +4669,8 @@ extern class SDL {
     @:native("SDL_UnlockJoysticks") static function SDL_UnlockJoysticks():cpp.Void;
     @:native("SDL_HasJoystick") static function SDL_HasJoystick():Bool;
     @:native("SDL_GetJoysticks") static function SDL_GetJoysticks(count:cpp.Int32Pointer):SDL_JoystickID;
-    @:native("SDL_GetJoystickNameForID") static function SDL_GetJoystickNameForID(instance_id:SDL_JoystickID):cpp.CharStar;
-    @:native("SDL_GetJoystickPathForID") static function SDL_GetJoystickPathForID(instance_id:SDL_JoystickID):cpp.CharStar;
+    @:native("SDL_GetJoystickNameForID") static function SDL_GetJoystickNameForID(instance_id:SDL_JoystickID):cpp.CharPointer;
+    @:native("SDL_GetJoystickPathForID") static function SDL_GetJoystickPathForID(instance_id:SDL_JoystickID):cpp.CharPointer;
     @:native("SDL_GetJoystickPlayerIndexForID") static function SDL_GetJoystickPlayerIndexForID(instance_id:SDL_JoystickID):cpp.Int32;
     @:native("SDL_GetJoystickGUIDForID") static function SDL_GetJoystickGUIDForID(instance_id:SDL_JoystickID):SDL_GUID;
     @:native("SDL_GetJoystickVendorForID") static function SDL_GetJoystickVendorForID(instance_id:SDL_JoystickID):Uint16;
@@ -4683,8 +4690,8 @@ extern class SDL {
     @:native("SDL_SetJoystickVirtualTouchpad") static function SDL_SetJoystickVirtualTouchpad(joystick:SDL_Joystick,touchpad:cpp.Int32,finger:cpp.Int32,down:Bool,x:cpp.Float32,y:cpp.Float32,pressure:cpp.Float32):Bool;
     @:native("SDL_SendJoystickVirtualSensorData") static function SDL_SendJoystickVirtualSensorData(joystick:SDL_Joystick,type:SDL_SensorType,sensor_timestamp:Uint64,data:cpp.Float32Pointer,num_values:cpp.Int32):Bool;
     @:native("SDL_GetJoystickProperties") static function SDL_GetJoystickProperties(joystick:SDL_Joystick):SDL_PropertiesID;
-    @:native("SDL_GetJoystickName") static function SDL_GetJoystickName(joystick:SDL_Joystick):cpp.CharStar;
-    @:native("SDL_GetJoystickPath") static function SDL_GetJoystickPath(joystick:SDL_Joystick):cpp.CharStar;
+    @:native("SDL_GetJoystickName") static function SDL_GetJoystickName(joystick:SDL_Joystick):cpp.CharPointer;
+    @:native("SDL_GetJoystickPath") static function SDL_GetJoystickPath(joystick:SDL_Joystick):cpp.CharPointer;
     @:native("SDL_GetJoystickPlayerIndex") static function SDL_GetJoystickPlayerIndex(joystick:SDL_Joystick):cpp.Int32;
     @:native("SDL_SetJoystickPlayerIndex") static function SDL_SetJoystickPlayerIndex(joystick:SDL_Joystick,player_index:cpp.Int32):Bool;
     @:native("SDL_GetJoystickGUID") static function SDL_GetJoystickGUID(joystick:SDL_Joystick):SDL_GUID;
@@ -4692,7 +4699,7 @@ extern class SDL {
     @:native("SDL_GetJoystickProduct") static function SDL_GetJoystickProduct(joystick:SDL_Joystick):Uint16;
     @:native("SDL_GetJoystickProductVersion") static function SDL_GetJoystickProductVersion(joystick:SDL_Joystick):Uint16;
     @:native("SDL_GetJoystickFirmwareVersion") static function SDL_GetJoystickFirmwareVersion(joystick:SDL_Joystick):Uint16;
-    @:native("SDL_GetJoystickSerial") static function SDL_GetJoystickSerial(joystick:SDL_Joystick):cpp.CharStar;
+    @:native("SDL_GetJoystickSerial") static function SDL_GetJoystickSerial(joystick:SDL_Joystick):cpp.CharPointer;
     @:native("SDL_GetJoystickType") static function SDL_GetJoystickType(joystick:SDL_Joystick):SDL_JoystickType;
     @:native("SDL_GetJoystickGUIDInfo") static function SDL_GetJoystickGUIDInfo(guid:SDL_GUID,vendor:Uint16,product:Uint16,version:Uint16,crc16:Uint16):cpp.Void;
     @:native("SDL_JoystickConnected") static function SDL_JoystickConnected(joystick:SDL_Joystick):Bool;
@@ -4716,19 +4723,19 @@ extern class SDL {
     @:native("SDL_CloseJoystick") static function SDL_CloseJoystick(joystick:SDL_Joystick):cpp.Void;
     @:native("SDL_GetJoystickConnectionState") static function SDL_GetJoystickConnectionState(joystick:SDL_Joystick):SDL_JoystickConnectionState;
     @:native("SDL_GetJoystickPowerInfo") static function SDL_GetJoystickPowerInfo(joystick:SDL_Joystick,percent:cpp.Int32Pointer):SDL_PowerState;
-    @:native("SDL_AddGamepadMapping") static function SDL_AddGamepadMapping(mapping:cpp.CharStar):cpp.Int32;
+    @:native("SDL_AddGamepadMapping") static function SDL_AddGamepadMapping(mapping:cpp.CharPointer):cpp.Int32;
     @:native("SDL_AddGamepadMappingsFromIO") static function SDL_AddGamepadMappingsFromIO(src:SDL_IOStream,closeio:Bool):cpp.Int32;
-    @:native("SDL_AddGamepadMappingsFromFile") static function SDL_AddGamepadMappingsFromFile(file:cpp.CharStar):cpp.Int32;
+    @:native("SDL_AddGamepadMappingsFromFile") static function SDL_AddGamepadMappingsFromFile(file:cpp.CharPointer):cpp.Int32;
     @:native("SDL_ReloadGamepadMappings") static function SDL_ReloadGamepadMappings():Bool;
     @:native("SDL_GetGamepadMappings") static function SDL_GetGamepadMappings(count:cpp.Int32Pointer):cpp.CastCharStarPointer;
-    @:native("SDL_GetGamepadMappingForGUID") static function SDL_GetGamepadMappingForGUID(guid:SDL_GUID):cpp.CharStar;
-    @:native("SDL_GetGamepadMapping") static function SDL_GetGamepadMapping(gamepad:SDL_Gamepad):cpp.CharStar;
-    @:native("SDL_SetGamepadMapping") static function SDL_SetGamepadMapping(instance_id:SDL_JoystickID,mapping:cpp.CharStar):Bool;
+    @:native("SDL_GetGamepadMappingForGUID") static function SDL_GetGamepadMappingForGUID(guid:SDL_GUID):cpp.CharPointer;
+    @:native("SDL_GetGamepadMapping") static function SDL_GetGamepadMapping(gamepad:SDL_Gamepad):cpp.CharPointer;
+    @:native("SDL_SetGamepadMapping") static function SDL_SetGamepadMapping(instance_id:SDL_JoystickID,mapping:cpp.CharPointer):Bool;
     @:native("SDL_HasGamepad") static function SDL_HasGamepad():Bool;
     @:native("SDL_GetGamepads") static function SDL_GetGamepads(count:cpp.Int32Pointer):SDL_JoystickID;
     @:native("SDL_IsGamepad") static function SDL_IsGamepad(instance_id:SDL_JoystickID):Bool;
-    @:native("SDL_GetGamepadNameForID") static function SDL_GetGamepadNameForID(instance_id:SDL_JoystickID):cpp.CharStar;
-    @:native("SDL_GetGamepadPathForID") static function SDL_GetGamepadPathForID(instance_id:SDL_JoystickID):cpp.CharStar;
+    @:native("SDL_GetGamepadNameForID") static function SDL_GetGamepadNameForID(instance_id:SDL_JoystickID):cpp.CharPointer;
+    @:native("SDL_GetGamepadPathForID") static function SDL_GetGamepadPathForID(instance_id:SDL_JoystickID):cpp.CharPointer;
     @:native("SDL_GetGamepadPlayerIndexForID") static function SDL_GetGamepadPlayerIndexForID(instance_id:SDL_JoystickID):cpp.Int32;
     @:native("SDL_GetGamepadGUIDForID") static function SDL_GetGamepadGUIDForID(instance_id:SDL_JoystickID):SDL_GUID;
     @:native("SDL_GetGamepadVendorForID") static function SDL_GetGamepadVendorForID(instance_id:SDL_JoystickID):Uint16;
@@ -4736,14 +4743,14 @@ extern class SDL {
     @:native("SDL_GetGamepadProductVersionForID") static function SDL_GetGamepadProductVersionForID(instance_id:SDL_JoystickID):Uint16;
     @:native("SDL_GetGamepadTypeForID") static function SDL_GetGamepadTypeForID(instance_id:SDL_JoystickID):SDL_GamepadType;
     @:native("SDL_GetRealGamepadTypeForID") static function SDL_GetRealGamepadTypeForID(instance_id:SDL_JoystickID):SDL_GamepadType;
-    @:native("SDL_GetGamepadMappingForID") static function SDL_GetGamepadMappingForID(instance_id:SDL_JoystickID):cpp.CharStar;
+    @:native("SDL_GetGamepadMappingForID") static function SDL_GetGamepadMappingForID(instance_id:SDL_JoystickID):cpp.CharPointer;
     @:native("SDL_OpenGamepad") static function SDL_OpenGamepad(instance_id:SDL_JoystickID):SDL_Gamepad;
     @:native("SDL_GetGamepadFromID") static function SDL_GetGamepadFromID(instance_id:SDL_JoystickID):SDL_Gamepad;
     @:native("SDL_GetGamepadFromPlayerIndex") static function SDL_GetGamepadFromPlayerIndex(player_index:cpp.Int32):SDL_Gamepad;
     @:native("SDL_GetGamepadProperties") static function SDL_GetGamepadProperties(gamepad:SDL_Gamepad):SDL_PropertiesID;
     @:native("SDL_GetGamepadID") static function SDL_GetGamepadID(gamepad:SDL_Gamepad):SDL_JoystickID;
-    @:native("SDL_GetGamepadName") static function SDL_GetGamepadName(gamepad:SDL_Gamepad):cpp.CharStar;
-    @:native("SDL_GetGamepadPath") static function SDL_GetGamepadPath(gamepad:SDL_Gamepad):cpp.CharStar;
+    @:native("SDL_GetGamepadName") static function SDL_GetGamepadName(gamepad:SDL_Gamepad):cpp.CharPointer;
+    @:native("SDL_GetGamepadPath") static function SDL_GetGamepadPath(gamepad:SDL_Gamepad):cpp.CharPointer;
     @:native("SDL_GetGamepadType") static function SDL_GetGamepadType(gamepad:SDL_Gamepad):SDL_GamepadType;
     @:native("SDL_GetRealGamepadType") static function SDL_GetRealGamepadType(gamepad:SDL_Gamepad):SDL_GamepadType;
     @:native("SDL_GetGamepadPlayerIndex") static function SDL_GetGamepadPlayerIndex(gamepad:SDL_Gamepad):cpp.Int32;
@@ -4752,7 +4759,7 @@ extern class SDL {
     @:native("SDL_GetGamepadProduct") static function SDL_GetGamepadProduct(gamepad:SDL_Gamepad):Uint16;
     @:native("SDL_GetGamepadProductVersion") static function SDL_GetGamepadProductVersion(gamepad:SDL_Gamepad):Uint16;
     @:native("SDL_GetGamepadFirmwareVersion") static function SDL_GetGamepadFirmwareVersion(gamepad:SDL_Gamepad):Uint16;
-    @:native("SDL_GetGamepadSerial") static function SDL_GetGamepadSerial(gamepad:SDL_Gamepad):cpp.CharStar;
+    @:native("SDL_GetGamepadSerial") static function SDL_GetGamepadSerial(gamepad:SDL_Gamepad):cpp.CharPointer;
     @:native("SDL_GetGamepadSteamHandle") static function SDL_GetGamepadSteamHandle(gamepad:SDL_Gamepad):Uint64;
     @:native("SDL_GetGamepadConnectionState") static function SDL_GetGamepadConnectionState(gamepad:SDL_Gamepad):SDL_JoystickConnectionState;
     @:native("SDL_GetGamepadPowerInfo") static function SDL_GetGamepadPowerInfo(gamepad:SDL_Gamepad,percent:cpp.Int32Pointer):SDL_PowerState;
@@ -4760,23 +4767,23 @@ extern class SDL {
     @:native("SDL_GetGamepadJoystick") static function SDL_GetGamepadJoystick(gamepad:SDL_Gamepad):SDL_Joystick;
     @:native("SDL_SetGamepadEventsEnabled") static function SDL_SetGamepadEventsEnabled(enabled:Bool):cpp.Void;
     @:native("SDL_GamepadEventsEnabled") static function SDL_GamepadEventsEnabled():Bool;
-    @:native("SDL_GetGamepadBindings") static function SDL_GetGamepadBindings(gamepad:SDL_Gamepad,count:cpp.Int32Pointer):cpp.RawPointer<Struct(SDL_GamepadBinding)>;
+    @:native("SDL_GetGamepadBindings") static function SDL_GetGamepadBindings(gamepad:SDL_Gamepad,count:cpp.Int32Pointer):cpp.RawPointer<SDL_GamepadBinding>;
     @:native("SDL_UpdateGamepads") static function SDL_UpdateGamepads():cpp.Void;
-    @:native("SDL_GetGamepadTypeFromString") static function SDL_GetGamepadTypeFromString(str:cpp.CharStar):SDL_GamepadType;
-    @:native("SDL_GetGamepadStringForType") static function SDL_GetGamepadStringForType(type:SDL_GamepadType):cpp.CharStar;
-    @:native("SDL_GetGamepadAxisFromString") static function SDL_GetGamepadAxisFromString(str:cpp.CharStar):SDL_GamepadAxis;
-    @:native("SDL_GetGamepadStringForAxis") static function SDL_GetGamepadStringForAxis(axis:SDL_GamepadAxis):cpp.CharStar;
+    @:native("SDL_GetGamepadTypeFromString") static function SDL_GetGamepadTypeFromString(str:cpp.CharPointer):SDL_GamepadType;
+    @:native("SDL_GetGamepadStringForType") static function SDL_GetGamepadStringForType(type:SDL_GamepadType):cpp.CharPointer;
+    @:native("SDL_GetGamepadAxisFromString") static function SDL_GetGamepadAxisFromString(str:cpp.CharPointer):SDL_GamepadAxis;
+    @:native("SDL_GetGamepadStringForAxis") static function SDL_GetGamepadStringForAxis(axis:SDL_GamepadAxis):cpp.CharPointer;
     @:native("SDL_GamepadHasAxis") static function SDL_GamepadHasAxis(gamepad:SDL_Gamepad,axis:SDL_GamepadAxis):Bool;
     @:native("SDL_GetGamepadAxis") static function SDL_GetGamepadAxis(gamepad:SDL_Gamepad,axis:SDL_GamepadAxis):Sint16;
-    @:native("SDL_GetGamepadButtonFromString") static function SDL_GetGamepadButtonFromString(str:cpp.CharStar):SDL_GamepadButton;
-    @:native("SDL_GetGamepadStringForButton") static function SDL_GetGamepadStringForButton(button:SDL_GamepadButton):cpp.CharStar;
+    @:native("SDL_GetGamepadButtonFromString") static function SDL_GetGamepadButtonFromString(str:cpp.CharPointer):SDL_GamepadButton;
+    @:native("SDL_GetGamepadStringForButton") static function SDL_GetGamepadStringForButton(button:SDL_GamepadButton):cpp.CharPointer;
     @:native("SDL_GamepadHasButton") static function SDL_GamepadHasButton(gamepad:SDL_Gamepad,button:SDL_GamepadButton):Bool;
     @:native("SDL_GetGamepadButton") static function SDL_GetGamepadButton(gamepad:SDL_Gamepad,button:SDL_GamepadButton):Bool;
     @:native("SDL_GetGamepadButtonLabelForType") static function SDL_GetGamepadButtonLabelForType(type:SDL_GamepadType,button:SDL_GamepadButton):SDL_GamepadButtonLabel;
     @:native("SDL_GetGamepadButtonLabel") static function SDL_GetGamepadButtonLabel(gamepad:SDL_Gamepad,button:SDL_GamepadButton):SDL_GamepadButtonLabel;
     @:native("SDL_GetNumGamepadTouchpads") static function SDL_GetNumGamepadTouchpads(gamepad:SDL_Gamepad):cpp.Int32;
     @:native("SDL_GetNumGamepadTouchpadFingers") static function SDL_GetNumGamepadTouchpadFingers(gamepad:SDL_Gamepad,touchpad:cpp.Int32):cpp.Int32;
-    @:native("SDL_GetGamepadTouchpadFinger") static function SDL_GetGamepadTouchpadFinger(gamepad:SDL_Gamepad,touchpad:cpp.Int32,finger:cpp.Int32,down:BoolPointer,x:cpp.Float32Pointer,y:cpp.Float32Pointer,pressure:cpp.Float32Pointer):Bool;
+    @:native("SDL_GetGamepadTouchpadFinger") static function SDL_GetGamepadTouchpadFinger(gamepad:SDL_Gamepad,touchpad:cpp.Int32,finger:cpp.Int32,down:cpp.BoolPointer,x:cpp.Float32Pointer,y:cpp.Float32Pointer,pressure:cpp.Float32Pointer):Bool;
     @:native("SDL_GamepadHasSensor") static function SDL_GamepadHasSensor(gamepad:SDL_Gamepad,type:SDL_SensorType):Bool;
     @:native("SDL_SetGamepadSensorEnabled") static function SDL_SetGamepadSensorEnabled(gamepad:SDL_Gamepad,type:SDL_SensorType,enabled:Bool):Bool;
     @:native("SDL_GamepadSensorEnabled") static function SDL_GamepadSensorEnabled(gamepad:SDL_Gamepad,type:SDL_SensorType):Bool;
@@ -4787,23 +4794,23 @@ extern class SDL {
     @:native("SDL_SetGamepadLED") static function SDL_SetGamepadLED(gamepad:SDL_Gamepad,red:Uint8,green:Uint8,blue:Uint8):Bool;
     @:native("SDL_SendGamepadEffect") static function SDL_SendGamepadEffect(gamepad:SDL_Gamepad,data:cpp.VoidPointer,size:cpp.Int32):Bool;
     @:native("SDL_CloseGamepad") static function SDL_CloseGamepad(gamepad:SDL_Gamepad):cpp.Void;
-    @:native("SDL_GetGamepadAppleSFSymbolsNameForButton") static function SDL_GetGamepadAppleSFSymbolsNameForButton(gamepad:SDL_Gamepad,button:SDL_GamepadButton):cpp.CharStar;
-    @:native("SDL_GetGamepadAppleSFSymbolsNameForAxis") static function SDL_GetGamepadAppleSFSymbolsNameForAxis(gamepad:SDL_Gamepad,axis:SDL_GamepadAxis):cpp.CharStar;
+    @:native("SDL_GetGamepadAppleSFSymbolsNameForButton") static function SDL_GetGamepadAppleSFSymbolsNameForButton(gamepad:SDL_Gamepad,button:SDL_GamepadButton):cpp.CharPointer;
+    @:native("SDL_GetGamepadAppleSFSymbolsNameForAxis") static function SDL_GetGamepadAppleSFSymbolsNameForAxis(gamepad:SDL_Gamepad,axis:SDL_GamepadAxis):cpp.CharPointer;
     @:native("SDL_HasKeyboard") static function SDL_HasKeyboard():Bool;
     @:native("SDL_GetKeyboards") static function SDL_GetKeyboards(count:cpp.Int32Pointer):SDL_KeyboardID;
-    @:native("SDL_GetKeyboardNameForID") static function SDL_GetKeyboardNameForID(instance_id:SDL_KeyboardID):cpp.CharStar;
+    @:native("SDL_GetKeyboardNameForID") static function SDL_GetKeyboardNameForID(instance_id:SDL_KeyboardID):cpp.CharPointer;
     @:native("SDL_GetKeyboardFocus") static function SDL_GetKeyboardFocus():SDL_Window;
-    @:native("SDL_GetKeyboardState") static function SDL_GetKeyboardState(numkeys:cpp.Int32Pointer):BoolPointer;
+    @:native("SDL_GetKeyboardState") static function SDL_GetKeyboardState(numkeys:cpp.Int32Pointer):cpp.BoolPointer;
     @:native("SDL_ResetKeyboard") static function SDL_ResetKeyboard():cpp.Void;
     @:native("SDL_GetModState") static function SDL_GetModState():SDL_Keymod;
     @:native("SDL_SetModState") static function SDL_SetModState(modstate:SDL_Keymod):cpp.Void;
     @:native("SDL_GetKeyFromScancode") static function SDL_GetKeyFromScancode(scancode:SDL_Scancode,modstate:SDL_Keymod,key_event:Bool):SDL_Keycode;
     @:native("SDL_GetScancodeFromKey") static function SDL_GetScancodeFromKey(key:SDL_Keycode,modstate:SDL_Keymod):SDL_Scancode;
-    @:native("SDL_SetScancodeName") static function SDL_SetScancodeName(scancode:SDL_Scancode,name:cpp.CharStar):Bool;
-    @:native("SDL_GetScancodeName") static function SDL_GetScancodeName(scancode:SDL_Scancode):cpp.CharStar;
-    @:native("SDL_GetScancodeFromName") static function SDL_GetScancodeFromName(name:cpp.CharStar):SDL_Scancode;
-    @:native("SDL_GetKeyName") static function SDL_GetKeyName(key:SDL_Keycode):cpp.CharStar;
-    @:native("SDL_GetKeyFromName") static function SDL_GetKeyFromName(name:cpp.CharStar):SDL_Keycode;
+    @:native("SDL_SetScancodeName") static function SDL_SetScancodeName(scancode:SDL_Scancode,name:cpp.CharPointer):Bool;
+    @:native("SDL_GetScancodeName") static function SDL_GetScancodeName(scancode:SDL_Scancode):cpp.CharPointer;
+    @:native("SDL_GetScancodeFromName") static function SDL_GetScancodeFromName(name:cpp.CharPointer):SDL_Scancode;
+    @:native("SDL_GetKeyName") static function SDL_GetKeyName(key:SDL_Keycode):cpp.CharPointer;
+    @:native("SDL_GetKeyFromName") static function SDL_GetKeyFromName(name:cpp.CharPointer):SDL_Keycode;
     @:native("SDL_StartTextInput") static function SDL_StartTextInput(window:SDL_Window):Bool;
     @:native("SDL_StartTextInputWithProperties") static function SDL_StartTextInputWithProperties(window:SDL_Window,props:SDL_PropertiesID):Bool;
     @:native("SDL_TextInputActive") static function SDL_TextInputActive(window:SDL_Window):Bool;
@@ -4815,7 +4822,7 @@ extern class SDL {
     @:native("SDL_ScreenKeyboardShown") static function SDL_ScreenKeyboardShown(window:SDL_Window):Bool;
     @:native("SDL_HasMouse") static function SDL_HasMouse():Bool;
     @:native("SDL_GetMice") static function SDL_GetMice(count:cpp.Int32Pointer):SDL_MouseID;
-    @:native("SDL_GetMouseNameForID") static function SDL_GetMouseNameForID(instance_id:SDL_MouseID):cpp.CharStar;
+    @:native("SDL_GetMouseNameForID") static function SDL_GetMouseNameForID(instance_id:SDL_MouseID):cpp.CharPointer;
     @:native("SDL_GetMouseFocus") static function SDL_GetMouseFocus():SDL_Window;
     @:native("SDL_GetMouseState") static function SDL_GetMouseState(x:cpp.Float32Pointer,y:cpp.Float32Pointer):SDL_MouseButtonFlags;
     @:native("SDL_GetGlobalMouseState") static function SDL_GetGlobalMouseState(x:cpp.Float32Pointer,y:cpp.Float32Pointer):SDL_MouseButtonFlags;
@@ -4838,9 +4845,9 @@ extern class SDL {
     @:native("SDL_HideCursor") static function SDL_HideCursor():Bool;
     @:native("SDL_CursorVisible") static function SDL_CursorVisible():Bool;
     @:native("SDL_GetTouchDevices") static function SDL_GetTouchDevices(count:cpp.Int32Pointer):SDL_TouchID;
-    @:native("SDL_GetTouchDeviceName") static function SDL_GetTouchDeviceName(touchID:SDL_TouchID):cpp.CharStar;
+    @:native("SDL_GetTouchDeviceName") static function SDL_GetTouchDeviceName(touchID:SDL_TouchID):cpp.CharPointer;
     @:native("SDL_GetTouchDeviceType") static function SDL_GetTouchDeviceType(touchID:SDL_TouchID):SDL_TouchDeviceType;
-    @:native("SDL_GetTouchFingers") static function SDL_GetTouchFingers(touchID:SDL_TouchID,count:cpp.Int32Pointer):cpp.RawPointer<Struct(SDL_Finger)>;
+    @:native("SDL_GetTouchFingers") static function SDL_GetTouchFingers(touchID:SDL_TouchID,count:cpp.Int32Pointer):cpp.RawPointer<SDL_Finger>;
     @:native("SDL_GetPenDeviceType") static function SDL_GetPenDeviceType(instance_id:SDL_PenID):SDL_PenDeviceType;
     @:native("SDL_PumpEvents") static function SDL_PumpEvents():cpp.Void;
     @:native("SDL_PeepEvents") static function SDL_PeepEvents(events:SDL_Event,numevents:cpp.Int32,action:SDL_EventAction,minType:Uint32,maxType:Uint32):cpp.Int32;
@@ -4853,7 +4860,7 @@ extern class SDL {
     @:native("SDL_WaitEventTimeout") static function SDL_WaitEventTimeout(event:SDL_Event,timeoutMS:Sint32):Bool;
     @:native("SDL_PushEvent") static function SDL_PushEvent(event:SDL_Event):Bool;
     @:native("SDL_SetEventFilter") static function SDL_SetEventFilter(filter:SDL_EventFilter,userdata:cpp.VoidPointer):cpp.Void;
-    @:native("SDL_GetEventFilter") static function SDL_GetEventFilter(filter:SDL_EventFilter,userdata:cpp.RawPointer<Void>):Bool;
+    @:native("SDL_GetEventFilter") static function SDL_GetEventFilter(filter:SDL_EventFilter,userdata:cpp.RawPointer<cpp.Void>):Bool;
     @:native("SDL_AddEventWatch") static function SDL_AddEventWatch(filter:SDL_EventFilter,userdata:cpp.VoidPointer):Bool;
     @:native("SDL_RemoveEventWatch") static function SDL_RemoveEventWatch(filter:SDL_EventFilter,userdata:cpp.VoidPointer):cpp.Void;
     @:native("SDL_FilterEvents") static function SDL_FilterEvents(filter:SDL_EventFilter,userdata:cpp.VoidPointer):cpp.Void;
@@ -4861,26 +4868,26 @@ extern class SDL {
     @:native("SDL_EventEnabled") static function SDL_EventEnabled(type:Uint32):Bool;
     @:native("SDL_RegisterEvents") static function SDL_RegisterEvents(numevents:cpp.Int32):Uint32;
     @:native("SDL_GetWindowFromEvent") static function SDL_GetWindowFromEvent(event:SDL_Event):SDL_Window;
-    @:native("SDL_GetEventDescription") static function SDL_GetEventDescription(event:SDL_Event,buf:cpp.CharStar,buflen:cpp.Int32):cpp.Int32;
-    @:native("SDL_GetBasePath") static function SDL_GetBasePath():cpp.CharStar;
-    @:native("SDL_GetPrefPath") static function SDL_GetPrefPath(org:cpp.CharStar,app:cpp.CharStar):cpp.CharStar;
-    @:native("SDL_GetUserFolder") static function SDL_GetUserFolder(folder:SDL_Folder):cpp.CharStar;
-    @:native("SDL_CreateDirectory") static function SDL_CreateDirectory(path:cpp.CharStar):Bool;
-    @:native("SDL_EnumerateDirectory") static function SDL_EnumerateDirectory(path:cpp.CharStar,callback:SDL_EnumerateDirectoryCallback,userdata:cpp.VoidPointer):Bool;
-    @:native("SDL_RemovePath") static function SDL_RemovePath(path:cpp.CharStar):Bool;
-    @:native("SDL_RenamePath") static function SDL_RenamePath(oldpath:cpp.CharStar,newpath:cpp.CharStar):Bool;
-    @:native("SDL_CopyFile") static function SDL_CopyFile(oldpath:cpp.CharStar,newpath:cpp.CharStar):Bool;
-    @:native("SDL_GetPathInfo") static function SDL_GetPathInfo(path:cpp.CharStar,info:SDL_PathInfo):Bool;
-    @:native("SDL_GlobDirectory") static function SDL_GlobDirectory(path:cpp.CharStar,pattern:cpp.CharStar,flags:SDL_GlobFlags,count:cpp.Int32Pointer):cpp.CastCharStarPointer;
-    @:native("SDL_GetCurrentDirectory") static function SDL_GetCurrentDirectory():cpp.CharStar;
-    @:native("SDL_GPUSupportsShaderFormats") static function SDL_GPUSupportsShaderFormats(format_flags:SDL_GPUShaderFormat,name:cpp.CharStar):Bool;
+    @:native("SDL_GetEventDescription") static function SDL_GetEventDescription(event:SDL_Event,buf:cpp.CharPointer,buflen:cpp.Int32):cpp.Int32;
+    @:native("SDL_GetBasePath") static function SDL_GetBasePath():cpp.CharPointer;
+    @:native("SDL_GetPrefPath") static function SDL_GetPrefPath(org:cpp.CharPointer,app:cpp.CharPointer):cpp.CharPointer;
+    @:native("SDL_GetUserFolder") static function SDL_GetUserFolder(folder:SDL_Folder):cpp.CharPointer;
+    @:native("SDL_CreateDirectory") static function SDL_CreateDirectory(path:cpp.CharPointer):Bool;
+    @:native("SDL_EnumerateDirectory") static function SDL_EnumerateDirectory(path:cpp.CharPointer,callback:SDL_EnumerateDirectoryCallback,userdata:cpp.VoidPointer):Bool;
+    @:native("SDL_RemovePath") static function SDL_RemovePath(path:cpp.CharPointer):Bool;
+    @:native("SDL_RenamePath") static function SDL_RenamePath(oldpath:cpp.CharPointer,newpath:cpp.CharPointer):Bool;
+    @:native("SDL_CopyFile") static function SDL_CopyFile(oldpath:cpp.CharPointer,newpath:cpp.CharPointer):Bool;
+    @:native("SDL_GetPathInfo") static function SDL_GetPathInfo(path:cpp.CharPointer,info:SDL_PathInfo):Bool;
+    @:native("SDL_GlobDirectory") static function SDL_GlobDirectory(path:cpp.CharPointer,pattern:cpp.CharPointer,flags:SDL_GlobFlags,count:cpp.Int32Pointer):cpp.CastCharStarPointer;
+    @:native("SDL_GetCurrentDirectory") static function SDL_GetCurrentDirectory():cpp.CharPointer;
+    @:native("SDL_GPUSupportsShaderFormats") static function SDL_GPUSupportsShaderFormats(format_flags:SDL_GPUShaderFormat,name:cpp.CharPointer):Bool;
     @:native("SDL_GPUSupportsProperties") static function SDL_GPUSupportsProperties(props:SDL_PropertiesID):Bool;
-    @:native("SDL_CreateGPUDevice") static function SDL_CreateGPUDevice(format_flags:SDL_GPUShaderFormat,debug_mode:Bool,name:cpp.CharStar):SDL_GPUDevice;
+    @:native("SDL_CreateGPUDevice") static function SDL_CreateGPUDevice(format_flags:SDL_GPUShaderFormat,debug_mode:Bool,name:cpp.CharPointer):SDL_GPUDevice;
     @:native("SDL_CreateGPUDeviceWithProperties") static function SDL_CreateGPUDeviceWithProperties(props:SDL_PropertiesID):SDL_GPUDevice;
     @:native("SDL_DestroyGPUDevice") static function SDL_DestroyGPUDevice(device:SDL_GPUDevice):cpp.Void;
     @:native("SDL_GetNumGPUDrivers") static function SDL_GetNumGPUDrivers():cpp.Int32;
-    @:native("SDL_GetGPUDriver") static function SDL_GetGPUDriver(index:cpp.Int32):cpp.CharStar;
-    @:native("SDL_GetGPUDeviceDriver") static function SDL_GetGPUDeviceDriver(device:SDL_GPUDevice):cpp.CharStar;
+    @:native("SDL_GetGPUDriver") static function SDL_GetGPUDriver(index:cpp.Int32):cpp.CharPointer;
+    @:native("SDL_GetGPUDeviceDriver") static function SDL_GetGPUDeviceDriver(device:SDL_GPUDevice):cpp.CharPointer;
     @:native("SDL_GetGPUShaderFormats") static function SDL_GetGPUShaderFormats(device:SDL_GPUDevice):SDL_GPUShaderFormat;
     @:native("SDL_GetGPUDeviceProperties") static function SDL_GetGPUDeviceProperties(device:SDL_GPUDevice):SDL_PropertiesID;
     @:native("SDL_CreateGPUComputePipeline") static function SDL_CreateGPUComputePipeline(device:SDL_GPUDevice,createinfo:SDL_GPUComputePipelineCreateInfo):SDL_GPUComputePipeline;
@@ -4890,10 +4897,10 @@ extern class SDL {
     @:native("SDL_CreateGPUTexture") static function SDL_CreateGPUTexture(device:SDL_GPUDevice,createinfo:SDL_GPUTextureCreateInfo):SDL_GPUTexture;
     @:native("SDL_CreateGPUBuffer") static function SDL_CreateGPUBuffer(device:SDL_GPUDevice,createinfo:SDL_GPUBufferCreateInfo):SDL_GPUBuffer;
     @:native("SDL_CreateGPUTransferBuffer") static function SDL_CreateGPUTransferBuffer(device:SDL_GPUDevice,createinfo:SDL_GPUTransferBufferCreateInfo):SDL_GPUTransferBuffer;
-    @:native("SDL_SetGPUBufferName") static function SDL_SetGPUBufferName(device:SDL_GPUDevice,buffer:SDL_GPUBuffer,text:cpp.CharStar):cpp.Void;
-    @:native("SDL_SetGPUTextureName") static function SDL_SetGPUTextureName(device:SDL_GPUDevice,texture:SDL_GPUTexture,text:cpp.CharStar):cpp.Void;
-    @:native("SDL_InsertGPUDebugLabel") static function SDL_InsertGPUDebugLabel(command_buffer:SDL_GPUCommandBuffer,text:cpp.CharStar):cpp.Void;
-    @:native("SDL_PushGPUDebugGroup") static function SDL_PushGPUDebugGroup(command_buffer:SDL_GPUCommandBuffer,name:cpp.CharStar):cpp.Void;
+    @:native("SDL_SetGPUBufferName") static function SDL_SetGPUBufferName(device:SDL_GPUDevice,buffer:SDL_GPUBuffer,text:cpp.CharPointer):cpp.Void;
+    @:native("SDL_SetGPUTextureName") static function SDL_SetGPUTextureName(device:SDL_GPUDevice,texture:SDL_GPUTexture,text:cpp.CharPointer):cpp.Void;
+    @:native("SDL_InsertGPUDebugLabel") static function SDL_InsertGPUDebugLabel(command_buffer:SDL_GPUCommandBuffer,text:cpp.CharPointer):cpp.Void;
+    @:native("SDL_PushGPUDebugGroup") static function SDL_PushGPUDebugGroup(command_buffer:SDL_GPUCommandBuffer,name:cpp.CharPointer):cpp.Void;
     @:native("SDL_PopGPUDebugGroup") static function SDL_PopGPUDebugGroup(command_buffer:SDL_GPUCommandBuffer):cpp.Void;
     @:native("SDL_ReleaseGPUTexture") static function SDL_ReleaseGPUTexture(device:SDL_GPUDevice,texture:SDL_GPUTexture):cpp.Void;
     @:native("SDL_ReleaseGPUSampler") static function SDL_ReleaseGPUSampler(device:SDL_GPUDevice,sampler:SDL_GPUSampler):cpp.Void;
@@ -4915,11 +4922,11 @@ extern class SDL {
     @:native("SDL_BindGPUVertexBuffers") static function SDL_BindGPUVertexBuffers(render_pass:SDL_GPURenderPass,first_slot:Uint32,bindings:SDL_GPUBufferBinding,num_bindings:Uint32):cpp.Void;
     @:native("SDL_BindGPUIndexBuffer") static function SDL_BindGPUIndexBuffer(render_pass:SDL_GPURenderPass,binding:SDL_GPUBufferBinding,index_element_size:SDL_GPUIndexElementSize):cpp.Void;
     @:native("SDL_BindGPUVertexSamplers") static function SDL_BindGPUVertexSamplers(render_pass:SDL_GPURenderPass,first_slot:Uint32,texture_sampler_bindings:SDL_GPUTextureSamplerBinding,num_bindings:Uint32):cpp.Void;
-    @:native("SDL_BindGPUVertexStorageTextures") static function SDL_BindGPUVertexStorageTextures(render_pass:SDL_GPURenderPass,first_slot:Uint32,storage_textures:cpp.RawPointer<Struct(SDL_GPUTexture)>,num_bindings:Uint32):cpp.Void;
-    @:native("SDL_BindGPUVertexStorageBuffers") static function SDL_BindGPUVertexStorageBuffers(render_pass:SDL_GPURenderPass,first_slot:Uint32,storage_buffers:cpp.RawPointer<Struct(SDL_GPUBuffer)>,num_bindings:Uint32):cpp.Void;
+    @:native("SDL_BindGPUVertexStorageTextures") static function SDL_BindGPUVertexStorageTextures(render_pass:SDL_GPURenderPass,first_slot:Uint32,storage_textures:cpp.RawPointer<SDL_GPUTexture>,num_bindings:Uint32):cpp.Void;
+    @:native("SDL_BindGPUVertexStorageBuffers") static function SDL_BindGPUVertexStorageBuffers(render_pass:SDL_GPURenderPass,first_slot:Uint32,storage_buffers:cpp.RawPointer<SDL_GPUBuffer>,num_bindings:Uint32):cpp.Void;
     @:native("SDL_BindGPUFragmentSamplers") static function SDL_BindGPUFragmentSamplers(render_pass:SDL_GPURenderPass,first_slot:Uint32,texture_sampler_bindings:SDL_GPUTextureSamplerBinding,num_bindings:Uint32):cpp.Void;
-    @:native("SDL_BindGPUFragmentStorageTextures") static function SDL_BindGPUFragmentStorageTextures(render_pass:SDL_GPURenderPass,first_slot:Uint32,storage_textures:cpp.RawPointer<Struct(SDL_GPUTexture)>,num_bindings:Uint32):cpp.Void;
-    @:native("SDL_BindGPUFragmentStorageBuffers") static function SDL_BindGPUFragmentStorageBuffers(render_pass:SDL_GPURenderPass,first_slot:Uint32,storage_buffers:cpp.RawPointer<Struct(SDL_GPUBuffer)>,num_bindings:Uint32):cpp.Void;
+    @:native("SDL_BindGPUFragmentStorageTextures") static function SDL_BindGPUFragmentStorageTextures(render_pass:SDL_GPURenderPass,first_slot:Uint32,storage_textures:cpp.RawPointer<SDL_GPUTexture>,num_bindings:Uint32):cpp.Void;
+    @:native("SDL_BindGPUFragmentStorageBuffers") static function SDL_BindGPUFragmentStorageBuffers(render_pass:SDL_GPURenderPass,first_slot:Uint32,storage_buffers:cpp.RawPointer<SDL_GPUBuffer>,num_bindings:Uint32):cpp.Void;
     @:native("SDL_DrawGPUIndexedPrimitives") static function SDL_DrawGPUIndexedPrimitives(render_pass:SDL_GPURenderPass,num_indices:Uint32,num_instances:Uint32,first_index:Uint32,vertex_offset:Sint32,first_instance:Uint32):cpp.Void;
     @:native("SDL_DrawGPUPrimitives") static function SDL_DrawGPUPrimitives(render_pass:SDL_GPURenderPass,num_vertices:Uint32,num_instances:Uint32,first_vertex:Uint32,first_instance:Uint32):cpp.Void;
     @:native("SDL_DrawGPUPrimitivesIndirect") static function SDL_DrawGPUPrimitivesIndirect(render_pass:SDL_GPURenderPass,buffer:SDL_GPUBuffer,offset:Uint32,draw_count:Uint32):cpp.Void;
@@ -4928,8 +4935,8 @@ extern class SDL {
     @:native("SDL_BeginGPUComputePass") static function SDL_BeginGPUComputePass(command_buffer:SDL_GPUCommandBuffer,storage_texture_bindings:SDL_GPUStorageTextureReadWriteBinding,num_storage_texture_bindings:Uint32,storage_buffer_bindings:SDL_GPUStorageBufferReadWriteBinding,num_storage_buffer_bindings:Uint32):SDL_GPUComputePass;
     @:native("SDL_BindGPUComputePipeline") static function SDL_BindGPUComputePipeline(compute_pass:SDL_GPUComputePass,compute_pipeline:SDL_GPUComputePipeline):cpp.Void;
     @:native("SDL_BindGPUComputeSamplers") static function SDL_BindGPUComputeSamplers(compute_pass:SDL_GPUComputePass,first_slot:Uint32,texture_sampler_bindings:SDL_GPUTextureSamplerBinding,num_bindings:Uint32):cpp.Void;
-    @:native("SDL_BindGPUComputeStorageTextures") static function SDL_BindGPUComputeStorageTextures(compute_pass:SDL_GPUComputePass,first_slot:Uint32,storage_textures:cpp.RawPointer<Struct(SDL_GPUTexture)>,num_bindings:Uint32):cpp.Void;
-    @:native("SDL_BindGPUComputeStorageBuffers") static function SDL_BindGPUComputeStorageBuffers(compute_pass:SDL_GPUComputePass,first_slot:Uint32,storage_buffers:cpp.RawPointer<Struct(SDL_GPUBuffer)>,num_bindings:Uint32):cpp.Void;
+    @:native("SDL_BindGPUComputeStorageTextures") static function SDL_BindGPUComputeStorageTextures(compute_pass:SDL_GPUComputePass,first_slot:Uint32,storage_textures:cpp.RawPointer<SDL_GPUTexture>,num_bindings:Uint32):cpp.Void;
+    @:native("SDL_BindGPUComputeStorageBuffers") static function SDL_BindGPUComputeStorageBuffers(compute_pass:SDL_GPUComputePass,first_slot:Uint32,storage_buffers:cpp.RawPointer<SDL_GPUBuffer>,num_bindings:Uint32):cpp.Void;
     @:native("SDL_DispatchGPUCompute") static function SDL_DispatchGPUCompute(compute_pass:SDL_GPUComputePass,groupcount_x:Uint32,groupcount_y:Uint32,groupcount_z:Uint32):cpp.Void;
     @:native("SDL_DispatchGPUComputeIndirect") static function SDL_DispatchGPUComputeIndirect(compute_pass:SDL_GPUComputePass,buffer:SDL_GPUBuffer,offset:Uint32):cpp.Void;
     @:native("SDL_EndGPUComputePass") static function SDL_EndGPUComputePass(compute_pass:SDL_GPUComputePass):cpp.Void;
@@ -4952,14 +4959,14 @@ extern class SDL {
     @:native("SDL_SetGPUSwapchainParameters") static function SDL_SetGPUSwapchainParameters(device:SDL_GPUDevice,window:SDL_Window,swapchain_composition:SDL_GPUSwapchainComposition,present_mode:SDL_GPUPresentMode):Bool;
     @:native("SDL_SetGPUAllowedFramesInFlight") static function SDL_SetGPUAllowedFramesInFlight(device:SDL_GPUDevice,allowed_frames_in_flight:Uint32):Bool;
     @:native("SDL_GetGPUSwapchainTextureFormat") static function SDL_GetGPUSwapchainTextureFormat(device:SDL_GPUDevice,window:SDL_Window):SDL_GPUTextureFormat;
-    @:native("SDL_AcquireGPUSwapchainTexture") static function SDL_AcquireGPUSwapchainTexture(command_buffer:SDL_GPUCommandBuffer,window:SDL_Window,swapchain_texture:cpp.RawPointer<Struct(SDL_GPUTexture)>,swapchain_texture_width:Uint32,swapchain_texture_height:Uint32):Bool;
+    @:native("SDL_AcquireGPUSwapchainTexture") static function SDL_AcquireGPUSwapchainTexture(command_buffer:SDL_GPUCommandBuffer,window:SDL_Window,swapchain_texture:cpp.RawPointer<SDL_GPUTexture>,swapchain_texture_width:Uint32,swapchain_texture_height:Uint32):Bool;
     @:native("SDL_WaitForGPUSwapchain") static function SDL_WaitForGPUSwapchain(device:SDL_GPUDevice,window:SDL_Window):Bool;
-    @:native("SDL_WaitAndAcquireGPUSwapchainTexture") static function SDL_WaitAndAcquireGPUSwapchainTexture(command_buffer:SDL_GPUCommandBuffer,window:SDL_Window,swapchain_texture:cpp.RawPointer<Struct(SDL_GPUTexture)>,swapchain_texture_width:Uint32,swapchain_texture_height:Uint32):Bool;
+    @:native("SDL_WaitAndAcquireGPUSwapchainTexture") static function SDL_WaitAndAcquireGPUSwapchainTexture(command_buffer:SDL_GPUCommandBuffer,window:SDL_Window,swapchain_texture:cpp.RawPointer<SDL_GPUTexture>,swapchain_texture_width:Uint32,swapchain_texture_height:Uint32):Bool;
     @:native("SDL_SubmitGPUCommandBuffer") static function SDL_SubmitGPUCommandBuffer(command_buffer:SDL_GPUCommandBuffer):Bool;
     @:native("SDL_SubmitGPUCommandBufferAndAcquireFence") static function SDL_SubmitGPUCommandBufferAndAcquireFence(command_buffer:SDL_GPUCommandBuffer):SDL_GPUFence;
     @:native("SDL_CancelGPUCommandBuffer") static function SDL_CancelGPUCommandBuffer(command_buffer:SDL_GPUCommandBuffer):Bool;
     @:native("SDL_WaitForGPUIdle") static function SDL_WaitForGPUIdle(device:SDL_GPUDevice):Bool;
-    @:native("SDL_WaitForGPUFences") static function SDL_WaitForGPUFences(device:SDL_GPUDevice,wait_all:Bool,fences:cpp.RawPointer<Struct(SDL_GPUFence)>,num_fences:Uint32):Bool;
+    @:native("SDL_WaitForGPUFences") static function SDL_WaitForGPUFences(device:SDL_GPUDevice,wait_all:Bool,fences:cpp.RawPointer<SDL_GPUFence>,num_fences:Uint32):Bool;
     @:native("SDL_QueryGPUFence") static function SDL_QueryGPUFence(device:SDL_GPUDevice,fence:SDL_GPUFence):Bool;
     @:native("SDL_ReleaseGPUFence") static function SDL_ReleaseGPUFence(device:SDL_GPUDevice,fence:SDL_GPUFence):cpp.Void;
     @:native("SDL_GPUTextureFormatTexelBlockSize") static function SDL_GPUTextureFormatTexelBlockSize(format:SDL_GPUTextureFormat):Uint32;
@@ -4969,11 +4976,11 @@ extern class SDL {
     @:native("SDL_GetPixelFormatFromGPUTextureFormat") static function SDL_GetPixelFormatFromGPUTextureFormat(format:SDL_GPUTextureFormat):SDL_PixelFormat;
     @:native("SDL_GetGPUTextureFormatFromPixelFormat") static function SDL_GetGPUTextureFormatFromPixelFormat(format:SDL_PixelFormat):SDL_GPUTextureFormat;
     @:native("SDL_GetHaptics") static function SDL_GetHaptics(count:cpp.Int32Pointer):SDL_HapticID;
-    @:native("SDL_GetHapticNameForID") static function SDL_GetHapticNameForID(instance_id:SDL_HapticID):cpp.CharStar;
+    @:native("SDL_GetHapticNameForID") static function SDL_GetHapticNameForID(instance_id:SDL_HapticID):cpp.CharPointer;
     @:native("SDL_OpenHaptic") static function SDL_OpenHaptic(instance_id:SDL_HapticID):SDL_Haptic;
     @:native("SDL_GetHapticFromID") static function SDL_GetHapticFromID(instance_id:SDL_HapticID):SDL_Haptic;
     @:native("SDL_GetHapticID") static function SDL_GetHapticID(haptic:SDL_Haptic):SDL_HapticID;
-    @:native("SDL_GetHapticName") static function SDL_GetHapticName(haptic:SDL_Haptic):cpp.CharStar;
+    @:native("SDL_GetHapticName") static function SDL_GetHapticName(haptic:SDL_Haptic):cpp.CharPointer;
     @:native("SDL_IsMouseHaptic") static function SDL_IsMouseHaptic():Bool;
     @:native("SDL_OpenHapticFromMouse") static function SDL_OpenHapticFromMouse():SDL_Haptic;
     @:native("SDL_IsJoystickHaptic") static function SDL_IsJoystickHaptic(joystick:SDL_Joystick):Bool;
@@ -5004,8 +5011,8 @@ extern class SDL {
     @:native("SDL_hid_device_change_count") static function SDL_hid_device_change_count():Uint32;
     @:native("SDL_hid_enumerate") static function SDL_hid_enumerate(vendor_id:cpp.UInt16,product_id:cpp.UInt16):SDL_hid_device_info;
     @:native("SDL_hid_free_enumeration") static function SDL_hid_free_enumeration(devs:SDL_hid_device_info):cpp.Void;
-    @:native("SDL_hid_open") static function SDL_hid_open(vendor_id:cpp.UInt16,product_id:cpp.UInt16,serial_number:cpp.CharStarPointer):SDL_hid_device;
-    @:native("SDL_hid_open_path") static function SDL_hid_open_path(path:cpp.CharStar):SDL_hid_device;
+    @:native("SDL_hid_open") static function SDL_hid_open(vendor_id:cpp.UInt16,product_id:cpp.UInt16,serial_number:cpp.WCharPointer):SDL_hid_device;
+    @:native("SDL_hid_open_path") static function SDL_hid_open_path(path:cpp.CharPointer):SDL_hid_device;
     @:native("SDL_hid_get_properties") static function SDL_hid_get_properties(dev:SDL_hid_device):SDL_PropertiesID;
     @:native("SDL_hid_write") static function SDL_hid_write(dev:SDL_hid_device,data:cpp.UInt8Pointer,length:cpp.UInt32):cpp.Int32;
     @:native("SDL_hid_read_timeout") static function SDL_hid_read_timeout(dev:SDL_hid_device,data:cpp.UInt8Pointer,length:cpp.UInt32,milliseconds:cpp.Int32):cpp.Int32;
@@ -5015,21 +5022,21 @@ extern class SDL {
     @:native("SDL_hid_get_feature_report") static function SDL_hid_get_feature_report(dev:SDL_hid_device,data:cpp.UInt8Pointer,length:cpp.UInt32):cpp.Int32;
     @:native("SDL_hid_get_input_report") static function SDL_hid_get_input_report(dev:SDL_hid_device,data:cpp.UInt8Pointer,length:cpp.UInt32):cpp.Int32;
     @:native("SDL_hid_close") static function SDL_hid_close(dev:SDL_hid_device):cpp.Int32;
-    @:native("SDL_hid_get_manufacturer_string") static function SDL_hid_get_manufacturer_string(dev:SDL_hid_device,string:cpp.CharStarPointer,maxlen:cpp.UInt32):cpp.Int32;
-    @:native("SDL_hid_get_product_string") static function SDL_hid_get_product_string(dev:SDL_hid_device,string:cpp.CharStarPointer,maxlen:cpp.UInt32):cpp.Int32;
-    @:native("SDL_hid_get_serial_number_string") static function SDL_hid_get_serial_number_string(dev:SDL_hid_device,string:cpp.CharStarPointer,maxlen:cpp.UInt32):cpp.Int32;
-    @:native("SDL_hid_get_indexed_string") static function SDL_hid_get_indexed_string(dev:SDL_hid_device,string_index:cpp.Int32,string:cpp.CharStarPointer,maxlen:cpp.UInt32):cpp.Int32;
+    @:native("SDL_hid_get_manufacturer_string") static function SDL_hid_get_manufacturer_string(dev:SDL_hid_device,string:cpp.WCharPointer,maxlen:cpp.UInt32):cpp.Int32;
+    @:native("SDL_hid_get_product_string") static function SDL_hid_get_product_string(dev:SDL_hid_device,string:cpp.WCharPointer,maxlen:cpp.UInt32):cpp.Int32;
+    @:native("SDL_hid_get_serial_number_string") static function SDL_hid_get_serial_number_string(dev:SDL_hid_device,string:cpp.WCharPointer,maxlen:cpp.UInt32):cpp.Int32;
+    @:native("SDL_hid_get_indexed_string") static function SDL_hid_get_indexed_string(dev:SDL_hid_device,string_index:cpp.Int32,string:cpp.WCharPointer,maxlen:cpp.UInt32):cpp.Int32;
     @:native("SDL_hid_get_device_info") static function SDL_hid_get_device_info(dev:SDL_hid_device):SDL_hid_device_info;
     @:native("SDL_hid_get_report_descriptor") static function SDL_hid_get_report_descriptor(dev:SDL_hid_device,buf:cpp.UInt8Pointer,buf_size:cpp.UInt32):cpp.Int32;
     @:native("SDL_hid_ble_scan") static function SDL_hid_ble_scan(active:Bool):cpp.Void;
-    @:native("SDL_SetHintWithPriority") static function SDL_SetHintWithPriority(name:cpp.CharStar,value:cpp.CharStar,priority:SDL_HintPriority):Bool;
-    @:native("SDL_SetHint") static function SDL_SetHint(name:cpp.CharStar,value:cpp.CharStar):Bool;
-    @:native("SDL_ResetHint") static function SDL_ResetHint(name:cpp.CharStar):Bool;
+    @:native("SDL_SetHintWithPriority") static function SDL_SetHintWithPriority(name:cpp.CharPointer,value:cpp.CharPointer,priority:SDL_HintPriority):Bool;
+    @:native("SDL_SetHint") static function SDL_SetHint(name:cpp.CharPointer,value:cpp.CharPointer):Bool;
+    @:native("SDL_ResetHint") static function SDL_ResetHint(name:cpp.CharPointer):Bool;
     @:native("SDL_ResetHints") static function SDL_ResetHints():cpp.Void;
-    @:native("SDL_GetHint") static function SDL_GetHint(name:cpp.CharStar):cpp.CharStar;
-    @:native("SDL_GetHintBoolean") static function SDL_GetHintBoolean(name:cpp.CharStar,default_value:Bool):Bool;
-    @:native("SDL_AddHintCallback") static function SDL_AddHintCallback(name:cpp.CharStar,callback:SDL_HintCallback,userdata:cpp.VoidPointer):Bool;
-    @:native("SDL_RemoveHintCallback") static function SDL_RemoveHintCallback(name:cpp.CharStar,callback:SDL_HintCallback,userdata:cpp.VoidPointer):cpp.Void;
+    @:native("SDL_GetHint") static function SDL_GetHint(name:cpp.CharPointer):cpp.CharPointer;
+    @:native("SDL_GetHintBoolean") static function SDL_GetHintBoolean(name:cpp.CharPointer,default_value:Bool):Bool;
+    @:native("SDL_AddHintCallback") static function SDL_AddHintCallback(name:cpp.CharPointer,callback:SDL_HintCallback,userdata:cpp.VoidPointer):Bool;
+    @:native("SDL_RemoveHintCallback") static function SDL_RemoveHintCallback(name:cpp.CharPointer,callback:SDL_HintCallback,userdata:cpp.VoidPointer):cpp.Void;
     @:native("SDL_Init") static function SDL_Init(flags:SDL_InitFlags):Bool;
     @:native("SDL_InitSubSystem") static function SDL_InitSubSystem(flags:SDL_InitFlags):Bool;
     @:native("SDL_QuitSubSystem") static function SDL_QuitSubSystem(flags:SDL_InitFlags):cpp.Void;
@@ -5037,38 +5044,38 @@ extern class SDL {
     @:native("SDL_Quit") static function SDL_Quit():cpp.Void;
     @:native("SDL_IsMainThread") static function SDL_IsMainThread():Bool;
     @:native("SDL_RunOnMainThread") static function SDL_RunOnMainThread(callback:SDL_MainThreadCallback,userdata:cpp.VoidPointer,wait_complete:Bool):Bool;
-    @:native("SDL_SetAppMetadata") static function SDL_SetAppMetadata(appname:cpp.CharStar,appversion:cpp.CharStar,appidentifier:cpp.CharStar):Bool;
-    @:native("SDL_SetAppMetadataProperty") static function SDL_SetAppMetadataProperty(name:cpp.CharStar,value:cpp.CharStar):Bool;
-    @:native("SDL_GetAppMetadataProperty") static function SDL_GetAppMetadataProperty(name:cpp.CharStar):cpp.CharStar;
-    @:native("SDL_LoadObject") static function SDL_LoadObject(sofile:cpp.CharStar):SDL_SharedObject;
-    @:native("SDL_LoadFunction") static function SDL_LoadFunction(handle:SDL_SharedObject,name:cpp.CharStar):SDL_FunctionPointer;
+    @:native("SDL_SetAppMetadata") static function SDL_SetAppMetadata(appname:cpp.CharPointer,appversion:cpp.CharPointer,appidentifier:cpp.CharPointer):Bool;
+    @:native("SDL_SetAppMetadataProperty") static function SDL_SetAppMetadataProperty(name:cpp.CharPointer,value:cpp.CharPointer):Bool;
+    @:native("SDL_GetAppMetadataProperty") static function SDL_GetAppMetadataProperty(name:cpp.CharPointer):cpp.CharPointer;
+    @:native("SDL_LoadObject") static function SDL_LoadObject(sofile:cpp.CharPointer):SDL_SharedObject;
+    @:native("SDL_LoadFunction") static function SDL_LoadFunction(handle:SDL_SharedObject,name:cpp.CharPointer):SDL_FunctionPointer;
     @:native("SDL_UnloadObject") static function SDL_UnloadObject(handle:SDL_SharedObject):cpp.Void;
-    @:native("SDL_GetPreferredLocales") static function SDL_GetPreferredLocales(count:cpp.Int32Pointer):cpp.RawPointer<Struct(SDL_Locale)>;
+    @:native("SDL_GetPreferredLocales") static function SDL_GetPreferredLocales(count:cpp.Int32Pointer):cpp.RawPointer<SDL_Locale>;
     @:native("SDL_SetLogPriorities") static function SDL_SetLogPriorities(priority:SDL_LogPriority):cpp.Void;
     @:native("SDL_SetLogPriority") static function SDL_SetLogPriority(category:cpp.Int32,priority:SDL_LogPriority):cpp.Void;
     @:native("SDL_GetLogPriority") static function SDL_GetLogPriority(category:cpp.Int32):SDL_LogPriority;
     @:native("SDL_ResetLogPriorities") static function SDL_ResetLogPriorities():cpp.Void;
-    @:native("SDL_SetLogPriorityPrefix") static function SDL_SetLogPriorityPrefix(priority:SDL_LogPriority,prefix:cpp.CharStar):Bool;
-    @:native("SDL_Log") static function SDL_Log(fmt:cpp.CharStar):cpp.Void;
-    @:native("SDL_LogTrace") static function SDL_LogTrace(category:cpp.Int32,fmt:cpp.CharStar):cpp.Void;
-    @:native("SDL_LogVerbose") static function SDL_LogVerbose(category:cpp.Int32,fmt:cpp.CharStar):cpp.Void;
-    @:native("SDL_LogDebug") static function SDL_LogDebug(category:cpp.Int32,fmt:cpp.CharStar):cpp.Void;
-    @:native("SDL_LogInfo") static function SDL_LogInfo(category:cpp.Int32,fmt:cpp.CharStar):cpp.Void;
-    @:native("SDL_LogWarn") static function SDL_LogWarn(category:cpp.Int32,fmt:cpp.CharStar):cpp.Void;
-    @:native("SDL_LogError") static function SDL_LogError(category:cpp.Int32,fmt:cpp.CharStar):cpp.Void;
-    @:native("SDL_LogCritical") static function SDL_LogCritical(category:cpp.Int32,fmt:cpp.CharStar):cpp.Void;
-    @:native("SDL_LogMessage") static function SDL_LogMessage(category:cpp.Int32,priority:SDL_LogPriority,fmt:cpp.CharStar):cpp.Void;
-    @:native("SDL_LogMessageV") static function SDL_LogMessageV(category:cpp.Int32,priority:SDL_LogPriority,fmt:cpp.CharStar,ap:cpp.VarList):cpp.Void;
+    @:native("SDL_SetLogPriorityPrefix") static function SDL_SetLogPriorityPrefix(priority:SDL_LogPriority,prefix:cpp.CharPointer):Bool;
+    @:native("SDL_Log") static function SDL_Log(fmt:cpp.CharPointer):cpp.Void;
+    @:native("SDL_LogTrace") static function SDL_LogTrace(category:cpp.Int32,fmt:cpp.CharPointer):cpp.Void;
+    @:native("SDL_LogVerbose") static function SDL_LogVerbose(category:cpp.Int32,fmt:cpp.CharPointer):cpp.Void;
+    @:native("SDL_LogDebug") static function SDL_LogDebug(category:cpp.Int32,fmt:cpp.CharPointer):cpp.Void;
+    @:native("SDL_LogInfo") static function SDL_LogInfo(category:cpp.Int32,fmt:cpp.CharPointer):cpp.Void;
+    @:native("SDL_LogWarn") static function SDL_LogWarn(category:cpp.Int32,fmt:cpp.CharPointer):cpp.Void;
+    @:native("SDL_LogError") static function SDL_LogError(category:cpp.Int32,fmt:cpp.CharPointer):cpp.Void;
+    @:native("SDL_LogCritical") static function SDL_LogCritical(category:cpp.Int32,fmt:cpp.CharPointer):cpp.Void;
+    @:native("SDL_LogMessage") static function SDL_LogMessage(category:cpp.Int32,priority:SDL_LogPriority,fmt:cpp.CharPointer):cpp.Void;
+    @:native("SDL_LogMessageV") static function SDL_LogMessageV(category:cpp.Int32,priority:SDL_LogPriority,fmt:cpp.CharPointer,ap:cpp.VarList):cpp.Void;
     @:native("SDL_GetDefaultLogOutputFunction") static function SDL_GetDefaultLogOutputFunction():SDL_LogOutputFunction;
-    @:native("SDL_GetLogOutputFunction") static function SDL_GetLogOutputFunction(callback:SDL_LogOutputFunction,userdata:cpp.RawPointer<Void>):cpp.Void;
+    @:native("SDL_GetLogOutputFunction") static function SDL_GetLogOutputFunction(callback:SDL_LogOutputFunction,userdata:cpp.RawPointer<cpp.Void>):cpp.Void;
     @:native("SDL_SetLogOutputFunction") static function SDL_SetLogOutputFunction(callback:SDL_LogOutputFunction,userdata:cpp.VoidPointer):cpp.Void;
     @:native("SDL_ShowMessageBox") static function SDL_ShowMessageBox(messageboxdata:SDL_MessageBoxData,buttonid:cpp.Int32Pointer):Bool;
-    @:native("SDL_ShowSimpleMessageBox") static function SDL_ShowSimpleMessageBox(flags:SDL_MessageBoxFlags,title:cpp.CharStar,message:cpp.CharStar,window:SDL_Window):Bool;
+    @:native("SDL_ShowSimpleMessageBox") static function SDL_ShowSimpleMessageBox(flags:SDL_MessageBoxFlags,title:cpp.CharPointer,message:cpp.CharPointer,window:SDL_Window):Bool;
     @:native("SDL_Metal_CreateView") static function SDL_Metal_CreateView(window:SDL_Window):SDL_MetalView;
     @:native("SDL_Metal_DestroyView") static function SDL_Metal_DestroyView(view:SDL_MetalView):cpp.Void;
     @:native("SDL_Metal_GetLayer") static function SDL_Metal_GetLayer(view:SDL_MetalView):cpp.VoidPointer;
-    @:native("SDL_OpenURL") static function SDL_OpenURL(url:cpp.CharStar):Bool;
-    @:native("SDL_GetPlatform") static function SDL_GetPlatform():cpp.CharStar;
+    @:native("SDL_OpenURL") static function SDL_OpenURL(url:cpp.CharPointer):Bool;
+    @:native("SDL_GetPlatform") static function SDL_GetPlatform():cpp.CharPointer;
     @:native("SDL_CreateProcess") static function SDL_CreateProcess(args:cpp.CastCharStarPointer,pipe_stdio:Bool):SDL_Process;
     @:native("SDL_CreateProcessWithProperties") static function SDL_CreateProcessWithProperties(props:SDL_PropertiesID):SDL_Process;
     @:native("SDL_GetProcessProperties") static function SDL_GetProcessProperties(process:SDL_Process):SDL_PropertiesID;
@@ -5079,16 +5086,16 @@ extern class SDL {
     @:native("SDL_WaitProcess") static function SDL_WaitProcess(process:SDL_Process,block:Bool,exitcode:cpp.Int32Pointer):Bool;
     @:native("SDL_DestroyProcess") static function SDL_DestroyProcess(process:SDL_Process):cpp.Void;
     @:native("SDL_GetNumRenderDrivers") static function SDL_GetNumRenderDrivers():cpp.Int32;
-    @:native("SDL_GetRenderDriver") static function SDL_GetRenderDriver(index:cpp.Int32):cpp.CharStar;
-    @:native("SDL_CreateWindowAndRenderer") static function SDL_CreateWindowAndRenderer(title:cpp.CharStar,width:cpp.Int32,height:cpp.Int32,window_flags:SDL_WindowFlags,window:cpp.RawPointer<Struct(SDL_Window)>,renderer:cpp.RawPointer<Struct(SDL_Renderer)>):Bool;
-    @:native("SDL_CreateRenderer") static function SDL_CreateRenderer(window:SDL_Window,name:cpp.CharStar):SDL_Renderer;
+    @:native("SDL_GetRenderDriver") static function SDL_GetRenderDriver(index:cpp.Int32):cpp.CharPointer;
+    @:native("SDL_CreateWindowAndRenderer") static function SDL_CreateWindowAndRenderer(title:cpp.CharPointer,width:cpp.Int32,height:cpp.Int32,window_flags:SDL_WindowFlags,window:cpp.RawPointer<SDL_Window>,renderer:cpp.RawPointer<SDL_Renderer>):Bool;
+    @:native("SDL_CreateRenderer") static function SDL_CreateRenderer(window:SDL_Window,name:cpp.CharPointer):SDL_Renderer;
     @:native("SDL_CreateRendererWithProperties") static function SDL_CreateRendererWithProperties(props:SDL_PropertiesID):SDL_Renderer;
     @:native("SDL_CreateGPURenderer") static function SDL_CreateGPURenderer(device:SDL_GPUDevice,window:SDL_Window):SDL_Renderer;
     @:native("SDL_GetGPURendererDevice") static function SDL_GetGPURendererDevice(renderer:SDL_Renderer):SDL_GPUDevice;
     @:native("SDL_CreateSoftwareRenderer") static function SDL_CreateSoftwareRenderer(surface:SDL_Surface):SDL_Renderer;
     @:native("SDL_GetRenderer") static function SDL_GetRenderer(window:SDL_Window):SDL_Renderer;
     @:native("SDL_GetRenderWindow") static function SDL_GetRenderWindow(renderer:SDL_Renderer):SDL_Window;
-    @:native("SDL_GetRendererName") static function SDL_GetRendererName(renderer:SDL_Renderer):cpp.CharStar;
+    @:native("SDL_GetRendererName") static function SDL_GetRendererName(renderer:SDL_Renderer):cpp.CharPointer;
     @:native("SDL_GetRendererProperties") static function SDL_GetRendererProperties(renderer:SDL_Renderer):SDL_PropertiesID;
     @:native("SDL_GetRenderOutputSize") static function SDL_GetRenderOutputSize(renderer:SDL_Renderer,w:cpp.Int32Pointer,h:cpp.Int32Pointer):Bool;
     @:native("SDL_GetCurrentRenderOutputSize") static function SDL_GetCurrentRenderOutputSize(renderer:SDL_Renderer,w:cpp.Int32Pointer,h:cpp.Int32Pointer):Bool;
@@ -5115,8 +5122,8 @@ extern class SDL {
     @:native("SDL_UpdateTexture") static function SDL_UpdateTexture(texture:SDL_Texture,rect:SDL_Rect,pixels:cpp.VoidPointer,pitch:cpp.Int32):Bool;
     @:native("SDL_UpdateYUVTexture") static function SDL_UpdateYUVTexture(texture:SDL_Texture,rect:SDL_Rect,Yplane:Uint8,Ypitch:cpp.Int32,Uplane:Uint8,Upitch:cpp.Int32,Vplane:Uint8,Vpitch:cpp.Int32):Bool;
     @:native("SDL_UpdateNVTexture") static function SDL_UpdateNVTexture(texture:SDL_Texture,rect:SDL_Rect,Yplane:Uint8,Ypitch:cpp.Int32,UVplane:Uint8,UVpitch:cpp.Int32):Bool;
-    @:native("SDL_LockTexture") static function SDL_LockTexture(texture:SDL_Texture,rect:SDL_Rect,pixels:cpp.RawPointer<Void>,pitch:cpp.Int32Pointer):Bool;
-    @:native("SDL_LockTextureToSurface") static function SDL_LockTextureToSurface(texture:SDL_Texture,rect:SDL_Rect,surface:cpp.RawPointer<Struct(SDL_Surface)>):Bool;
+    @:native("SDL_LockTexture") static function SDL_LockTexture(texture:SDL_Texture,rect:SDL_Rect,pixels:cpp.RawPointer<cpp.Void>,pitch:cpp.Int32Pointer):Bool;
+    @:native("SDL_LockTextureToSurface") static function SDL_LockTextureToSurface(texture:SDL_Texture,rect:SDL_Rect,surface:cpp.RawPointer<SDL_Surface>):Bool;
     @:native("SDL_UnlockTexture") static function SDL_UnlockTexture(texture:SDL_Texture):cpp.Void;
     @:native("SDL_SetRenderTarget") static function SDL_SetRenderTarget(renderer:SDL_Renderer,texture:SDL_Texture):Bool;
     @:native("SDL_GetRenderTarget") static function SDL_GetRenderTarget(renderer:SDL_Renderer):SDL_Texture;
@@ -5172,31 +5179,31 @@ extern class SDL {
     @:native("SDL_AddVulkanRenderSemaphores") static function SDL_AddVulkanRenderSemaphores(renderer:SDL_Renderer,wait_stage_mask:Uint32,wait_semaphore:Sint64,signal_semaphore:Sint64):Bool;
     @:native("SDL_SetRenderVSync") static function SDL_SetRenderVSync(renderer:SDL_Renderer,vsync:cpp.Int32):Bool;
     @:native("SDL_GetRenderVSync") static function SDL_GetRenderVSync(renderer:SDL_Renderer,vsync:cpp.Int32Pointer):Bool;
-    @:native("SDL_RenderDebugText") static function SDL_RenderDebugText(renderer:SDL_Renderer,x:cpp.Float32,y:cpp.Float32,str:cpp.CharStar):Bool;
-    @:native("SDL_RenderDebugTextFormat") static function SDL_RenderDebugTextFormat(renderer:SDL_Renderer,x:cpp.Float32,y:cpp.Float32,fmt:cpp.CharStar):Bool;
+    @:native("SDL_RenderDebugText") static function SDL_RenderDebugText(renderer:SDL_Renderer,x:cpp.Float32,y:cpp.Float32,str:cpp.CharPointer):Bool;
+    @:native("SDL_RenderDebugTextFormat") static function SDL_RenderDebugTextFormat(renderer:SDL_Renderer,x:cpp.Float32,y:cpp.Float32,fmt:cpp.CharPointer):Bool;
     @:native("SDL_SetDefaultTextureScaleMode") static function SDL_SetDefaultTextureScaleMode(renderer:SDL_Renderer,scale_mode:SDL_ScaleMode):Bool;
     @:native("SDL_GetDefaultTextureScaleMode") static function SDL_GetDefaultTextureScaleMode(renderer:SDL_Renderer,scale_mode:SDL_ScaleMode):Bool;
     @:native("SDL_CreateGPURenderState") static function SDL_CreateGPURenderState(renderer:SDL_Renderer,createinfo:SDL_GPURenderStateCreateInfo):SDL_GPURenderState;
     @:native("SDL_SetGPURenderStateFragmentUniforms") static function SDL_SetGPURenderStateFragmentUniforms(state:SDL_GPURenderState,slot_index:Uint32,data:cpp.VoidPointer,length:Uint32):Bool;
     @:native("SDL_SetGPURenderState") static function SDL_SetGPURenderState(renderer:SDL_Renderer,state:SDL_GPURenderState):Bool;
     @:native("SDL_DestroyGPURenderState") static function SDL_DestroyGPURenderState(state:SDL_GPURenderState):cpp.Void;
-    @:native("SDL_OpenTitleStorage") static function SDL_OpenTitleStorage(override:cpp.CharStar,props:SDL_PropertiesID):SDL_Storage;
-    @:native("SDL_OpenUserStorage") static function SDL_OpenUserStorage(org:cpp.CharStar,app:cpp.CharStar,props:SDL_PropertiesID):SDL_Storage;
-    @:native("SDL_OpenFileStorage") static function SDL_OpenFileStorage(path:cpp.CharStar):SDL_Storage;
+    @:native("SDL_OpenTitleStorage") static function SDL_OpenTitleStorage(overridePath:cpp.CharPointer,props:SDL_PropertiesID):SDL_Storage;
+    @:native("SDL_OpenUserStorage") static function SDL_OpenUserStorage(org:cpp.CharPointer,app:cpp.CharPointer,props:SDL_PropertiesID):SDL_Storage;
+    @:native("SDL_OpenFileStorage") static function SDL_OpenFileStorage(path:cpp.CharPointer):SDL_Storage;
     @:native("SDL_OpenStorage") static function SDL_OpenStorage(iface:SDL_StorageInterface,userdata:cpp.VoidPointer):SDL_Storage;
     @:native("SDL_CloseStorage") static function SDL_CloseStorage(storage:SDL_Storage):Bool;
     @:native("SDL_StorageReady") static function SDL_StorageReady(storage:SDL_Storage):Bool;
-    @:native("SDL_GetStorageFileSize") static function SDL_GetStorageFileSize(storage:SDL_Storage,path:cpp.CharStar,length:Uint64):Bool;
-    @:native("SDL_ReadStorageFile") static function SDL_ReadStorageFile(storage:SDL_Storage,path:cpp.CharStar,destination:cpp.VoidPointer,length:Uint64):Bool;
-    @:native("SDL_WriteStorageFile") static function SDL_WriteStorageFile(storage:SDL_Storage,path:cpp.CharStar,source:cpp.VoidPointer,length:Uint64):Bool;
-    @:native("SDL_CreateStorageDirectory") static function SDL_CreateStorageDirectory(storage:SDL_Storage,path:cpp.CharStar):Bool;
-    @:native("SDL_EnumerateStorageDirectory") static function SDL_EnumerateStorageDirectory(storage:SDL_Storage,path:cpp.CharStar,callback:SDL_EnumerateDirectoryCallback,userdata:cpp.VoidPointer):Bool;
-    @:native("SDL_RemoveStoragePath") static function SDL_RemoveStoragePath(storage:SDL_Storage,path:cpp.CharStar):Bool;
-    @:native("SDL_RenameStoragePath") static function SDL_RenameStoragePath(storage:SDL_Storage,oldpath:cpp.CharStar,newpath:cpp.CharStar):Bool;
-    @:native("SDL_CopyStorageFile") static function SDL_CopyStorageFile(storage:SDL_Storage,oldpath:cpp.CharStar,newpath:cpp.CharStar):Bool;
-    @:native("SDL_GetStoragePathInfo") static function SDL_GetStoragePathInfo(storage:SDL_Storage,path:cpp.CharStar,info:SDL_PathInfo):Bool;
+    @:native("SDL_GetStorageFileSize") static function SDL_GetStorageFileSize(storage:SDL_Storage,path:cpp.CharPointer,length:Uint64):Bool;
+    @:native("SDL_ReadStorageFile") static function SDL_ReadStorageFile(storage:SDL_Storage,path:cpp.CharPointer,destination:cpp.VoidPointer,length:Uint64):Bool;
+    @:native("SDL_WriteStorageFile") static function SDL_WriteStorageFile(storage:SDL_Storage,path:cpp.CharPointer,source:cpp.VoidPointer,length:Uint64):Bool;
+    @:native("SDL_CreateStorageDirectory") static function SDL_CreateStorageDirectory(storage:SDL_Storage,path:cpp.CharPointer):Bool;
+    @:native("SDL_EnumerateStorageDirectory") static function SDL_EnumerateStorageDirectory(storage:SDL_Storage,path:cpp.CharPointer,callback:SDL_EnumerateDirectoryCallback,userdata:cpp.VoidPointer):Bool;
+    @:native("SDL_RemoveStoragePath") static function SDL_RemoveStoragePath(storage:SDL_Storage,path:cpp.CharPointer):Bool;
+    @:native("SDL_RenameStoragePath") static function SDL_RenameStoragePath(storage:SDL_Storage,oldpath:cpp.CharPointer,newpath:cpp.CharPointer):Bool;
+    @:native("SDL_CopyStorageFile") static function SDL_CopyStorageFile(storage:SDL_Storage,oldpath:cpp.CharPointer,newpath:cpp.CharPointer):Bool;
+    @:native("SDL_GetStoragePathInfo") static function SDL_GetStoragePathInfo(storage:SDL_Storage,path:cpp.CharPointer,info:SDL_PathInfo):Bool;
     @:native("SDL_GetStorageSpaceRemaining") static function SDL_GetStorageSpaceRemaining(storage:SDL_Storage):Uint64;
-    @:native("SDL_GlobStorageDirectory") static function SDL_GlobStorageDirectory(storage:SDL_Storage,path:cpp.CharStar,pattern:cpp.CharStar,flags:SDL_GlobFlags,count:cpp.Int32Pointer):cpp.CastCharStarPointer;
+    @:native("SDL_GlobStorageDirectory") static function SDL_GlobStorageDirectory(storage:SDL_Storage,path:cpp.CharPointer,pattern:cpp.CharPointer,flags:SDL_GlobFlags,count:cpp.Int32Pointer):cpp.CastCharStarPointer;
     @:native("SDL_SetX11EventHook") static function SDL_SetX11EventHook(callback:SDL_X11EventHook,userdata:cpp.VoidPointer):cpp.Void;
     @:native("SDL_SetLinuxThreadPriority") static function SDL_SetLinuxThreadPriority(threadID:Sint64,priority:cpp.Int32):Bool;
     @:native("SDL_SetLinuxThreadPriorityAndPolicy") static function SDL_SetLinuxThreadPriorityAndPolicy(threadID:Sint64,sdlPriority:cpp.Int32,schedPolicy:cpp.Int32):Bool;
@@ -5228,18 +5235,18 @@ extern class SDL {
     @:native("SDL_AddTimer") static function SDL_AddTimer(interval:Uint32,callback:SDL_TimerCallback,userdata:cpp.VoidPointer):SDL_TimerID;
     @:native("SDL_AddTimerNS") static function SDL_AddTimerNS(interval:Uint64,callback:SDL_NSTimerCallback,userdata:cpp.VoidPointer):SDL_TimerID;
     @:native("SDL_RemoveTimer") static function SDL_RemoveTimer(id:SDL_TimerID):Bool;
-    @:native("SDL_CreateTray") static function SDL_CreateTray(icon:SDL_Surface,tooltip:cpp.CharStar):SDL_Tray;
+    @:native("SDL_CreateTray") static function SDL_CreateTray(icon:SDL_Surface,tooltip:cpp.CharPointer):SDL_Tray;
     @:native("SDL_SetTrayIcon") static function SDL_SetTrayIcon(tray:SDL_Tray,icon:SDL_Surface):cpp.Void;
-    @:native("SDL_SetTrayTooltip") static function SDL_SetTrayTooltip(tray:SDL_Tray,tooltip:cpp.CharStar):cpp.Void;
+    @:native("SDL_SetTrayTooltip") static function SDL_SetTrayTooltip(tray:SDL_Tray,tooltip:cpp.CharPointer):cpp.Void;
     @:native("SDL_CreateTrayMenu") static function SDL_CreateTrayMenu(tray:SDL_Tray):SDL_TrayMenu;
     @:native("SDL_CreateTraySubmenu") static function SDL_CreateTraySubmenu(entry:SDL_TrayEntry):SDL_TrayMenu;
     @:native("SDL_GetTrayMenu") static function SDL_GetTrayMenu(tray:SDL_Tray):SDL_TrayMenu;
     @:native("SDL_GetTraySubmenu") static function SDL_GetTraySubmenu(entry:SDL_TrayEntry):SDL_TrayMenu;
-    @:native("SDL_GetTrayEntries") static function SDL_GetTrayEntries(menu:SDL_TrayMenu,count:cpp.Int32Pointer):cpp.RawPointer<Struct(SDL_TrayEntry)>;
+    @:native("SDL_GetTrayEntries") static function SDL_GetTrayEntries(menu:SDL_TrayMenu,count:cpp.Int32Pointer):cpp.RawPointer<SDL_TrayEntry>;
     @:native("SDL_RemoveTrayEntry") static function SDL_RemoveTrayEntry(entry:SDL_TrayEntry):cpp.Void;
-    @:native("SDL_InsertTrayEntryAt") static function SDL_InsertTrayEntryAt(menu:SDL_TrayMenu,pos:cpp.Int32,label:cpp.CharStar,flags:SDL_TrayEntryFlags):SDL_TrayEntry;
-    @:native("SDL_SetTrayEntryLabel") static function SDL_SetTrayEntryLabel(entry:SDL_TrayEntry,label:cpp.CharStar):cpp.Void;
-    @:native("SDL_GetTrayEntryLabel") static function SDL_GetTrayEntryLabel(entry:SDL_TrayEntry):cpp.CharStar;
+    @:native("SDL_InsertTrayEntryAt") static function SDL_InsertTrayEntryAt(menu:SDL_TrayMenu,pos:cpp.Int32,label:cpp.CharPointer,flags:SDL_TrayEntryFlags):SDL_TrayEntry;
+    @:native("SDL_SetTrayEntryLabel") static function SDL_SetTrayEntryLabel(entry:SDL_TrayEntry,label:cpp.CharPointer):cpp.Void;
+    @:native("SDL_GetTrayEntryLabel") static function SDL_GetTrayEntryLabel(entry:SDL_TrayEntry):cpp.CharPointer;
     @:native("SDL_SetTrayEntryChecked") static function SDL_SetTrayEntryChecked(entry:SDL_TrayEntry,checked:Bool):cpp.Void;
     @:native("SDL_GetTrayEntryChecked") static function SDL_GetTrayEntryChecked(entry:SDL_TrayEntry):Bool;
     @:native("SDL_SetTrayEntryEnabled") static function SDL_SetTrayEntryEnabled(entry:SDL_TrayEntry,enabled:Bool):cpp.Void;
@@ -5252,5 +5259,5 @@ extern class SDL {
     @:native("SDL_GetTrayMenuParentTray") static function SDL_GetTrayMenuParentTray(menu:SDL_TrayMenu):SDL_Tray;
     @:native("SDL_UpdateTrays") static function SDL_UpdateTrays():cpp.Void;
     @:native("SDL_GetVersion") static function SDL_GetVersion():cpp.Int32;
-    @:native("SDL_GetRevision") static function SDL_GetRevision():cpp.CharStar;
+    @:native("SDL_GetRevision") static function SDL_GetRevision():cpp.CharPointer;
 }

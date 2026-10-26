@@ -13403,7 +13403,6 @@
             ]
         }
     ],
-    "const": [],
     "typedefs": [
         {
             "name": "Quaternion",

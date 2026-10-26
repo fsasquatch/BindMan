@@ -1,4 +1,3 @@
-// NOTE: Maybe? https://developer.mozilla.org/en-US/docs/WebAssembly/Guides/Existing_C_to_Wasm
 // NOTE: c2ffi doesn't generate details for defines, so have them be added via UserProvidedData
 // NOTE: c2ffi doesn't generate details for places where function pointers is used.
 // IDEA: Parse the header separately to get all instances of a defined function pointer and replace it there.
@@ -6,95 +5,18 @@
 //       structs, typedefs, enums, unions, functions, values [array, pointers, function pointers, double pointers]
 package bindman;
 
+import sys.io.Process;
+
+import bindman.BindType;
+import bindman.CTypes;
+
 using StringTools;
 
-typedef FFIEntry = {
-    var ?tag:Null<String>;
-    var ?id:Null<Int>;
-    var ?name:Null<String>;
-    var ?location:Null<String>;
-    var ?type:Null<FFIEntry>;
-    var ?fields:Null<Array<FFIEntry>>;
-    var ?value:Null<Int>;
-    var ?parameters:Null<Array<FFIEntry>>;
-    var ?return_type:Null<FFIEntry>;
-    var ?size:Null<Int>;
-    var ?bit_offset:Null<Int>;
-    var ?bit_size:Null<Int>;
-    var ?width:Null<Int>;
-}
-
-enum BindType {
-    Invalid;
-    Void;
-    Int8;
-    Int16;
-    Int32;
-    Int64;
-    UInt8;
-    UInt16;
-    UInt32;
-    UInt64;
-    Float32;
-    Float64;
-    Char;
-    String;
-    Boolean;
-    Struct(name:String);
-    Array(type:BindType, size:Int);
-    Pointer(type:BindType);
-    Callback(name:String);
-    Const(type:BindType);
-    WChar; // maaaaaaan
-    VarList;
-}
-
-typedef CField = {
-    var name:String;
-    var type:BindType;
-    var ?value:Int;
-    var ?lineNumber:Int;
-}
-
-typedef CStruct = {
-    var name:String;
-    var fields:Array<CField>;
-    var ?opaque:Bool;
-}
-
-typedef CEnum = {
-    var name:String;
-    var fields:Array<CField>;
-}
-
-typedef CFunction = {
-    var name:String;
-    var returnType:BindType;
-    var parameters:Array<CField>;
-}
-
 class BindMan {
-    public static var structs:Array<CStruct> = [];
-    public static var typedefs:Array<CField> = [];
-    public static var enums:Array<CEnum> = [];
-    public static var functions:Array<CFunction> = [];
-    public static var callbacks:Map<String, CFunction> = [];
-
-    // All the types defined within the library to avoid conflicts between structs & typedefs
     public static var definedTypes:Array<String> = [];
     public static var enumRegister:Map<Int, String> = [];
 
-    public static var includeKeyword:String;
-    public static var includeHeader:String;
-    public static var includeDirectory:String;
-    public static var generatedFile:String;
-
-    public static var customReplace:(str:String)->String;
-
-    // Stored for choosing between char & string
-    static var _constTypes:Array<{lineNumber:Int, name:String, type:BindType}> = [];
-
-    public static function parseType(field:FFIEntry):BindType {
+    public static function parseType(field:FFIEntry, ?parent:FFIEntry):BindType {
         if(definedTypes.contains(field.type.tag)) return Struct(field.type.tag);
         var fieldType = Utils.sanitizeTypeName(field.type.tag);
 
@@ -109,28 +31,6 @@ class BindMan {
                 return UInt16;
             case "unsigned-int":
                 return UInt32;
-            case "float":
-                return Float32;
-            case "double":
-                return Float64;
-            case "long":
-                return Float64; // TODO
-            case "char":
-                return Char;
-            case "_Bool":
-                return Boolean;
-            case "struct":
-                return Struct(fieldType);
-            case "array":
-                return Array(parseType(field.type), field.type.size);
-            case "pointer":
-                return Pointer(parseType(field.type));
-            case "function-pointer":
-                return Callback(fieldType);
-            case "size_t":
-                return UInt32; // cause fuck you
-            case "wchar_t":
-                return String;
             case "int8_t":
                 return Int8;
             case "int16_t":
@@ -149,40 +49,100 @@ class BindMan {
                 return UInt64;
             case "intptr_t":
                 return Pointer(Int32);
+            case "size_t":
+                return UInt32;
+            case "wchar_t":
+                return WChar;
+            case "float":
+                return Float32;
+            case "double":
+                return Float64;
+            case "long":
+                return Float64; // TODO
             case "long-long":
                 return Float64;
             case "unsigned-long":
-                return UInt64;
+                return Float64;
             case "unsigned-long-long":
-                return UInt64; // cause fuck you again
-            case "va_list":
-                return VarList;
+                return Float64; // cause fuck you
+            case "char":
+                return Char;
+            case "_Bool":
+                return Boolean;
+            case "struct":
+                // ! This is temporary fix !
+                if(parent != null && Utils.sanitizeTypeName(parent.type.tag) == "pointer") {
+                    return Struct(field.type.name);
+                }
+                return Struct(fieldType);
             case "union":
                 return Struct(fieldType);
+            case "array":
+                return Array(parseType(field.type), field.type.size);
+            case "pointer":
+                return Pointer(parseType(field.type, field));
+            case "function-pointer":
+                return FunctionPointer(field.name);
+            case "va_list":
+                return VarList;
             default:
-                Sys.println('Unrecognized Type: ${field.name} : ${fieldType}');
+                Sys.println('Unrecognized Type: ${field.name} -> ${fieldType}');
                 return Invalid;
         }
 
         return null;
     }
 
-    static function parseStruct(s:Array<CStruct>, entry:FFIEntry) {
+    static function parseStruct(s:Array<CStruct>, entry:FFIEntry, ?name:String) {
         var f:Array<CField> = [];
         for(field in entry.fields) {
-            f.push({
-                name: field.name,
-                type: parseType(field),
-                lineNumber: Std.parseInt(entry.location.split(":")[1])
-            });
+            var type = parseType(field);
+            
+            // ! This is a temporary solution !
+            // handle inline union (problem: SDL_GamepadBinding)
+            if(field.type.tag == "union") {
+                var t = field.type;
+                for(ft in t.fields) {
+                    var typeField = parseType(ft);
+                    switch(typeField) {
+                        case Struct(n):
+                            if(n != "struct") {
+                                f.push({
+                                    name: field.name+"_"+ft.name,
+                                    type: typeField
+                                });
+                            } else {
+                                for(a in ft.type.fields) {
+                                    f.push({
+                                        name: field.name+"_"+a.name,
+                                        type: parseType(a)
+                                    });
+                                }
+                            }
+                        default:
+                            f.push({
+                                name: field.name+"_"+ft.name,
+                                type: parseType(ft)
+                            });
+                    }
+                }
+            } else {
+                f.push({
+                    name: field.name,
+                    type: parseType(field),
+                    lineNumber: Std.parseInt(entry.location.split(":")[1])
+                });
+            }
         }
 
+        var n = name;
+        if(name == null) n = entry.name;
         s.push({
-            name: entry.name,
+            name: n,
             fields: f,
             opaque: f.length == 0 ? true : false
         });
-        definedTypes.push(entry.name);
+        if(!definedTypes.contains(entry.name)) definedTypes.push(entry.name);
     }
 
     static function parseTypedef(t:Array<CField>, entry:FFIEntry) {
@@ -191,7 +151,23 @@ class BindMan {
         if(entry.type != null) {
             if(Utils.sanitizeTypeName(entry.type.tag) == "enum") {
                 enumRegister.set(entry.type.id, entry.name);
-                definedTypes.push(entry.name);
+                if(!definedTypes.contains(entry.name)) definedTypes.push(entry.name);
+            } else if(Utils.sanitizeTypeName(entry.type.tag) == "function-pointer") {
+                var type = parseType(entry);
+                t.push({
+                    name: entry.name,
+                    type: type,
+                    lineNumber: Std.parseInt(entry.location.split(":")[1])
+                });
+                if(!definedTypes.contains(entry.name)) definedTypes.push(entry.name);
+            } else if(Utils.sanitizeTypeName(entry.type.tag) == "union") {
+                // ! This is a temporary solution? !
+                var type = parseType(entry);
+                t.push({
+                    name: entry.name,
+                    type: Struct(entry.type.name)
+                });
+                if(!definedTypes.contains(entry.name)) definedTypes.push(entry.name);
             } else {
                 var type = parseType(entry);
                 t.push({
@@ -199,7 +175,7 @@ class BindMan {
                     type: type,
                     lineNumber: Std.parseInt(entry.location.split(":")[1])
                 });
-                definedTypes.push(entry.name);
+                if(!definedTypes.contains(entry.name)) definedTypes.push(entry.name);
             }
             return;
         }
@@ -246,12 +222,23 @@ class BindMan {
         });
     }
 
-    static function parse(includeKeyword:String, ffiEntries:Array<FFIEntry>):{structs:Array<CStruct>, enums:Array<CEnum>, typedefs:Array<CField>, functions: Array<CFunction>} {
+    static function parse(includeKeyword:String, ffiEntries:Array<FFIEntry>, ignore:Array<String>):CLib {
         var parsed = {
             structs: [],
             enums: [],
             typedefs: [],
             functions: []
+        }
+
+        for(entry in ffiEntries) {
+            if(ignore != null) {
+                for(i in ignore) {
+                    var spl = i.split("~");
+                    var n = spl[1];
+                    var l = spl[0];
+                    if(entry.name == n && entry.location == l) ffiEntries.remove(entry);
+                }
+            }
         }
         
         // NOTE: These are separated in two because of enums missing `name` because of ordering (typedefs first).
@@ -278,203 +265,56 @@ class BindMan {
                     parseFunction(parsed.functions, entry);
             }
         }
-        
-        for(s in parsed.structs) {
-            for(field in s.fields) {
-                for(const in _constTypes) {
-                    if(field.lineNumber == const.lineNumber) {
-                        if(field.name == const.name) field.type = Const(field.type);
-                    }
-                }
-            }
-        }
-
-        for(f in parsed.functions) {
-            for(const in _constTypes) {
-                if(f.name == const.name) f.returnType = Const(f.returnType);
-            }
-
-            for(field in f.parameters) {
-                for(const in _constTypes) {
-                    if(field.lineNumber == const.lineNumber) {
-                        if(field.name == const.name) field.type = Const(field.type);
-                    }
-                }
-            }
-        }
 
         return parsed;
     }
 
-    static function main() {
-        includeKeyword = UserProvidedData.includeKeyword;
-        includeHeader = UserProvidedData.includeHeader;
-        includeDirectory = UserProvidedData.includeDirectory;
-        generatedFile = UserProvidedData.generatedFile;
-        customReplace = UserProvidedData.customReplace;
+    static function build(configFile:String) {
+        var libPath = Utils.locateHaxelibPath();
+        var config:Config = haxe.Json.parse(sys.io.File.getContent(configFile));
+        var c2ffi = haxe.io.Path.join([libPath, "external", "c2ffi"]);
+        if(!sys.FileSystem.exists(config.out)) sys.FileSystem.createDirectory(config.out);
 
-        var out = haxe.io.Path.join(["interop", Utils.titlecase(includeHeader.replace(".h", ".hx"))]);
+        for(lib in config.libraries) {
+            if(!sys.FileSystem.exists(haxe.io.Path.join([config.out, lib.library]))) sys.FileSystem.createDirectory(haxe.io.Path.join([config.out, lib.library]));
 
-        var fileContent = sys.io.File.getContent(generatedFile);
-        fileContent = fileContent.replace("bit-size", "bit_size");
-        fileContent = fileContent.replace("bit-alignment", "bit_alignment");
-        fileContent = fileContent.replace("return-type", "return_type");
+            // Generate with c2ffi
+            var file = haxe.io.Path.join([config.out, lib.library, '${lib.library}_ffi.json']);
+            sys.io.File.saveContent("tmp.c", '#include "${lib.includeHeader}"');
+            var process = new Process(c2ffi, ["tmp.c", "-I", lib.includeDirectory, "-o", file]);
+            Sys.print('Running c2ffi  ');
+            Sys.println(process.stdout.readAll().toString());
+            process.close();    
+            sys.FileSystem.deleteFile("tmp.c");
 
-        var ffiEntries:Array<FFIEntry> = [];
-        ffiEntries = haxe.Json.parse(fileContent);
+            var fileContent = sys.io.File.getContent(file);
+            fileContent = fileContent.replace("bit-size", "bit_size");
+            fileContent = fileContent.replace("bit-alignment", "bit_alignment");
+            fileContent = fileContent.replace("return-type", "return_type");
 
-        var parsed = parse(includeKeyword, ffiEntries); // first get all the type details
-        enums = parsed.enums;
-        typedefs = parsed.typedefs;
+            var ffiEntries:Array<FFIEntry> = [];
+            ffiEntries = haxe.Json.parse(fileContent);
 
-        // var header_content = sys.io.File.getContent(haxe.io.Path.join([includeDirectory, includeHeader]));
-        // parseExtraDetails(includeKeyword, ffiEntries, header_content, file);
+            // ! NOTE !
+            // This is called to populate `definedTypes`
+            // This is a hack! Please change this code later.
+            // var inital = parse(lib.includeKeyword, ffiEntries, lib.ignore);
+            // var second = parse(lib.includeKeyword, ffiEntries, lib.ignore);
+            // var dt = definedTypes.copy();
+            // for(i in inital.typedefs) {
+            //     definedTypes.remove(i.name);
+            // }
+            var parsed = parse(lib.includeKeyword, ffiEntries, lib.ignore);
 
-        parsed = parse(includeKeyword, ffiEntries); // then generate again with extra details
-        structs = parsed.structs;
-        functions = parsed.functions;
-
-        var bout = UserProvidedData.bindmanOut;
-        sys.io.File.saveContent(bout, haxe.Json.stringify({structs: structs, typedefs:typedefs, enums:enums, functions:functions, const:_constTypes}, "    "));
-
-        var hashlinkOut = GeneratorHL.generateBindings();
-        var extOut = GeneratorHL.generateExt();
-        var hxcppOut = GeneratorHxcpp.generateBindings();
+            sys.io.File.saveContent(haxe.io.Path.join([config.out, lib.library, '${lib.library}_bindman.json']), haxe.Json.stringify(parsed, "    "));
         
-        var i = includeHeader.split("/");
-        var f = i[i.length-1];
-        sys.io.File.saveContent("interop/"+Utils.titlecase(f.replace(".h", ".cpp.hx")), hxcppOut);
-        sys.io.File.saveContent("interop/"+Utils.titlecase(f.replace(".h", ".hl.hx")), hashlinkOut);
-        sys.io.File.saveContent("interop/extension_"+Utils.titlecase(f.replace(".h", ".c")), extOut);
-    }
-}
+            var hxcpp_out = bindman.generator.Hxcpp.generate(parsed, lib.includeHeader);
 
-class GeneratorHL {
-    public static function generateBindings():String {
-        return "";
-    }
-
-    public static function generateExt():String {
-        return "";
-    }
-}
-
-class GeneratorHxcpp {
-    public static function getType(type:BindType):String {
-        switch(type) {
-            case Invalid:
-                return 'Invalid';
-            case Void:
-                return 'cpp.Void';
-            case Int8:
-                return 'cpp.Int8';
-            case Int16:
-                return 'cpp.Int16';
-            case Int32:
-                return 'cpp.Int32';
-            case Int64:
-                return 'cpp.Int64';
-            case UInt8:
-                return 'cpp.UInt8';
-            case UInt16:
-                return 'cpp.UInt16';
-            case UInt32:
-                return 'cpp.UInt32';
-            case UInt64:
-                return "cpp.UInt64";
-            case Float32:
-                return 'cpp.Float32';
-            case Float64:
-                return 'cpp.Float64';
-            case Char:
-                return 'cpp.Char';
-            case String:
-                return 'cpp.CharStar';
-            case Boolean:
-                return 'Bool';
-            case Struct(name):
-                return Utils.titlecase(name);
-            case Array(type, size):
-                if(type == Char) return 'cpp.CastCharStar';
-                return 'cpp.${getType(type)}Pointer';
-            case Pointer(value):
-                switch(value) {
-                    case Struct(v):
-                        return Utils.titlecase(v);
-                    case Pointer(v):
-                        if(v == Char) return 'cpp.CastCharStarPointer';
-                        return 'cpp.RawPointer<$v>';
-                    case Char:
-                        return 'cpp.CharStar';
-                    default:
-                        return getType(value)+'Pointer';
-                }
-            case Callback(name):
-                return null;
-            case Const(value): // TODO: Fix this (!!!)
-                return 'Const'+getType(value).replace("cpp.", "");
-            case WChar:
-                return "String";
-            case VarList:
-                return "cpp.VarList";
-        }
-        return null;
-    }
-
-    public static function generateBindings():String {
-        var code = "// This file was auto-generated by BindMan.\npackage interop;\n\n";
-
-        for(s in BindMan.structs) {
-            code += '@:semantics(value)\n';
-            code += '@:include("${BindMan.includeHeader}")\n';
-            code += '@:cpp.ValueType({type: "${s.name}"})\n';
-            code += 'extern class ${Utils.titlecase(s.name)} {\n';
-            if(!s.opaque) {
-                for(field in s.fields) code += '    var ${field.name}:${getType(field.type)};\n';
-                code += '\n    function new():Void;\n';
+            if(lib.replaceOnce != null) {
+                for(k => v in lib.replaceOnce) hxcpp_out = hxcpp_out.replace(k, v);
             }
-            code += '}\n\n';
+
+            sys.io.File.saveContent(haxe.io.Path.join([config.out, '${bindman.Utils.titlecase(lib.library)}.cpp.hx']), hxcpp_out);
         }
-
-        for(e in BindMan.enums) {
-            code += '@:semantics(value)\n';
-            code += '@:include("${BindMan.includeHeader}")\n';
-            code += '@:cpp.ValueType({type: "${e.name}"})\n';
-            code += 'extern enum abstract ${Utils.titlecase(e.name)}(${getType(e.fields[0].type)}) {\n';
-            for(field in e.fields) code += '    @:native("${field.name}") var ${field.name};\n';
-            code += '}\n\n';
-        }
-
-        for(t in BindMan.typedefs) {
-            code += 'typedef ${t.name} = ${getType(t.type)};\n\n';
-        }
-
-        code += "@:keep\n";
-        code += "@:buildXml(TODO)\n";
-        code += '@:include("${BindMan.includeHeader}")\n';
-        code += 'extern class ${Utils.titlecase(BindMan.includeHeader.split(".")[0])} {\n';
-        for(f in BindMan.functions) {
-            var params = '';
-            for(p in f.parameters) params += '${p.name}:${getType(p.type)},';
-            params = params.substr(0, -1).ltrim().rtrim();
-            code += '    @:native("${f.name}") static function ${f.name}($params):${getType(f.returnType)};\n';
-        }
-        code += "}";
-
-        return code;
-    }
-}
-
-class Utils {
-    public static function titlecase(str:String):String {
-        var n = str.split("");
-        n[0] = n[0].toUpperCase();
-        var name = n.toString();
-        name = name.replace("[", "").replace("]", "").replace(",", "").ltrim().rtrim();
-        return name;
-    }
-
-    public static function sanitizeTypeName(name:String):String {
-        return name.replace(":", "").ltrim().rtrim();
     }
 }

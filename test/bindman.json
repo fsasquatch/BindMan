@@ -1,0 +1,25 @@
+{
+    "out": "interop",
+    "libraries": [
+        {
+            "library": "sdl",
+            "includeKeyword": "SDL",
+            "includeDirectory": "native/SDL",
+            "includeHeader": "SDL.h",
+            "replaceOnce": {
+                "function:": "func:",
+                "override:": "overridePath:"
+            },
+            "ignore": ["/usr/local/include/SDL3/SDL_stdinc.h:132:7~alloca"]
+        },
+        {
+            "library": "raylib",
+            "includeKeyword": "raylib",
+            "includeDirectory": "native/raylib",
+            "includeHeader": "raylib.h",
+            "replaceOnce": {
+                "dynamic":  "dynamicBuffer"
+            }
+        }
+    ]
+}
