@@ -85,6 +85,7 @@ class Hxcpp {
         }
 
         for(e in lib.enums) {
+            if(e.name == null) continue;
             code += '@:semantics(value)\n';
             code += '@:include("${includeHeader}")\n';
             code += '@:cpp.ValueType({type: "${e.name}"})\n';

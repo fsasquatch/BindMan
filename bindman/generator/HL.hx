@@ -82,6 +82,7 @@ class HL {
         }
 
         for(e in lib.enums) {
+            if(e.name == null) continue;
             code += 'enum abstract ${e.name}(${getType(e.fields[0].type)}) from ${getType(e.fields[0].type)} to ${getType(e.fields[0].type)} {\n';
             for(f in e.fields) code += '    var ${f.name}:${getType(f.type)} = ${f.value};\n';
             code += '}\n\n';
