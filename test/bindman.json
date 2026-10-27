@@ -10,7 +10,8 @@
                 "function:": "func:",
                 "override:": "overridePath:"
             },
-            "ignore": ["/usr/local/include/SDL3/SDL_stdinc.h:132:7~alloca"]
+            "ignore": ["/usr/local/include/SDL3/SDL_stdinc.h:132:7~alloca"],
+            "cppXML": ""
         },
         {
             "library": "raylib",

@@ -7,8 +7,10 @@ typedef Library = {
     includeKeyword:String,
     includeDirectory:String,
     includeHeader:String,
-    replaceOnce:DynamicAccess<Dynamic>,
-    ignore:Array<String>
+    replace:DynamicAccess<Dynamic>,
+    ignore:Array<String>,
+    cppXML:String,
+    headerDefines:Array<String>,
 };
 
 typedef Config = {
