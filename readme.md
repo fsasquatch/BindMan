@@ -31,7 +31,7 @@ All you have to do is create a config, add this to your `.hxml` file and run it!
             "includeKeyword": "raylib",
             "includeDirectory": "native/raylib",
             "includeHeader": "raylib.h",
-            "replaceOnce": {
+            "replace": {
                 "dynamic":  "dynamicBuffer"
             }
         }
