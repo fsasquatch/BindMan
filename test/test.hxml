@@ -1,7 +1,0 @@
--m Main
--p ..
--cpp build
--D PLATFORM_DESKTOP
--D PLATFORM_DESKTOP_GLFW
--D GRAPHICS_API_OPENGL_33
---macro bindman.BindMan.build("bindman.json")

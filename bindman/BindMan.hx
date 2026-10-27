@@ -331,13 +331,16 @@ class BindMan {
             var parsed = parse(lib.includeKeyword, ffiEntries, lib.ignore);
             sys.io.File.saveContent(haxe.io.Path.join([config.out, lib.library, '${lib.library}_bindman.json']), haxe.Json.stringify(parsed, "    "));
         
-            var hxcpp_out = bindman.generator.Hxcpp.generate(parsed, lib.includeHeader, lib.cppXML);
+            var hxcpp_out = bindman.generator.Hxcpp.generate(parsed, lib.includeHeader, lib.cppXML, config.out);
             hxcpp_out = postprocess(lib, hxcpp_out);
             sys.io.File.saveContent(haxe.io.Path.join([config.out, '${bindman.Utils.titlecase(lib.library)}.cpp.hx']), hxcpp_out);
         
-            // hashlink_out
+            var hashlink_out = bindman.generator.HL.generate(parsed, lib.includeHeader, config.out, lib.library);
+            hashlink_out = postprocess(lib, hashlink_out);
+            sys.io.File.saveContent(haxe.io.Path.join([config.out, '${bindman.Utils.titlecase(lib.library)}.hl.hx']), hashlink_out);
 
-            // hashlink_ext_out
+            var ext_out = bindman.generator.HLExt.generate(lib.library, parsed, lib.includeHeader);
+            sys.io.File.saveContent(haxe.io.Path.join([config.out, '${bindman.Utils.titlecase(lib.library)}_extension.c']), ext_out);
         }
     }
 }
