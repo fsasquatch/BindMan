@@ -26,6 +26,8 @@ class Hxcpp {
                 return 'cpp.UInt32';
             case UInt64:
                 return "cpp.UInt64";
+            case SizeT:
+                return "cpp.UInt64";
             case Float32:
                 return 'cpp.Float32';
             case Float64:

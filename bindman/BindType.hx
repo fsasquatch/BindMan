@@ -22,5 +22,6 @@ enum BindType {
     FunctionPointer(name:String);
     WChar;
     VarList;
+    SizeT;
     // BitFields; (EnumFlags in haxe)
 }

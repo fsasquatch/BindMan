@@ -7,7 +7,7 @@ class HL {
     static function getType(type:BindType):String {
         switch(type) {
             case Invalid:
-                return null;
+                return "Dynamic";
             case Void:
                 return 'Void';
             case Int8:
@@ -25,6 +25,8 @@ class HL {
             case UInt32:
                 return 'Int';
             case UInt64:
+                return 'Int';
+            case SizeT:
                 return 'Int';
             case Float32:
                 return 'Single';
@@ -83,7 +85,7 @@ class HL {
 
         for(e in lib.enums) {
             if(e.name == null) continue;
-            code += 'enum abstract ${e.name}(${getType(e.fields[0].type)}) from ${getType(e.fields[0].type)} to ${getType(e.fields[0].type)} {\n';
+            code += 'enum abstract ${Utils.titlecase(e.name)}(${getType(e.fields[0].type)}) from ${getType(e.fields[0].type)} to ${getType(e.fields[0].type)} {\n';
             for(f in e.fields) code += '    var ${f.name}:${getType(f.type)} = ${f.value};\n';
             code += '}\n\n';
         }
@@ -93,14 +95,14 @@ class HL {
         }
         code += '\n';
 
-        var lib_name = header.split(".")[0];
+        // var lib_name = header.split(".")[0];
         // code += '@:hlNative("${header.split(".")[0]}")\n';
         code += 'extern class ${Utils.titlecase(header.split(".")[0])} {\n';
         for(fn in lib.functions) {
             var params = '';
             for(p in fn.parameters) params += '${p.name}:${getType(p.type)},';
             params = params.substr(0, -1).ltrim().rtrim();
-            code += '    @:hlNative("${lib_name}", "${fn.name}") static function ${fn.name}($params):${getType(fn.returnType)};\n';
+            code += '    @:hlNative("${libName}_native", "${fn.name.toLowerCase()}") static function ${fn.name}($params):${getType(fn.returnType)};\n';
         }
         code += '}';
 

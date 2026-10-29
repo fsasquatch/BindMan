@@ -50,7 +50,7 @@ class BindMan {
             case "intptr_t":
                 return Pointer(Int32);
             case "size_t":
-                return UInt32;
+                return SizeT;
             case "wchar_t":
                 return WChar;
             case "float":
@@ -340,7 +340,7 @@ class BindMan {
             sys.io.File.saveContent(haxe.io.Path.join([config.out, '${bindman.Utils.titlecase(lib.library)}.hl.hx']), hashlink_out);
 
             var ext_out = bindman.generator.HLExt.generate(lib.library, parsed, lib.includeHeader);
-            sys.io.File.saveContent(haxe.io.Path.join([config.out, '${bindman.Utils.titlecase(lib.library)}_extension.c']), ext_out);
+            sys.io.File.saveContent(haxe.io.Path.join([config.out, '${bindman.Utils.titlecase(lib.library)}_extension.cpp']), ext_out);
         }
     }
 }
